@@ -1,0 +1,1049 @@
+Added Component: Designator=BT1(CR1220)
+Added Component: Designator=C1(LC-0805_C)
+Added Component: Designator=C2(LC-0805_C)
+Added Component: Designator=C3(LC-0805_C)
+Added Component: Designator=C4(LC-0805_C)
+Added Component: Designator=C5(LC-0805_C)
+Added Component: Designator=C6(LC-0805_C)
+Added Component: Designator=C7(LC-0805_C)
+Added Component: Designator=C8(LC-0805_C)
+Added Component: Designator=C9(LC-0805_C)
+Added Component: Designator=C10(C-RB-8)
+Added Component: Designator=C11(LC-0805_C)
+Added Component: Designator=C12(C-RB-S6)
+Added Component: Designator=C13(LC-0805_C)
+Added Component: Designator=C14(LC-0805_C)
+Added Component: Designator=C15(LC-0805_C)
+Added Component: Designator=C16(LC-0805_C)
+Added Component: Designator=C17(LC-0805_C)
+Added Component: Designator=C18(LC-0805_C)
+Added Component: Designator=C19(LC-0805_C)
+Added Component: Designator=C20(LC-0805_C)
+Added Component: Designator=C21(LC-0805_C)
+Added Component: Designator=C22(LC-0805_C)
+Added Component: Designator=C23(LC-0805_C)
+Added Component: Designator=C24(LC-0805_C)
+Added Component: Designator=C25(LC-0805_C)
+Added Component: Designator=C26(LC-0805_C)
+Added Component: Designator=C27(LC-0805_C)
+Added Component: Designator=C28(LC-0805_C)
+Added Component: Designator=C29(LC-0805_C)
+Added Component: Designator=C30(LC-0805_C)
+Added Component: Designator=C31(LC-0805_C)
+Added Component: Designator=C32(LC-0805_C)
+Added Component: Designator=D1(LC-SMB(DO-214AA)_S1)
+Added Component: Designator=D2(LC-SMA(DO-214AC)_S1)
+Added Component: Designator=D3(LC-0805_LED_S1)
+Added Component: Designator=D4(LC-LL-34)
+Added Component: Designator=J1(DC-005)
+Added Component: Designator=J2(CHECK-B)
+Added Component: Designator=J3(CHECK-B)
+Added Component: Designator=J4(CHECK-B)
+Added Component: Designator=J5(CHECK-B)
+Added Component: Designator=J6(CHECK-B)
+Added Component: Designator=J7(USB_MICRO)
+Added Component: Designator=J8(Beep)
+Added Component: Designator=L1(L-SMD-12)
+Added Component: Designator=L2(LC-0805_L)
+Added Component: Designator=P1(HDR4X1_A)
+Added Component: Designator=P2(HDR4X1_A)
+Added Component: Designator=P3(HDR3X1_A)
+Added Component: Designator=Q1(LC-SOT-23(SOT-23-3))
+Added Component: Designator=Q2(LC-SOT-23(SOT-23-3))
+Added Component: Designator=Q3(LC-TO-252-2-180)
+Added Component: Designator=Q4(LC-SOT-23(SOT-23-3))
+Added Component: Designator=Q5(LC-SOT-23(SOT-23-3))
+Added Component: Designator=Q6(LC-SOT-23(SOT-23-3))
+Added Component: Designator=Q7(LC-SOT-23(SOT-23-3))
+Added Component: Designator=Q8(LC-SOT-23(SOT-23-3))
+Added Component: Designator=Q9(LC-SOT-23(SOT-23-3))
+Added Component: Designator=Q10(LC-SOT-23(SOT-23-3))
+Added Component: Designator=Q11(LC-SOT-23(SOT-23-3))
+Added Component: Designator=Q12(LC-SOT-23(SOT-23-3))
+Added Component: Designator=Q13(LC-SOT-23(SOT-23-3))
+Added Component: Designator=Q14(LC-SOT-23(SOT-23-3))
+Added Component: Designator=Q15(LC-SOT-23(SOT-23-3))
+Added Component: Designator=Q16(LC-SOT-23(SOT-23-3))
+Added Component: Designator=Q17(LC-SOT-23(SOT-23-3))
+Added Component: Designator=Q18(LC-SOT-23(SOT-23-3))
+Added Component: Designator=Q19(LC-SOT-23(SOT-23-3))
+Added Component: Designator=Q20(LC-SOT-23(SOT-23-3))
+Added Component: Designator=Q21(LC-SOT-23(SOT-23-3))
+Added Component: Designator=Q22(LC-SOT-23(SOT-23-3))
+Added Component: Designator=Q23(LC-SOT-23(SOT-23-3))
+Added Component: Designator=Q24(LC-SOT-23(SOT-23-3))
+Added Component: Designator=Q25(LC-SOT-23(SOT-23-3))
+Added Component: Designator=Q26(LC-SOT-23(SOT-23-3))
+Added Component: Designator=Q27(LC-SOT-23(SOT-23-3))
+Added Component: Designator=Q28(LC-SOT-23(SOT-23-3))
+Added Component: Designator=Q29(LC-SOT-23(SOT-23-3))
+Added Component: Designator=Q30(LC-SOT-23(SOT-23-3))
+Added Component: Designator=Q31(LC-SOT-23(SOT-23-3))
+Added Component: Designator=Q32(LC-SOT-23(SOT-23-3))
+Added Component: Designator=Q33(LC-SOT-23(SOT-23-3))
+Added Component: Designator=Q34(LC-SOT-23(SOT-23-3))
+Added Component: Designator=Q35(LC-SOT-23(SOT-23-3))
+Added Component: Designator=Q36(LC-SOT-23(SOT-23-3))
+Added Component: Designator=Q37(LC-SOT-23(SOT-23-3))
+Added Component: Designator=Q38(LC-SOT-23(SOT-23-3))
+Added Component: Designator=Q39(LC-SOT-23(SOT-23-3))
+Added Component: Designator=Q40(LC-SOT-23(SOT-23-3))
+Added Component: Designator=Q41(LC-SOT-23(SOT-23-3))
+Added Component: Designator=Q42(LC-SOT-23(SOT-23-3))
+Added Component: Designator=Q43(LC-SOT-23(SOT-23-3))
+Added Component: Designator=Q44(LC-SOT-23(SOT-23-3))
+Added Component: Designator=Q45(LC-SOT-23(SOT-23-3))
+Added Component: Designator=Q46(LC-SOT-23(SOT-23-3))
+Added Component: Designator=R1(LC-0805_R)
+Added Component: Designator=R2(LC-0805_R)
+Added Component: Designator=R3(LC-0805_R)
+Added Component: Designator=R4(LC-0805_R)
+Added Component: Designator=R5(LC-0805_R)
+Added Component: Designator=R6(LC-0805_R)
+Added Component: Designator=R7(VR_B1)
+Added Component: Designator=R8(LC-0805_R)
+Added Component: Designator=R9(LC-0805_R)
+Added Component: Designator=R10(LC-0805_R)
+Added Component: Designator=R11(LC-0805_R)
+Added Component: Designator=R12(LC-0805_R)
+Added Component: Designator=R13(LC-0805_R)
+Added Component: Designator=R14(LC-0805_R)
+Added Component: Designator=R15(LC-0805_R)
+Added Component: Designator=R16(LC-0805_R)
+Added Component: Designator=R17(LC-0805_R)
+Added Component: Designator=R18(LC-0805_R)
+Added Component: Designator=R19(LC-0805_R)
+Added Component: Designator=R20(LC-0805_R)
+Added Component: Designator=R21(LC-0805_R)
+Added Component: Designator=R22(LC-0805_R)
+Added Component: Designator=R23(LC-0805_R)
+Added Component: Designator=R24(LC-0805_R)
+Added Component: Designator=R25(LC-0805_R)
+Added Component: Designator=R26(LC-0805_R)
+Added Component: Designator=R27(LC-0805_R)
+Added Component: Designator=R28(LC-0805_R)
+Added Component: Designator=R29(LC-0805_R)
+Added Component: Designator=R30(LC-0805_R)
+Added Component: Designator=R31(LC-0805_R)
+Added Component: Designator=R32(LC-0805_R)
+Added Component: Designator=R33(LC-0805_R)
+Added Component: Designator=R34(LC-0805_R)
+Added Component: Designator=R35(LC-0805_R)
+Added Component: Designator=R36(LC-0805_R)
+Added Component: Designator=R37(LC-0805_R)
+Added Component: Designator=R38(LC-0805_R)
+Added Component: Designator=R39(LC-0805_R)
+Added Component: Designator=R40(LC-0805_R)
+Added Component: Designator=R41(LC-0805_R)
+Added Component: Designator=R42(LC-0805_R)
+Added Component: Designator=R43(LC-0805_R)
+Added Component: Designator=R44(LC-0805_R)
+Added Component: Designator=R45(LC-0805_R)
+Added Component: Designator=R46(LC-0805_R)
+Added Component: Designator=R47(LC-0805_R)
+Added Component: Designator=R48(LC-0805_R)
+Added Component: Designator=R49(LC-0805_R)
+Added Component: Designator=R50(LC-0805_R)
+Added Component: Designator=R51(LC-0805_R)
+Added Component: Designator=R52(LC-0805_R)
+Added Component: Designator=R53(LC-0805_R)
+Added Component: Designator=R54(LC-0805_R)
+Added Component: Designator=R55(LC-0805_R)
+Added Component: Designator=R56(LC-0805_R)
+Added Component: Designator=R57(LC-0805_R)
+Added Component: Designator=R58(LC-0805_R)
+Added Component: Designator=R59(LC-0805_R)
+Added Component: Designator=R60(LC-0805_R)
+Added Component: Designator=R61(LC-0805_R)
+Added Component: Designator=R62(LC-0805_R)
+Added Component: Designator=R63(LC-0805_R)
+Added Component: Designator=R64(LC-0805_R)
+Added Component: Designator=R65(LC-0805_R)
+Added Component: Designator=R66(LC-0805_R)
+Added Component: Designator=R67(LC-0805_R)
+Added Component: Designator=R68(LC-0805_R)
+Added Component: Designator=R69(LC-0805_R)
+Added Component: Designator=R70(LC-0805_R)
+Added Component: Designator=R71(LC-0805_R)
+Added Component: Designator=R72(LC-0805_R)
+Added Component: Designator=R73(LC-0805_R)
+Added Component: Designator=R74(LC-0805_R)
+Added Component: Designator=R75(LC-0805_R)
+Added Component: Designator=S1(SW_PB2_A1)
+Added Component: Designator=S2(SW_PB2_A1)
+Added Component: Designator=S3(SW_PB2_A1)
+Added Component: Designator=S4(SW_PB2_A1)
+Added Component: Designator=S5(SW_PB2_A1)
+Added Component: Designator=T1(蹟佪謂-3mm)
+Added Component: Designator=T2(蹟佪謂-3mm)
+Added Component: Designator=T3(蹟佪謂-3mm)
+Added Component: Designator=T4(蹟佪謂-3mm)
+Added Component: Designator=T5(蹟佪謂-3mm)
+Added Component: Designator=T6(QS30-1)
+Added Component: Designator=T7(QS30-1)
+Added Component: Designator=T8(QS30-1)
+Added Component: Designator=T9(QS30-1)
+Added Component: Designator=U1(MP1584 Module)
+Added Component: Designator=U2(WS2812)
+Added Component: Designator=U3(WS2812)
+Added Component: Designator=U4(WS2812)
+Added Component: Designator=U5(WS2812)
+Added Component: Designator=U6(LC-SOIC-8_150mil)
+Added Component: Designator=U7(LC-LQFP-64_10x10x05P)
+Added Component: Designator=U8(LC-SOIC-16_150mil)
+Added Component: Designator=U9(LC-SOIC-16_150mil)
+Added Component: Designator=U10(LC-SOIC-16_150mil)
+Added Component: Designator=U11(LC-SOIC-16_150mil)
+Added Component: Designator=U12(LC-SOIC-16_150mil)
+Added Component: Designator=U13(LC-SOIC-16_150mil)
+Added Component: Designator=U14(TO-92A)
+Added Component: Designator=U15(LC-SOIC-16_300mil)
+Added Component: Designator=U16(HS0038B)
+Added Component: Designator=UP1(Neon)
+Added Component: Designator=UP2(Neon)
+Added Component: Designator=VR1(LC-SOT-223)
+Added Component: Designator=Y1(X-SM49)
+Added Component: Designator=Y2(X-SM49)
+Added Pin To Net: NetName=NetBT1_1 Pin=BT1-1
+Added Pin To Net: NetName=DGND Pin=BT1-2
+Added Pin To Net: NetName=GND Pin=C1-1
+Added Pin To Net: NetName=+5 Pin=C1-2
+Added Pin To Net: NetName=GND Pin=C2-1
+Added Pin To Net: NetName=3V3 Pin=C2-2
+Added Pin To Net: NetName=DGND Pin=C3-1
+Added Pin To Net: NetName=METALKEY Pin=C3-2
+Added Pin To Net: NetName=+5 Pin=C4-1
+Added Pin To Net: NetName=GND Pin=C4-2
+Added Pin To Net: NetName=+5 Pin=C5-1
+Added Pin To Net: NetName=GND Pin=C5-2
+Added Pin To Net: NetName=+5 Pin=C6-1
+Added Pin To Net: NetName=GND Pin=C6-2
+Added Pin To Net: NetName=+5 Pin=C7-1
+Added Pin To Net: NetName=GND Pin=C7-2
+Added Pin To Net: NetName=GND Pin=C8-1
+Added Pin To Net: NetName=NetC8_2 Pin=C8-2
+Added Pin To Net: NetName=NetC9_1 Pin=C9-1
+Added Pin To Net: NetName=GND Pin=C9-2
+Added Pin To Net: NetName=VH Pin=C10-1
+Added Pin To Net: NetName=GND Pin=C10-2
+Added Pin To Net: NetName=GND Pin=C11-1
+Added Pin To Net: NetName=+12 Pin=C11-2
+Added Pin To Net: NetName=+12 Pin=C12-1
+Added Pin To Net: NetName=GND Pin=C12-2
+Added Pin To Net: NetName=DGND Pin=C13-1
+Added Pin To Net: NetName=NetC13_2 Pin=C13-2
+Added Pin To Net: NetName=DGND Pin=C14-1
+Added Pin To Net: NetName=NetC14_2 Pin=C14-2
+Added Pin To Net: NetName=3V3 Pin=C15-1
+Added Pin To Net: NetName=DGND Pin=C15-2
+Added Pin To Net: NetName=3V3 Pin=C16-1
+Added Pin To Net: NetName=DGND Pin=C16-2
+Added Pin To Net: NetName=3V3 Pin=C17-1
+Added Pin To Net: NetName=DGND Pin=C17-2
+Added Pin To Net: NetName=DGND Pin=C18-1
+Added Pin To Net: NetName=RST Pin=C18-2
+Added Pin To Net: NetName=+5 Pin=C19-1
+Added Pin To Net: NetName=DGND Pin=C19-2
+Added Pin To Net: NetName=+5 Pin=C20-1
+Added Pin To Net: NetName=DGND Pin=C20-2
+Added Pin To Net: NetName=+5 Pin=C21-1
+Added Pin To Net: NetName=DGND Pin=C21-2
+Added Pin To Net: NetName=+5 Pin=C22-1
+Added Pin To Net: NetName=DGND Pin=C22-2
+Added Pin To Net: NetName=+5 Pin=C23-1
+Added Pin To Net: NetName=DGND Pin=C23-2
+Added Pin To Net: NetName=NetC24_1 Pin=C24-1
+Added Pin To Net: NetName=DGND Pin=C24-2
+Added Pin To Net: NetName=NetC25_1 Pin=C25-1
+Added Pin To Net: NetName=DGND Pin=C25-2
+Added Pin To Net: NetName=NetC26_1 Pin=C26-1
+Added Pin To Net: NetName=DGND Pin=C26-2
+Added Pin To Net: NetName=DGND Pin=C27-1
+Added Pin To Net: NetName=3V3 Pin=C27-2
+Added Pin To Net: NetName=DGND Pin=C28-1
+Added Pin To Net: NetName=KEY1 Pin=C28-2
+Added Pin To Net: NetName=DGND Pin=C29-1
+Added Pin To Net: NetName=KEY2 Pin=C29-2
+Added Pin To Net: NetName=DGND Pin=C30-1
+Added Pin To Net: NetName=KEY3 Pin=C30-2
+Added Pin To Net: NetName=DGND Pin=C31-1
+Added Pin To Net: NetName=KEY4 Pin=C31-2
+Added Pin To Net: NetName=3V3 Pin=C32-1
+Added Pin To Net: NetName=DGND Pin=C32-2
+Added Pin To Net: NetName=+5 Pin=D1-1
+Added Pin To Net: NetName=GND Pin=D1-2
+Added Pin To Net: NetName=NetD2_1 Pin=D2-1
+Added Pin To Net: NetName=VH Pin=D2-2
+Added Pin To Net: NetName=3V3 Pin=D3-A
+Added Pin To Net: NetName=NetD3_K Pin=D3-K
+Added Pin To Net: NetName=RST Pin=D4-1
+Added Pin To Net: NetName=NetD4_2 Pin=D4-2
+Added Pin To Net: NetName=+12 Pin=J1-1
+Added Pin To Net: NetName=NetJ1_2 Pin=J1-2
+Added Pin To Net: NetName=NetJ1_2 Pin=J1-3
+Added Pin To Net: NetName=VH Pin=J2-1
+Added Pin To Net: NetName=+12 Pin=J3-1
+Added Pin To Net: NetName=+5 Pin=J4-1
+Added Pin To Net: NetName=3V3 Pin=J5-1
+Added Pin To Net: NetName=GND Pin=J6-1
+Added Pin To Net: NetName=+5 Pin=J7-1
+Added Pin To Net: NetName=UD- Pin=J7-2
+Added Pin To Net: NetName=UD+ Pin=J7-3
+Added Pin To Net: NetName=DGND Pin=J7-4
+Added Pin To Net: NetName=DGND Pin=J7-5
+Added Pin To Net: NetName=+5 Pin=J8-1
+Added Pin To Net: NetName=NetJ8_2 Pin=J8-2
+Added Pin To Net: NetName=+12 Pin=L1-1
+Added Pin To Net: NetName=NetD2_1 Pin=L1-2
+Added Pin To Net: NetName=GND Pin=L2-1
+Added Pin To Net: NetName=DGND Pin=L2-2
+Added Pin To Net: NetName=LAMP Pin=P1-1
+Added Pin To Net: NetName=3V3 Pin=P1-2
+Added Pin To Net: NetName=DGND Pin=P1-3
+Added Pin To Net: NetName=METALKEY Pin=P1-4
+Added Pin To Net: NetName=DGND Pin=P2-1
+Added Pin To Net: NetName=SWCLK Pin=P2-2
+Added Pin To Net: NetName=SWDIO Pin=P2-3
+Added Pin To Net: NetName=+5 Pin=P2-4
+Added Pin To Net: NetName=DGND Pin=P3-1
+Added Pin To Net: NetName=TX1 Pin=P3-2
+Added Pin To Net: NetName=RX1 Pin=P3-3
+Added Pin To Net: NetName=NetQ1_1 Pin=Q1-1
+Added Pin To Net: NetName=GND Pin=Q1-2
+Added Pin To Net: NetName=NetQ1_3 Pin=Q1-3
+Added Pin To Net: NetName=NetQ2_1 Pin=Q2-1
+Added Pin To Net: NetName=GND Pin=Q2-2
+Added Pin To Net: NetName=NetQ2_3 Pin=Q2-3
+Added Pin To Net: NetName=NetQ3_1 Pin=Q3-1
+Added Pin To Net: NetName=NetD2_1 Pin=Q3-2
+Added Pin To Net: NetName=GND Pin=Q3-3
+Added Pin To Net: NetName=TUBE1-0 Pin=Q4-1
+Added Pin To Net: NetName=GND Pin=Q4-2
+Added Pin To Net: NetName=NetQ4_3 Pin=Q4-3
+Added Pin To Net: NetName=TUBE1-9 Pin=Q5-1
+Added Pin To Net: NetName=GND Pin=Q5-2
+Added Pin To Net: NetName=NetQ5_3 Pin=Q5-3
+Added Pin To Net: NetName=TUBE1-8 Pin=Q6-1
+Added Pin To Net: NetName=GND Pin=Q6-2
+Added Pin To Net: NetName=NetQ6_3 Pin=Q6-3
+Added Pin To Net: NetName=TUBE1-7 Pin=Q7-1
+Added Pin To Net: NetName=GND Pin=Q7-2
+Added Pin To Net: NetName=NetQ7_3 Pin=Q7-3
+Added Pin To Net: NetName=TUBE1-6 Pin=Q8-1
+Added Pin To Net: NetName=GND Pin=Q8-2
+Added Pin To Net: NetName=NetQ8_3 Pin=Q8-3
+Added Pin To Net: NetName=TUBE1-5 Pin=Q9-1
+Added Pin To Net: NetName=GND Pin=Q9-2
+Added Pin To Net: NetName=NetQ9_3 Pin=Q9-3
+Added Pin To Net: NetName=TUBE1-4 Pin=Q10-1
+Added Pin To Net: NetName=GND Pin=Q10-2
+Added Pin To Net: NetName=NetQ10_3 Pin=Q10-3
+Added Pin To Net: NetName=TUBE1-3 Pin=Q11-1
+Added Pin To Net: NetName=GND Pin=Q11-2
+Added Pin To Net: NetName=NetQ11_3 Pin=Q11-3
+Added Pin To Net: NetName=TUBE1-2 Pin=Q12-1
+Added Pin To Net: NetName=GND Pin=Q12-2
+Added Pin To Net: NetName=NetQ12_3 Pin=Q12-3
+Added Pin To Net: NetName=TUBE1-1 Pin=Q13-1
+Added Pin To Net: NetName=GND Pin=Q13-2
+Added Pin To Net: NetName=NetQ13_3 Pin=Q13-3
+Added Pin To Net: NetName=TUBE2-0 Pin=Q14-1
+Added Pin To Net: NetName=GND Pin=Q14-2
+Added Pin To Net: NetName=NetQ14_3 Pin=Q14-3
+Added Pin To Net: NetName=TUBE2-9 Pin=Q15-1
+Added Pin To Net: NetName=GND Pin=Q15-2
+Added Pin To Net: NetName=NetQ15_3 Pin=Q15-3
+Added Pin To Net: NetName=TUBE2-8 Pin=Q16-1
+Added Pin To Net: NetName=GND Pin=Q16-2
+Added Pin To Net: NetName=NetQ16_3 Pin=Q16-3
+Added Pin To Net: NetName=TUBE2-7 Pin=Q17-1
+Added Pin To Net: NetName=GND Pin=Q17-2
+Added Pin To Net: NetName=NetQ17_3 Pin=Q17-3
+Added Pin To Net: NetName=TUBE2-6 Pin=Q18-1
+Added Pin To Net: NetName=GND Pin=Q18-2
+Added Pin To Net: NetName=NetQ18_3 Pin=Q18-3
+Added Pin To Net: NetName=TUBE2-5 Pin=Q19-1
+Added Pin To Net: NetName=GND Pin=Q19-2
+Added Pin To Net: NetName=NetQ19_3 Pin=Q19-3
+Added Pin To Net: NetName=TUBE2-4 Pin=Q20-1
+Added Pin To Net: NetName=GND Pin=Q20-2
+Added Pin To Net: NetName=NetQ20_3 Pin=Q20-3
+Added Pin To Net: NetName=TUBE2-3 Pin=Q21-1
+Added Pin To Net: NetName=GND Pin=Q21-2
+Added Pin To Net: NetName=NetQ21_3 Pin=Q21-3
+Added Pin To Net: NetName=TUBE2-2 Pin=Q22-1
+Added Pin To Net: NetName=GND Pin=Q22-2
+Added Pin To Net: NetName=NetQ22_3 Pin=Q22-3
+Added Pin To Net: NetName=TUBE2-1 Pin=Q23-1
+Added Pin To Net: NetName=GND Pin=Q23-2
+Added Pin To Net: NetName=NetQ23_3 Pin=Q23-3
+Added Pin To Net: NetName=TUBE3-0 Pin=Q24-1
+Added Pin To Net: NetName=GND Pin=Q24-2
+Added Pin To Net: NetName=NetQ24_3 Pin=Q24-3
+Added Pin To Net: NetName=TUBE3-9 Pin=Q25-1
+Added Pin To Net: NetName=GND Pin=Q25-2
+Added Pin To Net: NetName=NetQ25_3 Pin=Q25-3
+Added Pin To Net: NetName=TUBE3-8 Pin=Q26-1
+Added Pin To Net: NetName=GND Pin=Q26-2
+Added Pin To Net: NetName=NetQ26_3 Pin=Q26-3
+Added Pin To Net: NetName=TUBE3-7 Pin=Q27-1
+Added Pin To Net: NetName=GND Pin=Q27-2
+Added Pin To Net: NetName=NetQ27_3 Pin=Q27-3
+Added Pin To Net: NetName=TUBE3-6 Pin=Q28-1
+Added Pin To Net: NetName=GND Pin=Q28-2
+Added Pin To Net: NetName=NetQ28_3 Pin=Q28-3
+Added Pin To Net: NetName=TUBE3-5 Pin=Q29-1
+Added Pin To Net: NetName=GND Pin=Q29-2
+Added Pin To Net: NetName=NetQ29_3 Pin=Q29-3
+Added Pin To Net: NetName=TUBE3-4 Pin=Q30-1
+Added Pin To Net: NetName=GND Pin=Q30-2
+Added Pin To Net: NetName=NetQ30_3 Pin=Q30-3
+Added Pin To Net: NetName=TUBE3-3 Pin=Q31-1
+Added Pin To Net: NetName=GND Pin=Q31-2
+Added Pin To Net: NetName=NetQ31_3 Pin=Q31-3
+Added Pin To Net: NetName=TUBE3-2 Pin=Q32-1
+Added Pin To Net: NetName=GND Pin=Q32-2
+Added Pin To Net: NetName=NetQ32_3 Pin=Q32-3
+Added Pin To Net: NetName=TUBE3-1 Pin=Q33-1
+Added Pin To Net: NetName=GND Pin=Q33-2
+Added Pin To Net: NetName=NetQ33_3 Pin=Q33-3
+Added Pin To Net: NetName=TUBE4-0 Pin=Q34-1
+Added Pin To Net: NetName=GND Pin=Q34-2
+Added Pin To Net: NetName=NetQ34_3 Pin=Q34-3
+Added Pin To Net: NetName=TUBE4-9 Pin=Q35-1
+Added Pin To Net: NetName=GND Pin=Q35-2
+Added Pin To Net: NetName=NetQ35_3 Pin=Q35-3
+Added Pin To Net: NetName=TUBE4-8 Pin=Q36-1
+Added Pin To Net: NetName=GND Pin=Q36-2
+Added Pin To Net: NetName=NetQ36_3 Pin=Q36-3
+Added Pin To Net: NetName=TUBE4-7 Pin=Q37-1
+Added Pin To Net: NetName=GND Pin=Q37-2
+Added Pin To Net: NetName=NetQ37_3 Pin=Q37-3
+Added Pin To Net: NetName=TUBE4-6 Pin=Q38-1
+Added Pin To Net: NetName=GND Pin=Q38-2
+Added Pin To Net: NetName=NetQ38_3 Pin=Q38-3
+Added Pin To Net: NetName=TUBE4-5 Pin=Q39-1
+Added Pin To Net: NetName=GND Pin=Q39-2
+Added Pin To Net: NetName=NetQ39_3 Pin=Q39-3
+Added Pin To Net: NetName=TUBE4-4 Pin=Q40-1
+Added Pin To Net: NetName=GND Pin=Q40-2
+Added Pin To Net: NetName=NetQ40_3 Pin=Q40-3
+Added Pin To Net: NetName=TUBE4-3 Pin=Q41-1
+Added Pin To Net: NetName=GND Pin=Q41-2
+Added Pin To Net: NetName=NetQ41_3 Pin=Q41-3
+Added Pin To Net: NetName=TUBE4-2 Pin=Q42-1
+Added Pin To Net: NetName=GND Pin=Q42-2
+Added Pin To Net: NetName=NetQ42_3 Pin=Q42-3
+Added Pin To Net: NetName=TUBE4-1 Pin=Q43-1
+Added Pin To Net: NetName=GND Pin=Q43-2
+Added Pin To Net: NetName=NetQ43_3 Pin=Q43-3
+Added Pin To Net: NetName=NetQ44_1 Pin=Q44-1
+Added Pin To Net: NetName=NetQ44_2 Pin=Q44-2
+Added Pin To Net: NetName=NetD4_2 Pin=Q44-3
+Added Pin To Net: NetName=NetQ45_1 Pin=Q45-1
+Added Pin To Net: NetName=3V3 Pin=Q45-2
+Added Pin To Net: NetName=NetQ45_3 Pin=Q45-3
+Added Pin To Net: NetName=NetQ46_1 Pin=Q46-1
+Added Pin To Net: NetName=DGND Pin=Q46-2
+Added Pin To Net: NetName=NetJ8_2 Pin=Q46-3
+Added Pin To Net: NetName=3V3 Pin=R1-1
+Added Pin To Net: NetName=METALKEY Pin=R1-2
+Added Pin To Net: NetName=NetQ1_1 Pin=R2-1
+Added Pin To Net: NetName=DOT1 Pin=R2-2
+Added Pin To Net: NetName=GND Pin=R3-1
+Added Pin To Net: NetName=NetC8_2 Pin=R3-2
+Added Pin To Net: NetName=NetC8_2 Pin=R4-1
+Added Pin To Net: NetName=NetR4_2 Pin=R4-2
+Added Pin To Net: NetName=NetR5_1 Pin=R5-1
+Added Pin To Net: NetName=VH Pin=R5-2
+Added Pin To Net: NetName=NetR6_1 Pin=R6-1
+Added Pin To Net: NetName=VH Pin=R6-2
+Added Pin To Net: NetName=VH Pin=R7-1
+Added Pin To Net: NetName=VH Pin=R7-2
+Added Pin To Net: NetName=NetR4_2 Pin=R7-3
+Added Pin To Net: NetName=NetR8_1 Pin=R8-1
+Added Pin To Net: NetName=VH Pin=R8-2
+Added Pin To Net: NetName=NetQ2_1 Pin=R9-1
+Added Pin To Net: NetName=DOT2 Pin=R9-2
+Added Pin To Net: NetName=GND Pin=R10-1
+Added Pin To Net: NetName=NetQ3_1 Pin=R10-2
+Added Pin To Net: NetName=NetR11_1 Pin=R11-1
+Added Pin To Net: NetName=VH Pin=R11-2
+Added Pin To Net: NetName=RGB Pin=R12-1
+Added Pin To Net: NetName=3V3 Pin=R12-2
+Added Pin To Net: NetName=NetD3_K Pin=R13-1
+Added Pin To Net: NetName=LED_DEBUG Pin=R13-2
+Added Pin To Net: NetName=DGND Pin=R14-1
+Added Pin To Net: NetName=BT1 Pin=R14-2
+Added Pin To Net: NetName=NetR15_1 Pin=R15-1
+Added Pin To Net: NetName=VH Pin=R15-2
+Added Pin To Net: NetName=NetR16_1 Pin=R16-1
+Added Pin To Net: NetName=VH Pin=R16-2
+Added Pin To Net: NetName=DGND Pin=R17-1
+Added Pin To Net: NetName=BT0 Pin=R17-2
+Added Pin To Net: NetName=3V3 Pin=R18-1
+Added Pin To Net: NetName=RST Pin=R18-2
+Added Pin To Net: NetName=NetD4_2 Pin=R19-1
+Added Pin To Net: NetName=3V3 Pin=R19-2
+Added Pin To Net: NetName=NetR20_1 Pin=R20-1
+Added Pin To Net: NetName=NetQ44_1 Pin=R20-2
+Added Pin To Net: NetName=3V3 Pin=R21-1
+Added Pin To Net: NetName=LATCHCLK Pin=R21-2
+Added Pin To Net: NetName=NetR22_1 Pin=R22-1
+Added Pin To Net: NetName=TUBE1-0 Pin=R22-2
+Added Pin To Net: NetName=NetR23_1 Pin=R23-1
+Added Pin To Net: NetName=TUBE1-8 Pin=R23-2
+Added Pin To Net: NetName=NetR24_1 Pin=R24-1
+Added Pin To Net: NetName=TUBE2-6 Pin=R24-2
+Added Pin To Net: NetName=NetR25_1 Pin=R25-1
+Added Pin To Net: NetName=TUBE3-4 Pin=R25-2
+Added Pin To Net: NetName=NetR26_1 Pin=R26-1
+Added Pin To Net: NetName=TUBE4-2 Pin=R26-2
+Added Pin To Net: NetName=3V3 Pin=R27-1
+Added Pin To Net: NetName=SHIFTCLK Pin=R27-2
+Added Pin To Net: NetName=NetQ44_2 Pin=R28-1
+Added Pin To Net: NetName=NetQ45_1 Pin=R28-2
+Added Pin To Net: NetName=NetR29_1 Pin=R29-1
+Added Pin To Net: NetName=TUBE1-1 Pin=R29-2
+Added Pin To Net: NetName=NetR30_1 Pin=R30-1
+Added Pin To Net: NetName=TUBE1-9 Pin=R30-2
+Added Pin To Net: NetName=NetR31_1 Pin=R31-1
+Added Pin To Net: NetName=TUBE2-7 Pin=R31-2
+Added Pin To Net: NetName=NetR32_1 Pin=R32-1
+Added Pin To Net: NetName=TUBE3-5 Pin=R32-2
+Added Pin To Net: NetName=NetR33_1 Pin=R33-1
+Added Pin To Net: NetName=TUBE4-3 Pin=R33-2
+Added Pin To Net: NetName=NetR34_1 Pin=R34-1
+Added Pin To Net: NetName=TUBE1-2 Pin=R34-2
+Added Pin To Net: NetName=NetR35_1 Pin=R35-1
+Added Pin To Net: NetName=TUBE2-0 Pin=R35-2
+Added Pin To Net: NetName=NetR36_1 Pin=R36-1
+Added Pin To Net: NetName=TUBE2-8 Pin=R36-2
+Added Pin To Net: NetName=NetR37_1 Pin=R37-1
+Added Pin To Net: NetName=TUBE3-6 Pin=R37-2
+Added Pin To Net: NetName=NetR38_1 Pin=R38-1
+Added Pin To Net: NetName=TUBE4-4 Pin=R38-2
+Added Pin To Net: NetName=3V3 Pin=R39-1
+Added Pin To Net: NetName=DIN Pin=R39-2
+Added Pin To Net: NetName=NetR40_1 Pin=R40-1
+Added Pin To Net: NetName=TUBE1-3 Pin=R40-2
+Added Pin To Net: NetName=NetR41_1 Pin=R41-1
+Added Pin To Net: NetName=TUBE2-1 Pin=R41-2
+Added Pin To Net: NetName=NetR42_1 Pin=R42-1
+Added Pin To Net: NetName=TUBE2-9 Pin=R42-2
+Added Pin To Net: NetName=NetR43_1 Pin=R43-1
+Added Pin To Net: NetName=TUBE3-7 Pin=R43-2
+Added Pin To Net: NetName=NetR44_1 Pin=R44-1
+Added Pin To Net: NetName=TUBE4-5 Pin=R44-2
+Added Pin To Net: NetName=NetR45_1 Pin=R45-1
+Added Pin To Net: NetName=TUBE1-4 Pin=R45-2
+Added Pin To Net: NetName=NetR46_1 Pin=R46-1
+Added Pin To Net: NetName=TUBE2-2 Pin=R46-2
+Added Pin To Net: NetName=NetR47_1 Pin=R47-1
+Added Pin To Net: NetName=TUBE3-0 Pin=R47-2
+Added Pin To Net: NetName=NetR48_1 Pin=R48-1
+Added Pin To Net: NetName=TUBE3-8 Pin=R48-2
+Added Pin To Net: NetName=NetR49_1 Pin=R49-1
+Added Pin To Net: NetName=TUBE4-6 Pin=R49-2
+Added Pin To Net: NetName=NetR50_1 Pin=R50-1
+Added Pin To Net: NetName=TUBE1-5 Pin=R50-2
+Added Pin To Net: NetName=NetR51_1 Pin=R51-1
+Added Pin To Net: NetName=TUBE2-3 Pin=R51-2
+Added Pin To Net: NetName=NetR52_1 Pin=R52-1
+Added Pin To Net: NetName=TUBE3-1 Pin=R52-2
+Added Pin To Net: NetName=NetR53_1 Pin=R53-1
+Added Pin To Net: NetName=TUBE3-9 Pin=R53-2
+Added Pin To Net: NetName=NetR54_1 Pin=R54-1
+Added Pin To Net: NetName=TUBE4-7 Pin=R54-2
+Added Pin To Net: NetName=NetR55_1 Pin=R55-1
+Added Pin To Net: NetName=TUBE1-6 Pin=R55-2
+Added Pin To Net: NetName=NetR56_1 Pin=R56-1
+Added Pin To Net: NetName=TUBE2-4 Pin=R56-2
+Added Pin To Net: NetName=NetR57_1 Pin=R57-1
+Added Pin To Net: NetName=TUBE3-2 Pin=R57-2
+Added Pin To Net: NetName=NetR58_1 Pin=R58-1
+Added Pin To Net: NetName=TUBE4-0 Pin=R58-2
+Added Pin To Net: NetName=NetR59_1 Pin=R59-1
+Added Pin To Net: NetName=TUBE4-8 Pin=R59-2
+Added Pin To Net: NetName=BT0 Pin=R60-1
+Added Pin To Net: NetName=NetQ45_3 Pin=R60-2
+Added Pin To Net: NetName=NetR61_1 Pin=R61-1
+Added Pin To Net: NetName=TUBE1-7 Pin=R61-2
+Added Pin To Net: NetName=NetR62_1 Pin=R62-1
+Added Pin To Net: NetName=TUBE2-5 Pin=R62-2
+Added Pin To Net: NetName=NetR63_1 Pin=R63-1
+Added Pin To Net: NetName=TUBE3-3 Pin=R63-2
+Added Pin To Net: NetName=NetR64_1 Pin=R64-1
+Added Pin To Net: NetName=TUBE4-1 Pin=R64-2
+Added Pin To Net: NetName=NetR65_1 Pin=R65-1
+Added Pin To Net: NetName=TUBE4-9 Pin=R65-2
+Added Pin To Net: NetName=DS18B20 Pin=R66-1
+Added Pin To Net: NetName=3V3 Pin=R66-2
+Added Pin To Net: NetName=SCL Pin=R67-1
+Added Pin To Net: NetName=3V3 Pin=R67-2
+Added Pin To Net: NetName=SDA Pin=R68-1
+Added Pin To Net: NetName=3V3 Pin=R68-2
+Added Pin To Net: NetName=3V3 Pin=R69-1
+Added Pin To Net: NetName=KEY1 Pin=R69-2
+Added Pin To Net: NetName=3V3 Pin=R70-1
+Added Pin To Net: NetName=KEY2 Pin=R70-2
+Added Pin To Net: NetName=3V3 Pin=R71-1
+Added Pin To Net: NetName=KEY3 Pin=R71-2
+Added Pin To Net: NetName=3V3 Pin=R72-1
+Added Pin To Net: NetName=KEY4 Pin=R72-2
+Added Pin To Net: NetName=3V3 Pin=R73-1
+Added Pin To Net: NetName=INT#/SQW Pin=R73-2
+Added Pin To Net: NetName=BEEP Pin=R74-1
+Added Pin To Net: NetName=NetQ46_1 Pin=R74-2
+Added Pin To Net: NetName=3V3 Pin=R75-1
+Added Pin To Net: NetName=HX1838 Pin=R75-2
+Added Pin To Net: NetName=RST Pin=S1-1
+Added Pin To Net: NetName=DGND Pin=S1-2
+Added Pin To Net: NetName=DGND Pin=S2-1
+Added Pin To Net: NetName=KEY1 Pin=S2-2
+Added Pin To Net: NetName=DGND Pin=S3-1
+Added Pin To Net: NetName=KEY2 Pin=S3-2
+Added Pin To Net: NetName=DGND Pin=S4-1
+Added Pin To Net: NetName=KEY3 Pin=S4-2
+Added Pin To Net: NetName=DGND Pin=S5-1
+Added Pin To Net: NetName=KEY4 Pin=S5-2
+Added Pin To Net: NetName=NetR8_1 Pin=T6-2
+Added Pin To Net: NetName=NetQ4_3 Pin=T6-3
+Added Pin To Net: NetName=NetQ5_3 Pin=T6-4
+Added Pin To Net: NetName=NetQ6_3 Pin=T6-5
+Added Pin To Net: NetName=NetQ7_3 Pin=T6-6
+Added Pin To Net: NetName=NetQ8_3 Pin=T6-7
+Added Pin To Net: NetName=NetQ9_3 Pin=T6-9
+Added Pin To Net: NetName=NetQ10_3 Pin=T6-10
+Added Pin To Net: NetName=NetQ11_3 Pin=T6-11
+Added Pin To Net: NetName=NetQ12_3 Pin=T6-12
+Added Pin To Net: NetName=NetQ13_3 Pin=T6-13
+Added Pin To Net: NetName=NetR6_1 Pin=T7-2
+Added Pin To Net: NetName=NetQ14_3 Pin=T7-3
+Added Pin To Net: NetName=NetQ15_3 Pin=T7-4
+Added Pin To Net: NetName=NetQ16_3 Pin=T7-5
+Added Pin To Net: NetName=NetQ17_3 Pin=T7-6
+Added Pin To Net: NetName=NetQ18_3 Pin=T7-7
+Added Pin To Net: NetName=NetQ19_3 Pin=T7-9
+Added Pin To Net: NetName=NetQ20_3 Pin=T7-10
+Added Pin To Net: NetName=NetQ21_3 Pin=T7-11
+Added Pin To Net: NetName=NetQ22_3 Pin=T7-12
+Added Pin To Net: NetName=NetQ23_3 Pin=T7-13
+Added Pin To Net: NetName=NetR15_1 Pin=T8-2
+Added Pin To Net: NetName=NetQ24_3 Pin=T8-3
+Added Pin To Net: NetName=NetQ25_3 Pin=T8-4
+Added Pin To Net: NetName=NetQ26_3 Pin=T8-5
+Added Pin To Net: NetName=NetQ27_3 Pin=T8-6
+Added Pin To Net: NetName=NetQ28_3 Pin=T8-7
+Added Pin To Net: NetName=NetQ29_3 Pin=T8-9
+Added Pin To Net: NetName=NetQ30_3 Pin=T8-10
+Added Pin To Net: NetName=NetQ31_3 Pin=T8-11
+Added Pin To Net: NetName=NetQ32_3 Pin=T8-12
+Added Pin To Net: NetName=NetQ33_3 Pin=T8-13
+Added Pin To Net: NetName=NetR16_1 Pin=T9-2
+Added Pin To Net: NetName=NetQ34_3 Pin=T9-3
+Added Pin To Net: NetName=NetQ35_3 Pin=T9-4
+Added Pin To Net: NetName=NetQ36_3 Pin=T9-5
+Added Pin To Net: NetName=NetQ37_3 Pin=T9-6
+Added Pin To Net: NetName=NetQ38_3 Pin=T9-7
+Added Pin To Net: NetName=NetQ39_3 Pin=T9-9
+Added Pin To Net: NetName=NetQ40_3 Pin=T9-10
+Added Pin To Net: NetName=NetQ41_3 Pin=T9-11
+Added Pin To Net: NetName=NetQ42_3 Pin=T9-12
+Added Pin To Net: NetName=NetQ43_3 Pin=T9-13
+Added Pin To Net: NetName=NetJ1_2 Pin=U1-1
+Added Pin To Net: NetName=+12 Pin=U1-2
+Added Pin To Net: NetName=+5 Pin=U1-3
+Added Pin To Net: NetName=GND Pin=U1-4
+Added Pin To Net: NetName=+5 Pin=U2-1
+Added Pin To Net: NetName=NetU2_2 Pin=U2-2
+Added Pin To Net: NetName=GND Pin=U2-3
+Added Pin To Net: NetName=RGB Pin=U2-4
+Added Pin To Net: NetName=+5 Pin=U3-1
+Added Pin To Net: NetName=NetU3_2 Pin=U3-2
+Added Pin To Net: NetName=GND Pin=U3-3
+Added Pin To Net: NetName=NetU2_2 Pin=U3-4
+Added Pin To Net: NetName=+5 Pin=U4-1
+Added Pin To Net: NetName=NetU4_2 Pin=U4-2
+Added Pin To Net: NetName=GND Pin=U4-3
+Added Pin To Net: NetName=NetU3_2 Pin=U4-4
+Added Pin To Net: NetName=+5 Pin=U5-1
+Added Pin To Net: NetName=GND Pin=U5-3
+Added Pin To Net: NetName=NetU4_2 Pin=U5-4
+Added Pin To Net: NetName=+12 Pin=U6-1
+Added Pin To Net: NetName=NetQ3_1 Pin=U6-2
+Added Pin To Net: NetName=NetC9_1 Pin=U6-3
+Added Pin To Net: NetName=GND Pin=U6-4
+Added Pin To Net: NetName=NetC8_2 Pin=U6-5
+Added Pin To Net: NetName=+12 Pin=U6-6
+Added Pin To Net: NetName=+12 Pin=U6-7
+Added Pin To Net: NetName=+12 Pin=U6-8
+Added Pin To Net: NetName=3V3 Pin=U7-1
+Added Pin To Net: NetName=NetC13_2 Pin=U7-5
+Added Pin To Net: NetName=NetC14_2 Pin=U7-6
+Added Pin To Net: NetName=RST Pin=U7-7
+Added Pin To Net: NetName=KEY1 Pin=U7-8
+Added Pin To Net: NetName=KEY2 Pin=U7-9
+Added Pin To Net: NetName=KEY3 Pin=U7-10
+Added Pin To Net: NetName=KEY4 Pin=U7-11
+Added Pin To Net: NetName=DGND Pin=U7-12
+Added Pin To Net: NetName=3V3 Pin=U7-13
+Added Pin To Net: NetName=DIN Pin=U7-14
+Added Pin To Net: NetName=SHIFTCLK Pin=U7-15
+Added Pin To Net: NetName=LATCHCLK Pin=U7-16
+Added Pin To Net: NetName=OE# Pin=U7-17
+Added Pin To Net: NetName=DGND Pin=U7-18
+Added Pin To Net: NetName=3V3 Pin=U7-19
+Added Pin To Net: NetName=LED_DEBUG Pin=U7-22
+Added Pin To Net: NetName=LAMP Pin=U7-23
+Added Pin To Net: NetName=RGB Pin=U7-26
+Added Pin To Net: NetName=INT#/SQW Pin=U7-27
+Added Pin To Net: NetName=BT1 Pin=U7-28
+Added Pin To Net: NetName=DOT1 Pin=U7-29
+Added Pin To Net: NetName=DOT2 Pin=U7-30
+Added Pin To Net: NetName=DGND Pin=U7-31
+Added Pin To Net: NetName=3V3 Pin=U7-32
+Added Pin To Net: NetName=METALKEY Pin=U7-36
+Added Pin To Net: NetName=TX1 Pin=U7-42
+Added Pin To Net: NetName=RX1 Pin=U7-43
+Added Pin To Net: NetName=SWDIO Pin=U7-46
+Added Pin To Net: NetName=DGND Pin=U7-47
+Added Pin To Net: NetName=3V3 Pin=U7-48
+Added Pin To Net: NetName=SWCLK Pin=U7-49
+Added Pin To Net: NetName=SDA Pin=U7-55
+Added Pin To Net: NetName=SCL Pin=U7-56
+Added Pin To Net: NetName=BEEP Pin=U7-58
+Added Pin To Net: NetName=HX1838 Pin=U7-59
+Added Pin To Net: NetName=BT0 Pin=U7-60
+Added Pin To Net: NetName=DS18B20 Pin=U7-61
+Added Pin To Net: NetName=DGND Pin=U7-63
+Added Pin To Net: NetName=3V3 Pin=U7-64
+Added Pin To Net: NetName=DGND Pin=U8-1
+Added Pin To Net: NetName=RX1 Pin=U8-2
+Added Pin To Net: NetName=TX1 Pin=U8-3
+Added Pin To Net: NetName=NetC24_1 Pin=U8-4
+Added Pin To Net: NetName=UD+ Pin=U8-5
+Added Pin To Net: NetName=UD- Pin=U8-6
+Added Pin To Net: NetName=NetC25_1 Pin=U8-7
+Added Pin To Net: NetName=NetC26_1 Pin=U8-8
+Added Pin To Net: NetName=NetQ44_2 Pin=U8-11
+Added Pin To Net: NetName=NetR20_1 Pin=U8-12
+Added Pin To Net: NetName=3V3 Pin=U8-16
+Added Pin To Net: NetName=NetR29_1 Pin=U9-1
+Added Pin To Net: NetName=NetR34_1 Pin=U9-2
+Added Pin To Net: NetName=NetR40_1 Pin=U9-3
+Added Pin To Net: NetName=NetR45_1 Pin=U9-4
+Added Pin To Net: NetName=NetR50_1 Pin=U9-5
+Added Pin To Net: NetName=NetR55_1 Pin=U9-6
+Added Pin To Net: NetName=NetR61_1 Pin=U9-7
+Added Pin To Net: NetName=DGND Pin=U9-8
+Added Pin To Net: NetName=NetU9_9 Pin=U9-9
+Added Pin To Net: NetName=+5 Pin=U9-10
+Added Pin To Net: NetName=SHIFTCLK Pin=U9-11
+Added Pin To Net: NetName=LATCHCLK Pin=U9-12
+Added Pin To Net: NetName=OE# Pin=U9-13
+Added Pin To Net: NetName=DIN Pin=U9-14
+Added Pin To Net: NetName=NetR22_1 Pin=U9-15
+Added Pin To Net: NetName=+5 Pin=U9-16
+Added Pin To Net: NetName=NetR30_1 Pin=U10-1
+Added Pin To Net: NetName=NetR35_1 Pin=U10-2
+Added Pin To Net: NetName=NetR41_1 Pin=U10-3
+Added Pin To Net: NetName=NetR46_1 Pin=U10-4
+Added Pin To Net: NetName=NetR51_1 Pin=U10-5
+Added Pin To Net: NetName=NetR56_1 Pin=U10-6
+Added Pin To Net: NetName=NetR62_1 Pin=U10-7
+Added Pin To Net: NetName=DGND Pin=U10-8
+Added Pin To Net: NetName=NetU10_9 Pin=U10-9
+Added Pin To Net: NetName=+5 Pin=U10-10
+Added Pin To Net: NetName=SHIFTCLK Pin=U10-11
+Added Pin To Net: NetName=LATCHCLK Pin=U10-12
+Added Pin To Net: NetName=OE# Pin=U10-13
+Added Pin To Net: NetName=NetU9_9 Pin=U10-14
+Added Pin To Net: NetName=NetR23_1 Pin=U10-15
+Added Pin To Net: NetName=+5 Pin=U10-16
+Added Pin To Net: NetName=NetR31_1 Pin=U11-1
+Added Pin To Net: NetName=NetR36_1 Pin=U11-2
+Added Pin To Net: NetName=NetR42_1 Pin=U11-3
+Added Pin To Net: NetName=NetR47_1 Pin=U11-4
+Added Pin To Net: NetName=NetR52_1 Pin=U11-5
+Added Pin To Net: NetName=NetR57_1 Pin=U11-6
+Added Pin To Net: NetName=NetR63_1 Pin=U11-7
+Added Pin To Net: NetName=DGND Pin=U11-8
+Added Pin To Net: NetName=NetU11_9 Pin=U11-9
+Added Pin To Net: NetName=+5 Pin=U11-10
+Added Pin To Net: NetName=SHIFTCLK Pin=U11-11
+Added Pin To Net: NetName=LATCHCLK Pin=U11-12
+Added Pin To Net: NetName=OE# Pin=U11-13
+Added Pin To Net: NetName=NetU10_9 Pin=U11-14
+Added Pin To Net: NetName=NetR24_1 Pin=U11-15
+Added Pin To Net: NetName=+5 Pin=U11-16
+Added Pin To Net: NetName=NetR32_1 Pin=U12-1
+Added Pin To Net: NetName=NetR37_1 Pin=U12-2
+Added Pin To Net: NetName=NetR43_1 Pin=U12-3
+Added Pin To Net: NetName=NetR48_1 Pin=U12-4
+Added Pin To Net: NetName=NetR53_1 Pin=U12-5
+Added Pin To Net: NetName=NetR58_1 Pin=U12-6
+Added Pin To Net: NetName=NetR64_1 Pin=U12-7
+Added Pin To Net: NetName=DGND Pin=U12-8
+Added Pin To Net: NetName=NetU12_9 Pin=U12-9
+Added Pin To Net: NetName=+5 Pin=U12-10
+Added Pin To Net: NetName=SHIFTCLK Pin=U12-11
+Added Pin To Net: NetName=LATCHCLK Pin=U12-12
+Added Pin To Net: NetName=OE# Pin=U12-13
+Added Pin To Net: NetName=NetU11_9 Pin=U12-14
+Added Pin To Net: NetName=NetR25_1 Pin=U12-15
+Added Pin To Net: NetName=+5 Pin=U12-16
+Added Pin To Net: NetName=NetR33_1 Pin=U13-1
+Added Pin To Net: NetName=NetR38_1 Pin=U13-2
+Added Pin To Net: NetName=NetR44_1 Pin=U13-3
+Added Pin To Net: NetName=NetR49_1 Pin=U13-4
+Added Pin To Net: NetName=NetR54_1 Pin=U13-5
+Added Pin To Net: NetName=NetR59_1 Pin=U13-6
+Added Pin To Net: NetName=NetR65_1 Pin=U13-7
+Added Pin To Net: NetName=DGND Pin=U13-8
+Added Pin To Net: NetName=+5 Pin=U13-10
+Added Pin To Net: NetName=SHIFTCLK Pin=U13-11
+Added Pin To Net: NetName=LATCHCLK Pin=U13-12
+Added Pin To Net: NetName=OE# Pin=U13-13
+Added Pin To Net: NetName=NetU12_9 Pin=U13-14
+Added Pin To Net: NetName=NetR26_1 Pin=U13-15
+Added Pin To Net: NetName=+5 Pin=U13-16
+Added Pin To Net: NetName=DGND Pin=U14-1
+Added Pin To Net: NetName=DS18B20 Pin=U14-2
+Added Pin To Net: NetName=3V3 Pin=U14-3
+Added Pin To Net: NetName=3V3 Pin=U15-2
+Added Pin To Net: NetName=INT#/SQW Pin=U15-3
+Added Pin To Net: NetName=DGND Pin=U15-5
+Added Pin To Net: NetName=DGND Pin=U15-6
+Added Pin To Net: NetName=DGND Pin=U15-7
+Added Pin To Net: NetName=DGND Pin=U15-8
+Added Pin To Net: NetName=DGND Pin=U15-9
+Added Pin To Net: NetName=DGND Pin=U15-10
+Added Pin To Net: NetName=DGND Pin=U15-11
+Added Pin To Net: NetName=DGND Pin=U15-12
+Added Pin To Net: NetName=DGND Pin=U15-13
+Added Pin To Net: NetName=NetBT1_1 Pin=U15-14
+Added Pin To Net: NetName=SDA Pin=U15-15
+Added Pin To Net: NetName=SCL Pin=U15-16
+Added Pin To Net: NetName=HX1838 Pin=U16-1
+Added Pin To Net: NetName=DGND Pin=U16-2
+Added Pin To Net: NetName=3V3 Pin=U16-3
+Added Pin To Net: NetName=NetR5_1 Pin=UP1-1
+Added Pin To Net: NetName=NetQ1_3 Pin=UP1-2
+Added Pin To Net: NetName=NetR11_1 Pin=UP2-1
+Added Pin To Net: NetName=NetQ2_3 Pin=UP2-2
+Added Pin To Net: NetName=GND Pin=VR1-1
+Added Pin To Net: NetName=3V3 Pin=VR1-2
+Added Pin To Net: NetName=3V3 Pin=VR1-2
+Added Pin To Net: NetName=+5 Pin=VR1-3
+Added Pin To Net: NetName=NetC13_2 Pin=Y1-1
+Added Pin To Net: NetName=NetC14_2 Pin=Y1-2
+Added Pin To Net: NetName=NetC25_1 Pin=Y2-1
+Added Pin To Net: NetName=NetC26_1 Pin=Y2-2
+Added Member To Class: ClassName=MyNixie Member=Component BT1 Battery
+Added Member To Class: ClassName=MyNixie Member=Component C1 100nF(104) 10% 50V
+Added Member To Class: ClassName=MyNixie Member=Component C2 100nF(104) 10% 50V
+Added Member To Class: ClassName=MyNixie Member=Component C3 100nF(104) 10% 50V
+Added Member To Class: ClassName=MyNixie Member=Component C4 100nF(104) 10% 50V
+Added Member To Class: ClassName=MyNixie Member=Component C5 100nF(104) 10% 50V
+Added Member To Class: ClassName=MyNixie Member=Component C6 100nF(104) 10% 50V
+Added Member To Class: ClassName=MyNixie Member=Component C7 100nF(104) 10% 50V
+Added Member To Class: ClassName=MyNixie Member=Component C8 100nF(104) 10% 50V
+Added Member To Class: ClassName=MyNixie Member=Component C9 1nF (102) 10% 50V
+Added Member To Class: ClassName=MyNixie Member=Component C10 4.7u/10u 250V
+Added Member To Class: ClassName=MyNixie Member=Component C11 100nF(104) 10% 50V
+Added Member To Class: ClassName=MyNixie Member=Component C12 220uF/16V
+Added Member To Class: ClassName=MyNixie Member=Component C13 20pF (200) 5% 50V
+Added Member To Class: ClassName=MyNixie Member=Component C14 20pF (200) 5% 50V
+Added Member To Class: ClassName=MyNixie Member=Component C15 100nF(104) 10% 50V
+Added Member To Class: ClassName=MyNixie Member=Component C16 100nF(104) 10% 50V
+Added Member To Class: ClassName=MyNixie Member=Component C17 100nF(104) 10% 50V
+Added Member To Class: ClassName=MyNixie Member=Component C18 100nF(104) 10% 50V
+Added Member To Class: ClassName=MyNixie Member=Component C19 100nF(104) 10% 50V
+Added Member To Class: ClassName=MyNixie Member=Component C20 100nF(104) 10% 50V
+Added Member To Class: ClassName=MyNixie Member=Component C21 100nF(104) 10% 50V
+Added Member To Class: ClassName=MyNixie Member=Component C22 100nF(104) 10% 50V
+Added Member To Class: ClassName=MyNixie Member=Component C23 100nF(104) 10% 50V
+Added Member To Class: ClassName=MyNixie Member=Component C24 100nF(104) 10% 50V
+Added Member To Class: ClassName=MyNixie Member=Component C25 20pF (200) 5% 50V
+Added Member To Class: ClassName=MyNixie Member=Component C26 20pF (200) 5% 50V
+Added Member To Class: ClassName=MyNixie Member=Component C27 100nF(104) 10% 50V
+Added Member To Class: ClassName=MyNixie Member=Component C28 100nF(104) 10% 50V
+Added Member To Class: ClassName=MyNixie Member=Component C29 100nF(104) 10% 50V
+Added Member To Class: ClassName=MyNixie Member=Component C30 100nF(104) 10% 50V
+Added Member To Class: ClassName=MyNixie Member=Component C31 100nF(104) 10% 50V
+Added Member To Class: ClassName=MyNixie Member=Component C32 22uF (226) 20% 25V
+Added Member To Class: ClassName=MyNixie Member=Component D1 P6SMB6.8CA
+Added Member To Class: ClassName=MyNixie Member=Component D2 UF4007
+Added Member To Class: ClassName=MyNixie Member=Component D3 酴腑 0805
+Added Member To Class: ClassName=MyNixie Member=Component D4 LL4148 LL-34 1206
+Added Member To Class: ClassName=MyNixie Member=Component J1 PWRCON
+Added Member To Class: ClassName=MyNixie Member=Component J2 CHECK
+Added Member To Class: ClassName=MyNixie Member=Component J3 CHECK
+Added Member To Class: ClassName=MyNixie Member=Component J4 CHECK
+Added Member To Class: ClassName=MyNixie Member=Component J5 CHECK
+Added Member To Class: ClassName=MyNixie Member=Component J6 CHECK
+Added Member To Class: ClassName=MyNixie Member=Component J7 USB_M
+Added Member To Class: ClassName=MyNixie Member=Component J8 BEEP
+Added Member To Class: ClassName=MyNixie Member=Component L1 330uH SMD-12*12
+Added Member To Class: ClassName=MyNixie Member=Component L2 100uH ㊣10%
+Added Member To Class: ClassName=MyNixie Member=Component P1 MetalKey
+Added Member To Class: ClassName=MyNixie Member=Component P2 Header 4
+Added Member To Class: ClassName=MyNixie Member=Component P3 Header 3
+Added Member To Class: ClassName=MyNixie Member=Component Q1 A42
+Added Member To Class: ClassName=MyNixie Member=Component Q2 A42
+Added Member To Class: ClassName=MyNixie Member=Component Q3 IRF740
+Added Member To Class: ClassName=MyNixie Member=Component Q4 A42
+Added Member To Class: ClassName=MyNixie Member=Component Q5 A42
+Added Member To Class: ClassName=MyNixie Member=Component Q6 A42
+Added Member To Class: ClassName=MyNixie Member=Component Q7 A42
+Added Member To Class: ClassName=MyNixie Member=Component Q8 A42
+Added Member To Class: ClassName=MyNixie Member=Component Q9 A42
+Added Member To Class: ClassName=MyNixie Member=Component Q10 A42
+Added Member To Class: ClassName=MyNixie Member=Component Q11 A42
+Added Member To Class: ClassName=MyNixie Member=Component Q12 A42
+Added Member To Class: ClassName=MyNixie Member=Component Q13 A42
+Added Member To Class: ClassName=MyNixie Member=Component Q14 A42
+Added Member To Class: ClassName=MyNixie Member=Component Q15 A42
+Added Member To Class: ClassName=MyNixie Member=Component Q16 A42
+Added Member To Class: ClassName=MyNixie Member=Component Q17 A42
+Added Member To Class: ClassName=MyNixie Member=Component Q18 A42
+Added Member To Class: ClassName=MyNixie Member=Component Q19 A42
+Added Member To Class: ClassName=MyNixie Member=Component Q20 A42
+Added Member To Class: ClassName=MyNixie Member=Component Q21 A42
+Added Member To Class: ClassName=MyNixie Member=Component Q22 A42
+Added Member To Class: ClassName=MyNixie Member=Component Q23 A42
+Added Member To Class: ClassName=MyNixie Member=Component Q24 A42
+Added Member To Class: ClassName=MyNixie Member=Component Q25 A42
+Added Member To Class: ClassName=MyNixie Member=Component Q26 A42
+Added Member To Class: ClassName=MyNixie Member=Component Q27 A42
+Added Member To Class: ClassName=MyNixie Member=Component Q28 A42
+Added Member To Class: ClassName=MyNixie Member=Component Q29 A42
+Added Member To Class: ClassName=MyNixie Member=Component Q30 A42
+Added Member To Class: ClassName=MyNixie Member=Component Q31 A42
+Added Member To Class: ClassName=MyNixie Member=Component Q32 A42
+Added Member To Class: ClassName=MyNixie Member=Component Q33 A42
+Added Member To Class: ClassName=MyNixie Member=Component Q34 A42
+Added Member To Class: ClassName=MyNixie Member=Component Q35 A42
+Added Member To Class: ClassName=MyNixie Member=Component Q36 A42
+Added Member To Class: ClassName=MyNixie Member=Component Q37 A42
+Added Member To Class: ClassName=MyNixie Member=Component Q38 A42
+Added Member To Class: ClassName=MyNixie Member=Component Q39 A42
+Added Member To Class: ClassName=MyNixie Member=Component Q40 A42
+Added Member To Class: ClassName=MyNixie Member=Component Q41 A42
+Added Member To Class: ClassName=MyNixie Member=Component Q42 A42
+Added Member To Class: ClassName=MyNixie Member=Component Q43 A42
+Added Member To Class: ClassName=MyNixie Member=Component Q44 A42
+Added Member To Class: ClassName=MyNixie Member=Component Q45 SS8550 Y2
+Added Member To Class: ClassName=MyNixie Member=Component Q46 A42
+Added Member To Class: ClassName=MyNixie Member=Component R1 10K次 (1002) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R2 24K次 (2402) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R3 2K次 (2001) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R4 270K次 (2703) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R5 240K次 (2403) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R6 20K次 (2002) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R7 50K
+Added Member To Class: ClassName=MyNixie Member=Component R8 20K次 (2002) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R9 24K次 (2402) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R10 330次 (3300) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R11 240K次 (2403) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R12 4.7K次 (4701) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R13 1K次 (1001) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R14 10K次 (1002) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R15 20K次 (2002) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R16 20K次 (2002) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R17 10K次 (1002) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R18 10K次 (1002) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R19 10K次 (1002) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R20 1K次 (1001) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R21 4.7K次 (4701) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R22 24K次 (2402) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R23 24K次 (2402) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R24 24K次 (2402) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R25 24K次 (2402) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R26 24K次 (2402) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R27 4.7K次 (4701) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R28 1K次 (1001) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R29 24K次 (2402) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R30 24K次 (2402) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R31 24K次 (2402) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R32 24K次 (2402) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R33 24K次 (2402) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R34 24K次 (2402) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R35 24K次 (2402) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R36 24K次 (2402) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R37 24K次 (2402) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R38 24K次 (2402) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R39 4.7K次 (4701) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R40 24K次 (2402) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R41 24K次 (2402) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R42 24K次 (2402) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R43 24K次 (2402) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R44 24K次 (2402) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R45 24K次 (2402) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R46 24K次 (2402) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R47 24K次 (2402) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R48 24K次 (2402) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R49 24K次 (2402) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R50 24K次 (2402) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R51 24K次 (2402) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R52 24K次 (2402) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R53 24K次 (2402) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R54 24K次 (2402) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R55 24K次 (2402) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R56 24K次 (2402) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R57 24K次 (2402) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R58 24K次 (2402) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R59 24K次 (2402) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R60 1K次 (1001) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R61 24K次 (2402) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R62 24K次 (2402) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R63 24K次 (2402) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R64 24K次 (2402) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R65 24K次 (2402) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R66 4.7K次 (4701) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R67 4.7K次 (4701) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R68 4.7K次 (4701) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R69 10K次 (1002) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R70 10K次 (1002) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R71 10K次 (1002) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R72 10K次 (1002) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R73 4.7K次 (4701) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R74 1K次 (1001) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component R75 4.7K次 (4701) ㊣1%
+Added Member To Class: ClassName=MyNixie Member=Component S1 SW-PB
+Added Member To Class: ClassName=MyNixie Member=Component S2 SW-PB
+Added Member To Class: ClassName=MyNixie Member=Component S3 SW-PB
+Added Member To Class: ClassName=MyNixie Member=Component S4 SW-PB
+Added Member To Class: ClassName=MyNixie Member=Component S5 SW-PB
+Added Member To Class: ClassName=MyNixie Member=Component T1 M3肣翐蹟佪謂
+Added Member To Class: ClassName=MyNixie Member=Component T2 M3肣翐蹟佪謂
+Added Member To Class: ClassName=MyNixie Member=Component T3 M3肣翐蹟佪謂
+Added Member To Class: ClassName=MyNixie Member=Component T4 M3肣翐蹟佪謂
+Added Member To Class: ClassName=MyNixie Member=Component T5 M3肣翐蹟佪謂
+Added Member To Class: ClassName=MyNixie Member=Component T6 QS30-1
+Added Member To Class: ClassName=MyNixie Member=Component T7 QS30-1
+Added Member To Class: ClassName=MyNixie Member=Component T8 QS30-1
+Added Member To Class: ClassName=MyNixie Member=Component T9 QS30-1
+Added Member To Class: ClassName=MyNixie Member=Component U1 MP1584 Module
+Added Member To Class: ClassName=MyNixie Member=Component U2 WS2812-LED
+Added Member To Class: ClassName=MyNixie Member=Component U3 WS2812-LED
+Added Member To Class: ClassName=MyNixie Member=Component U4 WS2812-LED
+Added Member To Class: ClassName=MyNixie Member=Component U5 WS2812-LED
+Added Member To Class: ClassName=MyNixie Member=Component U6 MC34063A
+Added Member To Class: ClassName=MyNixie Member=Component U7 STM32F103RBT6
+Added Member To Class: ClassName=MyNixie Member=Component U8 CH340G
+Added Member To Class: ClassName=MyNixie Member=Component U9 74HC595D
+Added Member To Class: ClassName=MyNixie Member=Component U10 74HC595D
+Added Member To Class: ClassName=MyNixie Member=Component U11 74HC595D
+Added Member To Class: ClassName=MyNixie Member=Component U12 74HC595D
+Added Member To Class: ClassName=MyNixie Member=Component U13 74HC595D
+Added Member To Class: ClassName=MyNixie Member=Component U14 DS18B20
+Added Member To Class: ClassName=MyNixie Member=Component U15 DS3231M+TRL
+Added Member To Class: ClassName=MyNixie Member=Component U16 HX1838
+Added Member To Class: ClassName=MyNixie Member=Component UP1 Neon
+Added Member To Class: ClassName=MyNixie Member=Component UP2 Neon
+Added Member To Class: ClassName=MyNixie Member=Component VR1 AMS1117-3.3
+Added Member To Class: ClassName=MyNixie Member=Component Y1 8M
+Added Member To Class: ClassName=MyNixie Member=Component Y2 12M
+Added Room: Name=MyNixie

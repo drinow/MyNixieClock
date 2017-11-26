@@ -1,0 +1,232 @@
+Removed Pin From Net: NetName=Net*1_2 Pin=*1-2
+Removed Pin From Net: NetName=Net*1_3 Pin=*1-3
+Removed Pin From Net: NetName=Net*1_4 Pin=*1-4
+Removed Pin From Net: NetName=Net*1_5 Pin=*1-5
+Removed Pin From Net: NetName=Net*1_6 Pin=*1-6
+Removed Pin From Net: NetName=Net*1_7 Pin=*1-7
+Removed Pin From Net: NetName=Net*1_9 Pin=*1-9
+Removed Pin From Net: NetName=Net*1_10 Pin=*1-10
+Removed Pin From Net: NetName=Net*1_11 Pin=*1-11
+Removed Pin From Net: NetName=Net*1_12 Pin=*1-12
+Removed Pin From Net: NetName=Net*1_13 Pin=*1-13
+Removed Pin From Net: NetName=Net*2_2 Pin=*2-2
+Removed Pin From Net: NetName=Net*2_3 Pin=*2-3
+Removed Pin From Net: NetName=Net*2_4 Pin=*2-4
+Removed Pin From Net: NetName=Net*2_5 Pin=*2-5
+Removed Pin From Net: NetName=Net*2_6 Pin=*2-6
+Removed Pin From Net: NetName=Net*2_7 Pin=*2-7
+Removed Pin From Net: NetName=Net*2_9 Pin=*2-9
+Removed Pin From Net: NetName=Net*2_10 Pin=*2-10
+Removed Pin From Net: NetName=Net*2_11 Pin=*2-11
+Removed Pin From Net: NetName=Net*2_12 Pin=*2-12
+Removed Pin From Net: NetName=Net*2_13 Pin=*2-13
+Removed Pin From Net: NetName=Net*3_2 Pin=*3-2
+Removed Pin From Net: NetName=Net*3_3 Pin=*3-3
+Removed Pin From Net: NetName=Net*3_4 Pin=*3-4
+Removed Pin From Net: NetName=Net*3_5 Pin=*3-5
+Removed Pin From Net: NetName=Net*3_6 Pin=*3-6
+Removed Pin From Net: NetName=Net*3_7 Pin=*3-7
+Removed Pin From Net: NetName=Net*3_9 Pin=*3-9
+Removed Pin From Net: NetName=Net*3_10 Pin=*3-10
+Removed Pin From Net: NetName=Net*3_11 Pin=*3-11
+Removed Pin From Net: NetName=Net*3_12 Pin=*3-12
+Removed Pin From Net: NetName=Net*3_13 Pin=*3-13
+Removed Pin From Net: NetName=Net*4_2 Pin=*4-2
+Removed Pin From Net: NetName=Net*4_3 Pin=*4-3
+Removed Pin From Net: NetName=Net*4_4 Pin=*4-4
+Removed Pin From Net: NetName=Net*4_5 Pin=*4-5
+Removed Pin From Net: NetName=Net*4_6 Pin=*4-6
+Removed Pin From Net: NetName=Net*4_7 Pin=*4-7
+Removed Pin From Net: NetName=Net*4_9 Pin=*4-9
+Removed Pin From Net: NetName=Net*4_10 Pin=*4-10
+Removed Pin From Net: NetName=Net*4_11 Pin=*4-11
+Removed Pin From Net: NetName=Net*4_12 Pin=*4-12
+Removed Pin From Net: NetName=Net*4_13 Pin=*4-13
+Removed Pin From Net: NetName=Net*2_3 Pin=Q5-3
+Removed Pin From Net: NetName=Net*2_4 Pin=Q6-3
+Removed Pin From Net: NetName=Net*2_5 Pin=Q7-3
+Removed Pin From Net: NetName=Net*2_6 Pin=Q8-3
+Removed Pin From Net: NetName=Net*2_7 Pin=Q9-3
+Removed Pin From Net: NetName=Net*2_9 Pin=Q10-3
+Removed Pin From Net: NetName=Net*2_10 Pin=Q11-3
+Removed Pin From Net: NetName=Net*2_11 Pin=Q12-3
+Removed Pin From Net: NetName=Net*2_12 Pin=Q13-3
+Removed Pin From Net: NetName=Net*2_13 Pin=Q14-3
+Removed Pin From Net: NetName=Net*1_3 Pin=Q15-3
+Removed Pin From Net: NetName=Net*1_4 Pin=Q16-3
+Removed Pin From Net: NetName=Net*1_5 Pin=Q17-3
+Removed Pin From Net: NetName=Net*1_6 Pin=Q18-3
+Removed Pin From Net: NetName=Net*1_7 Pin=Q19-3
+Removed Pin From Net: NetName=Net*1_9 Pin=Q20-3
+Removed Pin From Net: NetName=Net*1_10 Pin=Q21-3
+Removed Pin From Net: NetName=Net*1_11 Pin=Q22-3
+Removed Pin From Net: NetName=Net*1_12 Pin=Q23-3
+Removed Pin From Net: NetName=Net*1_13 Pin=Q24-3
+Removed Pin From Net: NetName=Net*4_3 Pin=Q25-3
+Removed Pin From Net: NetName=Net*4_4 Pin=Q26-3
+Removed Pin From Net: NetName=Net*4_5 Pin=Q27-3
+Removed Pin From Net: NetName=Net*4_6 Pin=Q28-3
+Removed Pin From Net: NetName=Net*4_7 Pin=Q29-3
+Removed Pin From Net: NetName=Net*4_9 Pin=Q30-3
+Removed Pin From Net: NetName=Net*4_10 Pin=Q31-3
+Removed Pin From Net: NetName=Net*4_11 Pin=Q32-3
+Removed Pin From Net: NetName=Net*4_12 Pin=Q33-3
+Removed Pin From Net: NetName=Net*4_13 Pin=Q34-3
+Removed Pin From Net: NetName=Net*3_3 Pin=Q35-3
+Removed Pin From Net: NetName=Net*3_4 Pin=Q36-3
+Removed Pin From Net: NetName=Net*3_5 Pin=Q37-3
+Removed Pin From Net: NetName=Net*3_6 Pin=Q38-3
+Removed Pin From Net: NetName=Net*3_7 Pin=Q39-3
+Removed Pin From Net: NetName=Net*3_9 Pin=Q40-3
+Removed Pin From Net: NetName=Net*3_10 Pin=Q41-3
+Removed Pin From Net: NetName=Net*3_11 Pin=Q42-3
+Removed Pin From Net: NetName=Net*3_12 Pin=Q43-3
+Removed Pin From Net: NetName=Net*3_13 Pin=Q44-3
+Removed Pin From Net: NetName=Net*1_2 Pin=R5-1
+Removed Pin From Net: NetName=Net*2_2 Pin=R7-1
+Removed Pin From Net: NetName=Net*3_2 Pin=R12-1
+Removed Pin From Net: NetName=Net*4_2 Pin=R13-1
+Removed Member From Class: ClassName=MyNixie Member=*1
+Removed Member From Class: ClassName=MyNixie Member=*2
+Removed Member From Class: ClassName=MyNixie Member=*3
+Removed Member From Class: ClassName=MyNixie Member=*4
+Added Component: Designator=T5(QS30-1)
+Added Component: Designator=T6(QS30-1)
+Added Component: Designator=T7(QS30-1)
+Added Component: Designator=T8(QS30-1)
+Added Pin To Net: NetName=Net*1_2 Pin=Q5-3
+Added Pin To Net: NetName=Net*1_3 Pin=Q6-3
+Added Pin To Net: NetName=Net*1_4 Pin=Q7-3
+Added Pin To Net: NetName=Net*1_5 Pin=Q8-3
+Added Pin To Net: NetName=Net*1_6 Pin=Q9-3
+Added Pin To Net: NetName=Net*1_7 Pin=Q10-3
+Added Pin To Net: NetName=Net*1_9 Pin=Q11-3
+Added Pin To Net: NetName=Net*1_10 Pin=Q12-3
+Added Pin To Net: NetName=Net*1_11 Pin=Q13-3
+Added Pin To Net: NetName=Net*1_12 Pin=Q14-3
+Added Pin To Net: NetName=Net*1_13 Pin=Q15-3
+Added Pin To Net: NetName=Net*2_2 Pin=Q16-3
+Added Pin To Net: NetName=Net*2_3 Pin=Q17-3
+Added Pin To Net: NetName=Net*2_4 Pin=Q18-3
+Added Pin To Net: NetName=Net*2_5 Pin=Q19-3
+Added Pin To Net: NetName=Net*2_6 Pin=Q20-3
+Added Pin To Net: NetName=Net*2_7 Pin=Q21-3
+Added Pin To Net: NetName=Net*2_9 Pin=Q22-3
+Added Pin To Net: NetName=Net*2_10 Pin=Q23-3
+Added Pin To Net: NetName=Net*2_11 Pin=Q24-3
+Added Pin To Net: NetName=Net*2_12 Pin=Q25-3
+Added Pin To Net: NetName=Net*2_13 Pin=Q26-3
+Added Pin To Net: NetName=Net*3_2 Pin=Q27-3
+Added Pin To Net: NetName=Net*3_3 Pin=Q28-3
+Added Pin To Net: NetName=Net*3_4 Pin=Q29-3
+Added Pin To Net: NetName=Net*3_5 Pin=Q30-3
+Added Pin To Net: NetName=Net*3_6 Pin=Q31-3
+Added Pin To Net: NetName=Net*3_7 Pin=Q32-3
+Added Pin To Net: NetName=Net*3_9 Pin=Q33-3
+Added Pin To Net: NetName=Net*3_10 Pin=Q34-3
+Added Pin To Net: NetName=Net*3_11 Pin=Q35-3
+Added Pin To Net: NetName=Net*3_12 Pin=Q36-3
+Added Pin To Net: NetName=Net*3_13 Pin=Q37-3
+Added Pin To Net: NetName=Net*4_2 Pin=Q38-3
+Added Pin To Net: NetName=Net*4_3 Pin=Q39-3
+Added Pin To Net: NetName=Net*4_4 Pin=Q40-3
+Added Pin To Net: NetName=Net*4_5 Pin=Q41-3
+Added Pin To Net: NetName=Net*4_6 Pin=Q42-3
+Added Pin To Net: NetName=Net*4_7 Pin=Q43-3
+Added Pin To Net: NetName=Net*4_9 Pin=Q44-3
+Added Pin To Net: NetName=Net*4_10 Pin=R5-1
+Added Pin To Net: NetName=Net*4_11 Pin=R7-1
+Added Pin To Net: NetName=Net*4_12 Pin=R12-1
+Added Pin To Net: NetName=Net*4_13 Pin=R13-1
+Added Pin To Net: NetName=Net*4_10 Pin=T5-2
+Added Pin To Net: NetName=Net*1_13 Pin=T5-3
+Added Pin To Net: NetName=Net*2_2 Pin=T5-4
+Added Pin To Net: NetName=Net*2_3 Pin=T5-5
+Added Pin To Net: NetName=Net*2_4 Pin=T5-6
+Added Pin To Net: NetName=Net*2_5 Pin=T5-7
+Added Pin To Net: NetName=Net*2_6 Pin=T5-9
+Added Pin To Net: NetName=Net*2_7 Pin=T5-10
+Added Pin To Net: NetName=Net*2_9 Pin=T5-11
+Added Pin To Net: NetName=Net*2_10 Pin=T5-12
+Added Pin To Net: NetName=Net*2_11 Pin=T5-13
+Added Pin To Net: NetName=Net*4_11 Pin=T6-2
+Added Pin To Net: NetName=Net*1_2 Pin=T6-3
+Added Pin To Net: NetName=Net*1_3 Pin=T6-4
+Added Pin To Net: NetName=Net*1_4 Pin=T6-5
+Added Pin To Net: NetName=Net*1_5 Pin=T6-6
+Added Pin To Net: NetName=Net*1_6 Pin=T6-7
+Added Pin To Net: NetName=Net*1_7 Pin=T6-9
+Added Pin To Net: NetName=Net*1_9 Pin=T6-10
+Added Pin To Net: NetName=Net*1_10 Pin=T6-11
+Added Pin To Net: NetName=Net*1_11 Pin=T6-12
+Added Pin To Net: NetName=Net*1_12 Pin=T6-13
+Added Pin To Net: NetName=Net*4_12 Pin=T7-2
+Added Pin To Net: NetName=Net*3_11 Pin=T7-3
+Added Pin To Net: NetName=Net*3_12 Pin=T7-4
+Added Pin To Net: NetName=Net*3_13 Pin=T7-5
+Added Pin To Net: NetName=Net*4_2 Pin=T7-6
+Added Pin To Net: NetName=Net*4_3 Pin=T7-7
+Added Pin To Net: NetName=Net*4_4 Pin=T7-9
+Added Pin To Net: NetName=Net*4_5 Pin=T7-10
+Added Pin To Net: NetName=Net*4_6 Pin=T7-11
+Added Pin To Net: NetName=Net*4_7 Pin=T7-12
+Added Pin To Net: NetName=Net*4_9 Pin=T7-13
+Added Pin To Net: NetName=Net*4_13 Pin=T8-2
+Added Pin To Net: NetName=Net*2_12 Pin=T8-3
+Added Pin To Net: NetName=Net*2_13 Pin=T8-4
+Added Pin To Net: NetName=Net*3_2 Pin=T8-5
+Added Pin To Net: NetName=Net*3_3 Pin=T8-6
+Added Pin To Net: NetName=Net*3_4 Pin=T8-7
+Added Pin To Net: NetName=Net*3_5 Pin=T8-9
+Added Pin To Net: NetName=Net*3_6 Pin=T8-10
+Added Pin To Net: NetName=Net*3_7 Pin=T8-11
+Added Pin To Net: NetName=Net*3_9 Pin=T8-12
+Added Pin To Net: NetName=Net*3_10 Pin=T8-13
+Change Net Name : Old Net Name=Net*1_2 New Net Name=NetQ5_3
+Change Net Name : Old Net Name=Net*1_3 New Net Name=NetQ6_3
+Change Net Name : Old Net Name=Net*1_4 New Net Name=NetQ7_3
+Change Net Name : Old Net Name=Net*1_5 New Net Name=NetQ8_3
+Change Net Name : Old Net Name=Net*1_6 New Net Name=NetQ9_3
+Change Net Name : Old Net Name=Net*1_7 New Net Name=NetQ10_3
+Change Net Name : Old Net Name=Net*1_9 New Net Name=NetQ11_3
+Change Net Name : Old Net Name=Net*1_10 New Net Name=NetQ12_3
+Change Net Name : Old Net Name=Net*1_11 New Net Name=NetQ13_3
+Change Net Name : Old Net Name=Net*1_12 New Net Name=NetQ14_3
+Change Net Name : Old Net Name=Net*1_13 New Net Name=NetQ15_3
+Change Net Name : Old Net Name=Net*2_2 New Net Name=NetQ16_3
+Change Net Name : Old Net Name=Net*2_3 New Net Name=NetQ17_3
+Change Net Name : Old Net Name=Net*2_4 New Net Name=NetQ18_3
+Change Net Name : Old Net Name=Net*2_5 New Net Name=NetQ19_3
+Change Net Name : Old Net Name=Net*2_6 New Net Name=NetQ20_3
+Change Net Name : Old Net Name=Net*2_7 New Net Name=NetQ21_3
+Change Net Name : Old Net Name=Net*2_9 New Net Name=NetQ22_3
+Change Net Name : Old Net Name=Net*2_10 New Net Name=NetQ23_3
+Change Net Name : Old Net Name=Net*2_11 New Net Name=NetQ24_3
+Change Net Name : Old Net Name=Net*2_12 New Net Name=NetQ25_3
+Change Net Name : Old Net Name=Net*2_13 New Net Name=NetQ26_3
+Change Net Name : Old Net Name=Net*3_2 New Net Name=NetQ27_3
+Change Net Name : Old Net Name=Net*3_3 New Net Name=NetQ28_3
+Change Net Name : Old Net Name=Net*3_4 New Net Name=NetQ29_3
+Change Net Name : Old Net Name=Net*3_5 New Net Name=NetQ30_3
+Change Net Name : Old Net Name=Net*3_6 New Net Name=NetQ31_3
+Change Net Name : Old Net Name=Net*3_7 New Net Name=NetQ32_3
+Change Net Name : Old Net Name=Net*3_9 New Net Name=NetQ33_3
+Change Net Name : Old Net Name=Net*3_10 New Net Name=NetQ34_3
+Change Net Name : Old Net Name=Net*3_11 New Net Name=NetQ35_3
+Change Net Name : Old Net Name=Net*3_12 New Net Name=NetQ36_3
+Change Net Name : Old Net Name=Net*3_13 New Net Name=NetQ37_3
+Change Net Name : Old Net Name=Net*4_2 New Net Name=NetQ38_3
+Change Net Name : Old Net Name=Net*4_3 New Net Name=NetQ39_3
+Change Net Name : Old Net Name=Net*4_4 New Net Name=NetQ40_3
+Change Net Name : Old Net Name=Net*4_5 New Net Name=NetQ41_3
+Change Net Name : Old Net Name=Net*4_6 New Net Name=NetQ42_3
+Change Net Name : Old Net Name=Net*4_7 New Net Name=NetQ43_3
+Change Net Name : Old Net Name=Net*4_9 New Net Name=NetQ44_3
+Change Net Name : Old Net Name=Net*4_10 New Net Name=NetR5_1
+Change Net Name : Old Net Name=Net*4_11 New Net Name=NetR7_1
+Change Net Name : Old Net Name=Net*4_12 New Net Name=NetR12_1
+Change Net Name : Old Net Name=Net*4_13 New Net Name=NetR13_1
+Added Member To Class: ClassName=MyNixie Member=Component T5 QS30-1
+Added Member To Class: ClassName=MyNixie Member=Component T6 QS30-1
+Added Member To Class: ClassName=MyNixie Member=Component T7 QS30-1
+Added Member To Class: ClassName=MyNixie Member=Component T8 QS30-1

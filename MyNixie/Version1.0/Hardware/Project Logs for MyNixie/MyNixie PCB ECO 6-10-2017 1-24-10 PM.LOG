@@ -1,0 +1,5 @@
+Added Component: Designator=P3(HDR3X1_A)
+Added Pin To Net: NetName=DGND Pin=P3-1
+Added Pin To Net: NetName=TX1 Pin=P3-2
+Added Pin To Net: NetName=RX1 Pin=P3-3
+Added Member To Class: ClassName=MyNixie Member=Component P3 Header 3

@@ -1,0 +1,6 @@
+Removed Pin From Net: NetName=NetC11_2 Pin=Q2-2
+Removed Member From Class: ClassName=MyNixie Member=Q2
+Added Pin To Net: NetName=NetC11_2 Pin=J1-1
+Added Pin To Net: NetName=NetC11_2 Pin=J3-1
+Added Pin To Net: NetName=NetC11_2 Pin=U1-2
+Change Net Name : Old Net Name=NetC11_2 New Net Name=+12

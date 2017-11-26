@@ -1,0 +1,29 @@
+Board Information Report
+Filename     : E:\Disk E\ปินโนÜ\MyNixie\Version2.0\Hardware\MyNixie - V2-Release.PcbDoc
+Date         : 7/8/2017
+Time         : 12:49:03 PM
+Time Elapsed : 00:00:00
+
+Routing Information
+    Routing completion, 100.00%
+    Connections, 449
+    Connections routed, 449
+    Connections remaining, 0
+count : 4
+
+Track Width, Count
+    0.0381mm, 38700
+    0.1mm, 607
+    0.1778mm, 36
+    0.2mm, 746
+    0.2032mm, 12
+    0.254mm, 1821
+    0.381mm, 86
+    0.508mm, 453
+    0.635mm, 4
+    0.762mm, 24
+count : 10
+
+Net Via Size, Count
+    0.508mm, 192
+count : 1

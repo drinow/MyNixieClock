@@ -1,0 +1,38 @@
+Removed Pin From Net: NetName=+5 Pin=U9-1
+Removed Pin From Net: NetName=DGND Pin=U9-9
+Removed Pin From Net: NetName=DIN1 Pin=U9-16
+Removed Pin From Net: NetName=+5 Pin=U10-1
+Removed Pin From Net: NetName=DGND Pin=U10-9
+Removed Pin From Net: NetName=DIN2 Pin=U10-16
+Removed Pin From Net: NetName=+5 Pin=U11-1
+Removed Pin From Net: NetName=DGND Pin=U11-9
+Removed Pin From Net: NetName=DIN3 Pin=U11-16
+Removed Pin From Net: NetName=+5 Pin=U12-1
+Removed Pin From Net: NetName=DGND Pin=U12-9
+Removed Pin From Net: NetName=DIN4 Pin=U12-16
+Removed Member From Class: ClassName=MyNixie Member=U9
+Removed Member From Class: ClassName=MyNixie Member=U10
+Removed Member From Class: ClassName=MyNixie Member=U11
+Removed Member From Class: ClassName=MyNixie Member=U12
+Change Component Comment : Designator=C10 Old Comment=Cap Pol1 New Comment=4.7u/10u 250V
+Change Component Comment : Designator=C12 Old Comment=Cap Pol1 New Comment=220uF/16V
+Change Component Comment : Designator=L1 Old Comment=Inductor Iron New Comment=330uH SMD-12*12
+Change Component Comment : Designator=R6 Old Comment=RES-RPot New Comment=50K
+Change Component Comment : Designator=Y1 Old Comment=XTAL New Comment=8M
+Change Component Comment : Designator=Y2 Old Comment=XTAL New Comment=12M
+Change Component Designator: OldDesignator= NewDesignator=T1
+Change Component Designator: OldDesignator= NewDesignator=T2
+Change Component Designator: OldDesignator= NewDesignator=T4
+Change Component Designator: OldDesignator=3V NewDesignator=J5
+Change Component Designator: OldDesignator=5V NewDesignator=J4
+Change Component Designator: OldDesignator=12V NewDesignator=J3
+Change Component Designator: OldDesignator=GND NewDesignator=J6
+Change Component Designator: OldDesignator=VH NewDesignator=J2
+Change Component Description : Designator=C10 Old Description=Polarized Capacitor (Radial) New Description=¼«ÐÔµç½âµçÈÝ
+Change Component Description : Designator=C12 Old Description=Polarized Capacitor (Radial) New Description=¼«ÐÔµç½âµçÈÝ
+Added Component: Designator=T3(ÂÝË¿¿×-3mm)
+Added Member To Class: ClassName=MyNixie Member=Component J1 PWRCON
+Added Member To Class: ClassName=MyNixie Member=Component T1 M3Í­ÖùÂÝË¿¿×
+Added Member To Class: ClassName=MyNixie Member=Component T2 M3Í­ÖùÂÝË¿¿×
+Added Member To Class: ClassName=MyNixie Member=Component T3 M3Í­ÖùÂÝË¿¿×
+Added Member To Class: ClassName=MyNixie Member=Component T4 M3Í­ÖùÂÝË¿¿×
