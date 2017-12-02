@@ -229,8 +229,8 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>157</TopLine>
-      <CurrentLine>158</CurrentLine>
+      <TopLine>19</TopLine>
+      <CurrentLine>36</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\..\Libraries\CMSIS\startup\startup_stm32f10x_hd.s</PathWithFileName>
       <FilenameWithoutPath>startup_stm32f10x_hd.s</FilenameWithoutPath>
@@ -715,10 +715,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>24</ColumnNumber>
+      <ColumnNumber>69</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>256</TopLine>
-      <CurrentLine>246</CurrentLine>
+      <TopLine>109</TopLine>
+      <CurrentLine>120</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\..\User\main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>
@@ -1171,10 +1171,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>37</ColumnNumber>
+      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>549</TopLine>
-      <CurrentLine>556</CurrentLine>
+      <TopLine>52</TopLine>
+      <CurrentLine>1</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\..\User\eeprom.c</PathWithFileName>
       <FilenameWithoutPath>eeprom.c</FilenameWithoutPath>
