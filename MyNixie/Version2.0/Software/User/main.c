@@ -70,7 +70,7 @@ u8 ShowState=DEFAULT;
 __IO u32 LightOnSecCnt=0;
 __IO u32 RuntimeSecCnt=0;
 u16 LightTime15min=0;
-u32 RunTime15min=0;
+u16 RunTime15min=0;
 __IO u8 LightLevel=100;
 u8 Setting=0;
 u8 SetChannel=0;//设置模式下的通道选择
@@ -102,9 +102,8 @@ int main(void)
 	EE_ReadVariable(VirtAddVarTab[FirstRunFlagAddr],&EE_tmp);FirstRunFlag=EE_tmp;
 	if(FirstRunFlag!=0xAA)
 	{
-		RunDefaultSet();
 		FirstRunFlag=0xAA;
-		EE_WriteVariable(VirtAddVarTab[FirstRunFlagAddr],FirstRunFlag);
+		RunDefaultSet();
 	}
 //  EE_ReadVariable(VirtAddVarTab[RunTimeAddr],&EE_tmp);RunTime15min=EE_tmp;
 //  EE_ReadVariable(VirtAddVarTab[LightTimeAddr],&EE_tmp);LightTime15min=EE_tmp;
@@ -153,7 +152,6 @@ int main(void)
 			RuntimeSecCnt++;
 			if(LightLevel==0&&nobodyCnt<3600)nobodyCnt++;//无人操作计时
       if(LightLevel!=0||TIM2->CCR4!=0)LightOnSecCnt++;//点亮的时间记录
-			//无法解决在写入时因掉电，数据丢失的问题，所以不保存
 			if(RuntimeSecCnt==900){RuntimeSecCnt=0;RunTime15min++;/*EE_WriteVariable(VirtAddVarTab[RunTimeAddr],RunTime15min);*/}
       if(LightOnSecCnt==900){LightOnSecCnt=0;LightTime15min++;/*EE_WriteVariable(VirtAddVarTab[LightTimeAddr],LightTime15min);*/}
       if(GetTime.sec==0)
@@ -216,6 +214,7 @@ void RunDefaultSet(void)
 	EE_WriteVariable(VirtAddVarTab[RGBModeAddr],RGB_Msg.mode);
 	EE_WriteVariable(VirtAddVarTab[AlarmSwitchAddr],AlarmSwitch);
 	EE_WriteVariable(VirtAddVarTab[RGBTypeAddr],RGBType);
+	EE_WriteVariable(VirtAddVarTab[FirstRunFlagAddr],FirstRunFlag);
 	EE_WriteVariable(VirtAddVarTab[LightCoeAddr],(u16)(LightCoe*100));
 	Beep_State(800000*2);
 	
@@ -252,8 +251,6 @@ void DealRemoteSignal(void)
 			}
 			if(Remote_Cnt<=1&&RemoteKey!=SETTING)//普通功能按键
 			{
-				EE_WriteVariable(VirtAddVarTab[RunTimeAddr],RunTime15min);//放在这里可最大可能不会遇到人为断电情况。
-				EE_WriteVariable(VirtAddVarTab[LightTimeAddr],LightTime15min);
 				nobodyCnt=0;AlarmState=0xff;//有人操作，计数清零,任意键按下灭铃
 				Beep_State(5);
 				ShowState=RemoteKey;
@@ -395,10 +392,11 @@ void SettingFunc(void)
     //闹钟设置模式下不修改时间
     if(SetType==SETALARM)
     {
-      EE_WriteVariable(VirtAddVarTab[AlarmAddr],((u16)Alarm.hour<<8)|Alarm.min);
       Dot1_ON;Dot2_ON;
 			if(Alarm.hour>0x24||Alarm.min>=60)AlarmSwitch=0;else AlarmSwitch=1;
-			EE_WriteVariable(VirtAddVarTab[AlarmSwitchAddr],(u16)AlarmSwitch);
+			EE_SaveConfig();
+//			EE_WriteVariable(VirtAddVarTab[AlarmAddr],((u16)Alarm.hour<<8)|Alarm.min);
+//			EE_WriteVariable(VirtAddVarTab[AlarmSwitchAddr],(u16)AlarmSwitch);
     }
     else
 		{

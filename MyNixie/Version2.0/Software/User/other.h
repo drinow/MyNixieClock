@@ -72,6 +72,7 @@
 #define SETYEAR 3
 #define SETALARM 4
 
+void EE_SaveConfig(void);
 void HC595_PWM_Init(void);
 void Nixie_TimeToHC595(void);
 void Nixie_DateToHC595(void);
