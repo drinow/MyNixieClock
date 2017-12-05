@@ -160,12 +160,12 @@ void SysTick_Handler(void)
 	TimingDelay_Decrement();	
   tick++;
   
-  if(tick%5000==0)Breath_Frq=1;
-  if(tick%50000==0)Pulse=1;
-  if(tick%100000<50000)Period_1S=1;else Period_1S=0;
+  if(tick%50==0)Breath_Frq=1;
+  if(tick%500==0)Pulse=1;
+  if(tick%1000<500)Period_1S=1;else Period_1S=0;//
   if(AlarmState)
   {
-    if(tick%10000==0)
+    if(tick%100==0)
     {
       if(cnt%2==0&&cnt<7)AlarmWaveFlag=1;
       else AlarmWaveFlag=0;

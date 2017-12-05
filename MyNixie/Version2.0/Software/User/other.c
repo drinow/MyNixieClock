@@ -112,6 +112,7 @@ void Nixie_Test(void)
 {
   u8 state=0;
   u8 row;
+	Nixie_Light_Ctl(100);
   for(;state<10;state++)
   {
     //循环点亮
@@ -470,21 +471,16 @@ void Nixie_DealRemote(__IO u8 *state)
       case SHOWSWITCH:*state=DEFAULT;if(LightLevel==0)LightLevel=100;else {LightLevel=0;ForceLightOn=0;} 
 											Nixie_Light_Ctl(LightLevel);printf("LightLevel:%d\r\n",LightLevel);
 											EE_SaveConfig();
-//											EE_WriteVariable(VirtAddVarTab[LightLevelAddr],LightLevel);
 										break;
       case LIGHT_UP:*state=DEFAULT;
                     LightLevel=LightLevel+50;if(LightLevel>200)LightLevel=50;printf("LightLevel:%d\r\n",LightLevel);Nixie_Light_Ctl(LightLevel);
                     LightCoe=LightLevel/200.0;//取200是为了增大比例
 										EE_SaveConfig();
-//                    EE_WriteVariable(VirtAddVarTab[LightLevelAddr],LightLevel);
-//										EE_WriteVariable(VirtAddVarTab[LightCoeAddr],(u16)(LightCoe*100));
 										break;
       case LIGHT_DN:*state=DEFAULT;
                     LightLevel=LightLevel-50;if(LightLevel<50)LightLevel=200;printf("LightLevel:%d\r\n",LightLevel);Nixie_Light_Ctl(LightLevel);
                     LightCoe=LightLevel/200.0;
 										EE_SaveConfig();
-//                    EE_WriteVariable(VirtAddVarTab[LightLevelAddr],LightLevel);
-//										EE_WriteVariable(VirtAddVarTab[LightCoeAddr],(u16)(LightCoe*100));
 										break;
       case RGBSTATE:*state=DEFAULT;RGB_Msg.state++; if(RGB_Msg.state>=3)RGB_Msg.state=0;
 										if(RGB_Msg.state==EFFECTS_OFF)
@@ -492,74 +488,53 @@ void Nixie_DealRemote(__IO u8 *state)
 										if(RGB_Msg.state==EFFECTS_ON)//更新颜色信息
 											*state=RGBType;
 										EE_SaveConfig();
-//										EE_WriteVariable(VirtAddVarTab[RGBStateAddr],RGB_Msg.state);EE_WriteVariable(VirtAddVarTab[RGBModeAddr],RGB_Msg.mode);
-//										EE_WriteVariable(VirtAddVarTab[RMsgAddr],RGB_Msg.R);EE_WriteVariable(VirtAddVarTab[GMsgAddr],RGB_Msg.G);EE_WriteVariable(VirtAddVarTab[BMsgAddr],RGB_Msg.B);
-//										EE_WriteVariable(VirtAddVarTab[RGBModeAddr],RGB_Msg.mode);
 										break;
       case REDCOLOR:*state=DEFAULT;RGB_Rcd.R=RGB_Msg.R=255,RGB_Rcd.G=RGB_Msg.G=  0,RGB_Rcd.B=RGB_Msg.B=  0;RGB_Msg.mode=SINGLECOLOUR;
 										if(RGB_Msg.state==EFFECTS_OFF)RGB_Msg.state=EFFECTS_ON;
 										RGBType=REDCOLOR;
 										EE_SaveConfig();
-//										EE_WriteVariable(VirtAddVarTab[RMsgAddr],RGB_Msg.R);EE_WriteVariable(VirtAddVarTab[GMsgAddr],RGB_Msg.G);EE_WriteVariable(VirtAddVarTab[BMsgAddr],RGB_Msg.B);
-//										EE_WriteVariable(VirtAddVarTab[RGBStateAddr],RGB_Msg.state);EE_WriteVariable(VirtAddVarTab[RGBModeAddr],RGB_Msg.mode);EE_WriteVariable(VirtAddVarTab[RGBTypeAddr],RGBType);
 										break;
       case ORGCOLOR:*state=DEFAULT;RGB_Rcd.R=RGB_Msg.R=255,RGB_Rcd.G=RGB_Msg.G=156,RGB_Rcd.B=RGB_Msg.B=  0;RGB_Msg.mode=SINGLECOLOUR;
 										if(RGB_Msg.state==EFFECTS_OFF)RGB_Msg.state=EFFECTS_ON;
 										RGBType=ORGCOLOR;
 										EE_SaveConfig();
-//										EE_WriteVariable(VirtAddVarTab[RMsgAddr],RGB_Msg.R);EE_WriteVariable(VirtAddVarTab[GMsgAddr],RGB_Msg.G);EE_WriteVariable(VirtAddVarTab[BMsgAddr],RGB_Msg.B);
-//										EE_WriteVariable(VirtAddVarTab[RGBStateAddr],RGB_Msg.state);EE_WriteVariable(VirtAddVarTab[RGBModeAddr],RGB_Msg.mode);EE_WriteVariable(VirtAddVarTab[RGBTypeAddr],RGBType);
 										break;
       case YELCOLOR:*state=DEFAULT;RGB_Rcd.R=RGB_Msg.R=255,RGB_Rcd.G=RGB_Msg.G=255,RGB_Rcd.B=RGB_Msg.B=  0;RGB_Msg.mode=SINGLECOLOUR;
 										if(RGB_Msg.state==EFFECTS_OFF)RGB_Msg.state=EFFECTS_ON;
 										RGBType=YELCOLOR;
 										EE_SaveConfig();
-//										EE_WriteVariable(VirtAddVarTab[RMsgAddr],RGB_Msg.R);EE_WriteVariable(VirtAddVarTab[GMsgAddr],RGB_Msg.G);EE_WriteVariable(VirtAddVarTab[BMsgAddr],RGB_Msg.B);
-//										EE_WriteVariable(VirtAddVarTab[RGBStateAddr],RGB_Msg.state);EE_WriteVariable(VirtAddVarTab[RGBModeAddr],RGB_Msg.mode);EE_WriteVariable(VirtAddVarTab[RGBTypeAddr],RGBType);
 										break;
       case GRNCOLOR:*state=DEFAULT;RGB_Rcd.R=RGB_Msg.R=  0,RGB_Rcd.G=RGB_Msg.G=255,RGB_Rcd.B=RGB_Msg.B=  0;RGB_Msg.mode=SINGLECOLOUR;
 										if(RGB_Msg.state==EFFECTS_OFF)RGB_Msg.state=EFFECTS_ON;
 										RGBType=GRNCOLOR;
 										EE_SaveConfig();
-//										EE_WriteVariable(VirtAddVarTab[RMsgAddr],RGB_Msg.R);EE_WriteVariable(VirtAddVarTab[GMsgAddr],RGB_Msg.G);EE_WriteVariable(VirtAddVarTab[BMsgAddr],RGB_Msg.B);
-//										EE_WriteVariable(VirtAddVarTab[RGBStateAddr],RGB_Msg.state);EE_WriteVariable(VirtAddVarTab[RGBModeAddr],RGB_Msg.mode);EE_WriteVariable(VirtAddVarTab[RGBTypeAddr],RGBType);
 										break;
       case CYACOLOR:*state=DEFAULT;RGB_Rcd.R=RGB_Msg.R=  0,RGB_Rcd.G=RGB_Msg.G=255,RGB_Rcd.B=RGB_Msg.B=255;RGB_Msg.mode=SINGLECOLOUR;
 										if(RGB_Msg.state==EFFECTS_OFF)RGB_Msg.state=EFFECTS_ON;
 										RGBType=CYACOLOR;
 										EE_SaveConfig();
-//										EE_WriteVariable(VirtAddVarTab[RMsgAddr],RGB_Msg.R);EE_WriteVariable(VirtAddVarTab[GMsgAddr],RGB_Msg.G);EE_WriteVariable(VirtAddVarTab[BMsgAddr],RGB_Msg.B);
-//										EE_WriteVariable(VirtAddVarTab[RGBStateAddr],RGB_Msg.state);EE_WriteVariable(VirtAddVarTab[RGBModeAddr],RGB_Msg.mode);EE_WriteVariable(VirtAddVarTab[RGBTypeAddr],RGBType);
 										break;
       case BLUCOLOR:*state=DEFAULT;RGB_Rcd.R=RGB_Msg.R=  0,RGB_Rcd.G=RGB_Msg.G=  0,RGB_Rcd.B=RGB_Msg.B=255;RGB_Msg.mode=SINGLECOLOUR;
 										if(RGB_Msg.state==EFFECTS_OFF)RGB_Msg.state=EFFECTS_ON;
 										RGBType=BLUCOLOR;
 										EE_SaveConfig();
-//										EE_WriteVariable(VirtAddVarTab[RMsgAddr],RGB_Msg.R);EE_WriteVariable(VirtAddVarTab[GMsgAddr],RGB_Msg.G);EE_WriteVariable(VirtAddVarTab[BMsgAddr],RGB_Msg.B);
-//										EE_WriteVariable(VirtAddVarTab[RGBStateAddr],RGB_Msg.state);EE_WriteVariable(VirtAddVarTab[RGBModeAddr],RGB_Msg.mode);EE_WriteVariable(VirtAddVarTab[RGBTypeAddr],RGBType);
 										break;
       case PURCOLOR:*state=DEFAULT;RGB_Rcd.R=RGB_Msg.R=255,RGB_Rcd.G=RGB_Msg.G=  0,RGB_Rcd.B=RGB_Msg.B=255;RGB_Msg.mode=SINGLECOLOUR;
 										if(RGB_Msg.state==EFFECTS_OFF)RGB_Msg.state=EFFECTS_ON;
 										RGBType=PURCOLOR;
 										EE_SaveConfig();
-//										EE_WriteVariable(VirtAddVarTab[RMsgAddr],RGB_Msg.R);EE_WriteVariable(VirtAddVarTab[GMsgAddr],RGB_Msg.G);EE_WriteVariable(VirtAddVarTab[BMsgAddr],RGB_Msg.B);
-//										EE_WriteVariable(VirtAddVarTab[RGBStateAddr],RGB_Msg.state);EE_WriteVariable(VirtAddVarTab[RGBModeAddr],RGB_Msg.mode);EE_WriteVariable(VirtAddVarTab[RGBTypeAddr],RGBType);
 										break;
       case WHTCOLOR:*state=DEFAULT;RGB_Rcd.R=RGB_Msg.R=255,RGB_Rcd.G=RGB_Msg.G=255,RGB_Rcd.B=RGB_Msg.B=255;RGB_Msg.mode=SINGLECOLOUR;
 										if(RGB_Msg.state==EFFECTS_OFF)RGB_Msg.state=EFFECTS_ON;
 										RGBType=WHTCOLOR;
 										EE_SaveConfig();
-//										EE_WriteVariable(VirtAddVarTab[RMsgAddr],RGB_Msg.R);EE_WriteVariable(VirtAddVarTab[GMsgAddr],RGB_Msg.G);EE_WriteVariable(VirtAddVarTab[BMsgAddr],RGB_Msg.B);
-//										EE_WriteVariable(VirtAddVarTab[RGBStateAddr],RGB_Msg.state);EE_WriteVariable(VirtAddVarTab[RGBModeAddr],RGB_Msg.mode);EE_WriteVariable(VirtAddVarTab[RGBTypeAddr],RGBType);
 										break;
       case COLORFUL:*state=DEFAULT;RGB_Rcd.R=RGB_Msg.R=255,RGB_Rcd.G=RGB_Msg.G=127,RGB_Rcd.B=RGB_Msg.B= 63;RGB_Msg.mode=MULTICOLOUR;
 										if(RGB_Msg.state==EFFECTS_OFF)RGB_Msg.state=EFFECTS_ON;
 										RGBType=COLORFUL;
 										EE_SaveConfig();
-//										EE_WriteVariable(VirtAddVarTab[RMsgAddr],RGB_Msg.R);EE_WriteVariable(VirtAddVarTab[GMsgAddr],RGB_Msg.G);EE_WriteVariable(VirtAddVarTab[BMsgAddr],RGB_Msg.B);
-										EE_WriteVariable(VirtAddVarTab[RGBStateAddr],RGB_Msg.state);EE_WriteVariable(VirtAddVarTab[RGBModeAddr],RGB_Msg.mode);EE_WriteVariable(VirtAddVarTab[RGBTypeAddr],RGBType);
 										break;
-      case SETTING: *state=DEFAULT;
+      case SETTING: *state=DEFAULT;Setting=1;
 									  break;
       default:if(*state!=SHOWTEMP&&*state!=SHOWDATE&&*state!=SHOWWEEK)*state=DEFAULT;break;
     }
@@ -585,7 +560,7 @@ void Nixie_DealRemote(__IO u8 *state)
       case NUM9:*state=DEFAULT;NewNum=9;break;
       case VALUE_UP:*state=DEFAULT;break;
       case VALUE_DN:*state=DEFAULT;break;
-      case SETTING:*state=DEFAULT;
+      case SETTING :*state=DEFAULT;
       printf("SET:\r\n Dt:20%02x-%02x-%2x Tm:%02x:%02x:%02x  Wk:%2x\r\n"\
 						,SetTime.year,SetTime.month,SetTime.date,SetTime.hour,SetTime.min,SetTime.sec,SetTime.week);
       Setting=0;
@@ -601,6 +576,7 @@ extern __IO u8 AlarmSwitch;
 extern u8 FirstRunFlag;
 void EE_SaveConfig(void)
 {
+	
 	EE_WriteVariable(VirtAddVarTab[LightTimeAddr],LightTime15min);
 	EE_WriteVariable(VirtAddVarTab[LightLevelAddr],LightLevel);
 	EE_WriteVariable(VirtAddVarTab[RGBStateAddr],RGB_Msg.state);

@@ -8,6 +8,7 @@
                 else		\
                   GPIO_ResetBits(GPIOB,GPIO_Pin_6)
           
+								
 void BeepInit(void);
 void Beep_State(u32 num);
 void Beep_Alarm(void);

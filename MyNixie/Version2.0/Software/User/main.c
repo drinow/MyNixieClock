@@ -57,15 +57,19 @@ void OnTimeLightCheck(void);
 void DealRemoteSignal(void);
 void OnTimeAlarm(void);
 void RunDefaultSet(void);
+void EE_ReadConfig(void);
+void Breathing(void);
 
 extern u32 __IO tick;
 extern u8 SecAlarm;
 extern u8 __IO Breath_Frq;
-extern u8  __IO Pulse,Period_1S;
+extern u8 __IO Period_1S;
+extern u8 __IO Pulse;
 extern float LightCoe;
 extern float Ruse,Guse,Buse;
+extern u8 BeepDelayTime100ms;
 
-__IO u8 RemoteKey=0xff;
+__IO u8 RemoteKey=DEFAULT;
 u8 ShowState=DEFAULT;
 __IO u32 LightOnSecCnt=0;
 __IO u32 RuntimeSecCnt=0;
@@ -98,28 +102,11 @@ int main(void)
   HC595_PWM_Init();
   FLASH_Unlock();
   EE_Init();
-  //读取设置值
-	EE_ReadVariable(VirtAddVarTab[FirstRunFlagAddr],&EE_tmp);FirstRunFlag=EE_tmp;
-	if(FirstRunFlag!=0xAA)
-	{
-		FirstRunFlag=0xAA;
-		RunDefaultSet();
-	}
-//  EE_ReadVariable(VirtAddVarTab[RunTimeAddr],&EE_tmp);RunTime15min=EE_tmp;
-//  EE_ReadVariable(VirtAddVarTab[LightTimeAddr],&EE_tmp);LightTime15min=EE_tmp;
-  EE_ReadVariable(VirtAddVarTab[LightLevelAddr],&EE_tmp);LightLevel=EE_tmp;
-  EE_ReadVariable(VirtAddVarTab[RGBStateAddr],&EE_tmp);RGB_Msg.state=EE_tmp;
-  EE_ReadVariable(VirtAddVarTab[AlarmAddr],&EE_tmp);Alarm.hour =(EE_tmp&0xff00)>>8;Alarm.min =EE_tmp&0x00ff;
-	EE_ReadVariable(VirtAddVarTab[RGBStateAddr],&EE_tmp);RGB_Msg.state=EE_tmp;
-	EE_ReadVariable(VirtAddVarTab[RMsgAddr],&EE_tmp); RGB_Msg.R=EE_tmp;
-	EE_ReadVariable(VirtAddVarTab[GMsgAddr],&EE_tmp); RGB_Msg.G=EE_tmp;
-	EE_ReadVariable(VirtAddVarTab[BMsgAddr],&EE_tmp); RGB_Msg.B=EE_tmp;
-	EE_ReadVariable(VirtAddVarTab[RGBModeAddr],&EE_tmp);RGB_Msg.mode=EE_tmp;
-	EE_ReadVariable(VirtAddVarTab[AlarmSwitchAddr],&EE_tmp);AlarmSwitch=EE_tmp;
-	EE_ReadVariable(VirtAddVarTab[RGBTypeAddr],&EE_tmp);RGBType=EE_tmp;
-	EE_ReadVariable(VirtAddVarTab[LightCoeAddr],&EE_tmp);LightCoe=EE_tmp/100.0;
-  Nixie_Light_Ctl(100);
+	
+	EE_ReadConfig();
+  
   Nixie_Test();
+	
 //  SetTime.year =0x17;
 //  SetTime.month =0x07;
 //  SetTime.date =0x28;
@@ -130,37 +117,24 @@ int main(void)
 //  DS3231_WriteTime(&SetTime);
 //  DS3231_WriteTime(&SetTime);
   
-
-  printf(" RunTime  :%.2f Hour \r\n",RunTime15min/4.0);
-	printf("LightTime :%.2f Hour \r\n",LightTime15min/4.0);
-  printf("LightLevel:%d \r\n",LightLevel);
-	printf("LightCoe  :%.2f \r\n",LightCoe);
-  printf("RGB:State-%d Mode-%d Type-%d\r\n",RGB_Msg.state,RGB_Msg.mode,RGBType);
-	printf("R:%d G:%d B:%d  \r\n",RGB_Msg.R,RGB_Msg.G,RGB_Msg.B);
-  printf("Alarm:%x:%x Switch:%d\r\n",Alarm.hour,Alarm.min,AlarmSwitch);
 	Nixie_Light_Ctl(LightLevel);
 	ForceLightOn=1;
-//	WS2812_Refresh(RGB_Msg.R,RGB_Msg.G,RGB_Msg.B);
 	for(;;)
 	{
     Beep_Alarm();
 		SettingFunc();
-    Nixie_DealRemote(&RemoteKey);
+    Nixie_DealRemote(&ShowState);
     if(SecAlarm)
     {
       SecAlarm=0;
 			RuntimeSecCnt++;
 			if(LightLevel==0&&nobodyCnt<3600)nobodyCnt++;//无人操作计时
       if(LightLevel!=0||TIM2->CCR4!=0)LightOnSecCnt++;//点亮的时间记录
-			if(RuntimeSecCnt==900){RuntimeSecCnt=0;RunTime15min++;/*EE_WriteVariable(VirtAddVarTab[RunTimeAddr],RunTime15min);*/}
-      if(LightOnSecCnt==900){LightOnSecCnt=0;LightTime15min++;/*EE_WriteVariable(VirtAddVarTab[LightTimeAddr],LightTime15min);*/}
-      if(GetTime.sec==0)
-			{
-				Nixie_Cathode_Prevention();
-//				printf("LT:%d:%d RT:%d:%d\r\n",LightTime15min*15+LightOnSecCnt/60,LightOnSecCnt%60,RunTime15min*15+RuntimeSecCnt/60,RuntimeSecCnt%60);
-			}
+			if(RuntimeSecCnt==900){RuntimeSecCnt=0;RunTime15min++; EE_SaveConfig();}
+      if(LightOnSecCnt==900){LightOnSecCnt=0;LightTime15min++;}
+      if(GetTime.sec==0) Nixie_Cathode_Prevention();
       DS18B20_Temp=DS18B20_Get_Temp();
-      Nixie_Show(&RemoteKey);
+      Nixie_Show(&ShowState);
 			OnTimeLightCheck();//遥控唤醒或强制点亮10秒
 			OnTimeAlarm();
       CheckAlarm();
@@ -169,14 +143,23 @@ int main(void)
       printf("Tmp:%3.1f℃ | ",DS18B20_Temp);
 			printf("Nbdy:%d ",nobodyCnt);
 			printf("LLvl:%d ",LightLevel);
-			printf("FLit:%d ",ForceLightOn);
+			printf("FosLt:%d ",ForceLightOn);
 			printf("Alm:%d ",AlarmState);
-			printf("Rky:%d ",RemoteKey);
+			printf("RmRdy:%d ",Remote_Rdy);
+			printf("Rmkey:%d ",RemoteKey);
+			printf("RmCnt:%d ",Remote_Cnt);
 			printf("RGBste:%d | ",RGB_Msg.state);
 			printf("LT:%d:%d:%d ",(LightTime15min*15+LightOnSecCnt/60)/60,(LightTime15min*15+LightOnSecCnt/60)%60,LightOnSecCnt%60);
 			printf("RT:%d:%d:%d ",(RunTime15min*15+RuntimeSecCnt/60)/60,(RunTime15min*15+RuntimeSecCnt/60)%60,RuntimeSecCnt%60);
       printf("\r\n");
     }
+		Breathing();
+    DealRemoteSignal();
+	}     
+}
+
+void Breathing(void)
+{
     //呼吸灯效果
     if(Breath_Frq)
     {
@@ -187,8 +170,38 @@ int main(void)
 			__enable_irq();
 //      SysTick->CTRL |=  SysTick_CTRL_ENABLE_Msk;
     }
-    DealRemoteSignal();
-	}     
+}
+void EE_ReadConfig(void)
+{
+  //读取设置值
+	EE_ReadVariable(VirtAddVarTab[FirstRunFlagAddr],&EE_tmp);FirstRunFlag=EE_tmp;
+	if(FirstRunFlag!=0xAA)
+	{
+		FirstRunFlag=0xAA;
+		RunDefaultSet();
+	}
+	
+  EE_ReadVariable(VirtAddVarTab[RunTimeAddr],&EE_tmp);RunTime15min=EE_tmp;
+  EE_ReadVariable(VirtAddVarTab[LightTimeAddr],&EE_tmp);LightTime15min=EE_tmp;
+  EE_ReadVariable(VirtAddVarTab[LightLevelAddr],&EE_tmp);LightLevel=EE_tmp;
+  EE_ReadVariable(VirtAddVarTab[RGBStateAddr],&EE_tmp);RGB_Msg.state=EE_tmp;
+  EE_ReadVariable(VirtAddVarTab[AlarmAddr],&EE_tmp);Alarm.hour =(EE_tmp&0xff00)>>8;Alarm.min =EE_tmp&0x00ff;
+	EE_ReadVariable(VirtAddVarTab[RGBStateAddr],&EE_tmp);RGB_Msg.state=EE_tmp;
+	EE_ReadVariable(VirtAddVarTab[RMsgAddr],&EE_tmp); RGB_Msg.R=EE_tmp;
+	EE_ReadVariable(VirtAddVarTab[GMsgAddr],&EE_tmp); RGB_Msg.G=EE_tmp;
+	EE_ReadVariable(VirtAddVarTab[BMsgAddr],&EE_tmp); RGB_Msg.B=EE_tmp;
+	EE_ReadVariable(VirtAddVarTab[RGBModeAddr],&EE_tmp);RGB_Msg.mode=EE_tmp;
+	EE_ReadVariable(VirtAddVarTab[AlarmSwitchAddr],&EE_tmp);AlarmSwitch=EE_tmp;
+	EE_ReadVariable(VirtAddVarTab[RGBTypeAddr],&EE_tmp);RGBType=EE_tmp;
+	EE_ReadVariable(VirtAddVarTab[LightCoeAddr],&EE_tmp);LightCoe=EE_tmp/100.0;	
+	
+  printf(" RunTime  :%.2f Hour \r\n",RunTime15min/4.0);
+	printf("LightTime :%.2f Hour \r\n",LightTime15min/4.0);
+  printf("LightLevel:%d \r\n",LightLevel);
+	printf("LightCoe  :%.2f \r\n",LightCoe);
+  printf("RGB:State-%d Mode-%d Type-%d\r\n",RGB_Msg.state,RGB_Msg.mode,RGBType);
+	printf("R:%d G:%d B:%d  \r\n",RGB_Msg.R,RGB_Msg.G,RGB_Msg.B);
+  printf("Alarm:%x:%x Switch:%d\r\n",Alarm.hour,Alarm.min,AlarmSwitch);
 }
 
 void RunDefaultSet(void)
@@ -231,37 +244,47 @@ void RunDefaultSet(void)
 //遥控按键处理
 void DealRemoteSignal(void)
 {
-	if(Remote_Rdy)
+	RemoteKey=Remote_Process();
+	if(RemoteKey==SHOWTEMP||RemoteKey==SHOWDATE||RemoteKey==SHOWWEEK||RemoteKey==SHOWSWITCH||\
+		 RemoteKey==SETTING ||RemoteKey==RGBSTATE||RemoteKey==REDCOLOR||RemoteKey==ORGCOLOR||\
+		 RemoteKey==YELCOLOR||RemoteKey==GRNCOLOR||RemoteKey==CYACOLOR||RemoteKey==BLUCOLOR||\
+		 RemoteKey==PURCOLOR||RemoteKey==WHTCOLOR||RemoteKey==COLORFUL||RemoteKey==LIGHT_UP||\
+		 RemoteKey==LIGHT_DN||RemoteKey==PREV    ||RemoteKey==NEXT    ||RemoteKey==P100    ||RemoteKey==P200)//有些宏定义相同数值的不再写上
 	{
-		RemoteKey=Remote_Process();
-//		if(RemoteKey!=0)
-		if(RemoteKey==SHOWTEMP||RemoteKey==SHOWDATE||RemoteKey==SHOWWEEK||RemoteKey==SHOWSWITCH||\
-			 RemoteKey==SETTING ||RemoteKey==RGBSTATE||RemoteKey==REDCOLOR||RemoteKey==ORGCOLOR||RemoteKey==YELCOLOR||\
-			 RemoteKey==GRNCOLOR||RemoteKey==CYACOLOR||RemoteKey==BLUCOLOR||RemoteKey==PURCOLOR||RemoteKey==WHTCOLOR||\
-			 RemoteKey==COLORFUL||RemoteKey==LIGHT_UP||RemoteKey==LIGHT_DN||\
-			 RemoteKey==PREV    ||RemoteKey==NEXT    ||RemoteKey==P100    ||RemoteKey==P200)//有些宏定义相同数值的不再写上
+		if(Remote_Cnt==1)//短按
 		{
-//			nobodyCnt=0;AlarmState=0xff;//有人操作，计数清零,任意键按下灭铃
-			if(Remote_Cnt<=1&&LightLevel==0&&RemoteKey!=SHOWSWITCH)//灭灯时按下任意键点亮屏幕,部分按钮不响应这个语句
+			nobodyCnt=0;AlarmState=0xff;
+			Beep_State(5);
+			if(LightLevel==0)//熄灭状态
 			{
-				nobodyCnt=0;AlarmState=0xff;//有人操作，计数清零,任意键按下灭铃
+				if(RemoteKey==LIGHT_UP||RemoteKey==LIGHT_DN||RemoteKey==SETTING)
+					ShowState=DEFAULT;
+				else
+					ShowState=RemoteKey;
 				ForceLightOn=1;Nixie_Light_Ctl(100);
-				if(RemoteKey!=RGBSTATE &&RemoteKey!=SHOWSWITCH && RemoteKey!=SHOWTEMP && RemoteKey!=SHOWDATE && RemoteKey!=SHOWWEEK)//除这些按键外，其余不响应
-					RemoteKey=0xff;
 			}
-			if(Remote_Cnt<=1&&RemoteKey!=SETTING)//普通功能按键
+			else //
 			{
-				nobodyCnt=0;AlarmState=0xff;//有人操作，计数清零,任意键按下灭铃
+				if(RemoteKey==SETTING)
+					ShowState=DEFAULT;
+				else
+					ShowState=RemoteKey;
+			}
+		}
+		else if(Remote_Cnt==15)//长按
+		{
+			if(RemoteKey==SETTING)
+			{
 				Beep_State(5);
 				ShowState=RemoteKey;
 			}
-			if(Remote_Cnt==15&&RemoteKey==SETTING&&Setting==0)//设置按钮需要长按起作用
+			else if(RemoteKey==SHOWSWITCH)
 			{
-				Beep_State(5);
-				Setting=1;
+				RunDefaultSet();
 			}
-			if(Remote_Cnt==15&&RemoteKey==SHOWSWITCH) RunDefaultSet();//恢复出厂设置，和下一条语句不可交换位置
-			if(Remote_Cnt>1&&(RemoteKey==LIGHT_UP||RemoteKey==LIGHT_DN||RemoteKey==RGBSTATE||RemoteKey==SHOWSWITCH)){RemoteKey=0xff;}//调光不响应1以上的连按
+		}
+		else
+		{
 		}
 		printf("RemoteKey:%d ",RemoteKey);//显示键值
 		printf("cnt:%d \r\n",Remote_Cnt);//显示按键次数	
@@ -351,20 +374,19 @@ void SettingFunc(void)
 		SetType=4;//先进入Alarm设置模式下
 		LightLevel=100;//强制点亮
 		Nixie_Light_Ctl(LightLevel);
-    while(Setting)
+    while(Setting)//注意进来后因为未松按钮导致又退出去
     {
-      Nixie_DealRemote(&ShowState); //不直接使用RemoteKey是为了防止进来后又跳出去
+      Nixie_DealRemote(&ShowState); 
       if(SecAlarm)
       {
         SecAlarm=0;
 				RuntimeSecCnt++;
         if(LightLevel!=0)LightOnSecCnt++;//运行时间计时
-				if(RuntimeSecCnt==900){RuntimeSecCnt=0;RunTime15min++;/*EE_WriteVariable(VirtAddVarTab[RunTimeAddr],RunTime15min);*/}
-        if(LightOnSecCnt==900){LightOnSecCnt=0;LightTime15min++;/*EE_WriteVariable(VirtAddVarTab[LightTimeAddr],LightTime15min);*/}
+				if(RuntimeSecCnt==900){RuntimeSecCnt=0;RunTime15min++;}
+        if(LightOnSecCnt==900){LightOnSecCnt=0;LightTime15min++;}
 				if(GetTime.sec==0)
 				{
 					Nixie_Cathode_Prevention();
-//					printf("LT:%d:%d RT:%d:%d\r\n",LightTime15min*15+LightOnSecCnt/60,LightOnSecCnt%60,RunTime15min*15+RuntimeSecCnt/60,RuntimeSecCnt%60);
 				}        
 				LED1_TOGGLE;
       }
@@ -373,21 +395,17 @@ void SettingFunc(void)
         Nixie_Set_Show();
         Pulse=0;
       }
-      if(Remote_Rdy)
-      {
-        RemoteKey=Remote_Process();
-        if(RemoteKey!=0&&Remote_Cnt==1)//Remote_Cnt==0防止长按设置后直接跳进来
-        {
-          if(Remote_Cnt==1)
-          {
-            Beep_State(5);
-            ShowState=RemoteKey;
-          }
-          printf("RemoteKey:%d ",RemoteKey);//显示键值
-          printf("cnt:%d \r\n",Remote_Cnt);//显示按键次数	
-        }
-				else RemoteKey=0xff;
-      }  
+
+			RemoteKey=Remote_Process();
+			if(RemoteKey!=0&&Remote_Cnt==1)//利用Remote_Cnt不自动清空，防止长按设置后直接跳进来
+			{
+				Beep_State(5);
+				ShowState=RemoteKey;
+//				printf("RemoteKey:%d ",RemoteKey);//显示键值
+//				printf("cnt:%d \r\n",Remote_Cnt);//显示按键次数	
+			}
+			else ShowState=DEFAULT;
+			
     }
     //闹钟设置模式下不修改时间
     if(SetType==SETALARM)
@@ -395,8 +413,6 @@ void SettingFunc(void)
       Dot1_ON;Dot2_ON;
 			if(Alarm.hour>0x24||Alarm.min>=60)AlarmSwitch=0;else AlarmSwitch=1;
 			EE_SaveConfig();
-//			EE_WriteVariable(VirtAddVarTab[AlarmAddr],((u16)Alarm.hour<<8)|Alarm.min);
-//			EE_WriteVariable(VirtAddVarTab[AlarmSwitchAddr],(u16)AlarmSwitch);
     }
     else
 		{

@@ -6,13 +6,13 @@ float DS18B20_Temp=0;
 
 void DS18B20_Delay_10us(u8 cnt)
 {
-//  u16 i=12;
-//  while(cnt)
-//  {
-//    for(;i>0;i--);
-//    cnt--;
-//  }
-  Delay_us(cnt);
+  u8 i=100;
+	while(cnt--){
+		i=100;
+		while(i)
+			i--;
+	}
+//  Delay_us(cnt);//10us accurate
 }
 
 /*

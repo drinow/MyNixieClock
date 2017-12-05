@@ -19,7 +19,7 @@
 #define LightCoeAddr 		 12
 
 //遥控功能普通模式下按键值定义
-#define DEFAULT    255
+#define DEFAULT    0
 #define SHOWTEMP   98
 #define SHOWDATE   162
 #define SHOWWEEK   226
