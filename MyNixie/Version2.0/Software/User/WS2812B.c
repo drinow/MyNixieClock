@@ -1,9 +1,9 @@
 #include "WS2812B.h"
 
-static __IO u8 WS2812_RGB[WS2812_NUM][3];
+__IO u8 WS2812_RGB[WS2812_NUM][3];
 
-__IO RGB_TypeDef RGB_Msg={255,128,64,1,255,0};
-__IO RGB_TypeDef RGB_Rcd={255,128,64,1,255,0};//记录Msg
+__IO RGB_TypeDef RGB_Msg={255,128,64,SINGLECOLOR,EFFECTS_ON};
+//__IO RGB_TypeDef RGB_Rcd={255,128,64,1,255,0};//记录Msg
   
 void WS2812_Init(void)
 {
@@ -78,69 +78,57 @@ float Ruse=0,Guse=0,Buse=0;
 void WS2812_Breath(void)
 {
   //数据更新记录
-  static u8 Rold=0,Gold=0,Bold=0;
-
-  //方向记录
-  static u8 Rdirect=1,Gdirect=1,Bdirect=1;
+  static u8 Rmax=0,Gmax=0,Bmax=0;
+	static u8 MultiColorState=0;//彩色状态机控制
+	static float step=0.0;//单色移步控制
   u8 row=0,line=0;
   
   //RGB数据更新
-  if(Rold!=RGB_Msg.R||Gold!=RGB_Msg.G||Bold!=RGB_Msg.B)
+  if(Rmax!=RGB_Msg.R||Gmax!=RGB_Msg.G||Bmax!=RGB_Msg.B)
   {
-    Rold=RGB_Msg.R;Gold=RGB_Msg.G;Bold=RGB_Msg.B;
-    if(RGB_Msg.mode==SINGLECOLOUR)//单色模式按顺序增减
-    {
-      Ruse=0;Guse=0;Buse=0;//从0开始
-    }
-    if(RGB_Msg.mode==MULTICOLOUR)//彩色模式等比例增减
-    {
-      Ruse=Rold;Guse=Gold;Buse=Bold;
-    }
-  }
-  
-  //方向控制
-  if(RGB_Msg.mode==SINGLECOLOUR)
-  {
-		//Ruse=0为了重新对齐数据
-		if(Ruse+(Rold/85.0)>=Rold*LightCoe){Rdirect=0;}if(Ruse<Rold/85.0&&Rdirect==0){Rdirect=1;Ruse=0;Guse=0;Buse=0;}
-		if(Guse+(Rold/85.0)>=Gold*LightCoe){Gdirect=0;}if(Guse<Gold/85.0&&Gdirect==0){Gdirect=1;Ruse=0;Guse=0;Buse=0;}
-		if(Buse+(Rold/85.0)>=Bold*LightCoe){Bdirect=0;}if(Buse<Bold/85.0&&Bdirect==0){Bdirect=1;Ruse=0;Guse=0;Buse=0;}
-  }
-  if(RGB_Msg.mode==MULTICOLOUR)
-  {
-		if(Ruse+3>(250*LightCoe)){Rdirect=0;}if(Ruse<=3)Rdirect=1;
-		if(Guse+3>(250*LightCoe)){Gdirect=0;}if(Guse<=3)Gdirect=1;
-		if(Buse+3>(250*LightCoe)){Bdirect=0;}if(Buse<=3)Bdirect=1;  
+    Rmax=RGB_Msg.R;Gmax=RGB_Msg.G;Bmax=RGB_Msg.B;
+		Ruse=0;Guse=0;Buse=0;
+		step=0;//从0开始
+		MultiColorState=0;//用状态机控制
   }
   
   //渐变
   if(RGB_Msg.state==EFFECTS_ON)
   {
-    if(RGB_Msg.mode==SINGLECOLOUR)
+    if(RGB_Msg.mode==SINGLECOLOR)
     {
-    if(Rdirect) {Ruse+=Rold/85.0; }else {Ruse-=Rold/85.0;}//等比例步长
-    if(Gdirect) {Guse+=Gold/85.0; }else {Guse-=Gold/85.0;}
-    if(Bdirect) {Buse+=Bold/85.0; }else {Buse-=Bold/85.0;}
-    
-    //=0的颜色信息不应该被修改
-    if(Rold==0)Ruse=0;
-    if(Gold==0)Guse=0;
-    if(Bold==0)Buse=0;
+			Ruse=Rmax*LightCoe*sin(step);
+			Guse=Gmax*LightCoe*sin(step);
+			Buse=Bmax*LightCoe*sin(step);
+			if(Ruse<0)Ruse=-Ruse;
+			if(Guse<0)Guse=-Guse;
+			if(Buse<0)Buse=-Buse;
+//			printf("R %.1f ;G %.1f B: %.1f M: %d; S: %d\r\n",Ruse,Guse,Buse,RGB_Msg.mode,RGB_Msg.state);
+			step+=STEPSIZE;
     }
-    if(RGB_Msg.mode==MULTICOLOUR)
+    if(RGB_Msg.mode==MULTICOLOR)
     {
-    if(Rdirect) {Ruse+=3; }else {Ruse-=3;}
-    if(Gdirect) {Guse+=3; }else {Guse-=3;}
-    if(Bdirect) {Buse+=3; }else {Buse-=3;}  
+				switch(MultiColorState)
+				{
+					case 0:Ruse+=4;if(Ruse>250*LightCoe)MultiColorState++;break;//首先是点亮
+					case 1:Guse+=4;if(Guse>250*LightCoe)MultiColorState++;break;//此时才是变色
+					case 2:Ruse-=4;if(Ruse==0)MultiColorState++;break;
+					case 3:Buse+=4;if(Buse>250*LightCoe)MultiColorState++;break;
+					case 4:Guse-=4;if(Guse==0)MultiColorState++;break;
+					case 5:Ruse+=4;if(Ruse>250*LightCoe)MultiColorState++;break;
+					case 6:Buse-=4;if(Buse==0)MultiColorState=1;break;//不应该从0开始
+					default:break;
+				}
     }
   }
 	else if(RGB_Msg.state==EFFECTS_OFF)
 	{
-		Ruse=RGB_Msg.R;//若state无变化，则RGB信息由EEPROM读出
+		Ruse=RGB_Msg.R;//若state无变化，则RGB信息由Flash读出
 		Guse=RGB_Msg.G;
 		Buse=RGB_Msg.B;
 	}
   
+	//数据填充
   for(row=0;row<WS2812_NUM;row++)
     for(line=0;line<3;line++)
     {

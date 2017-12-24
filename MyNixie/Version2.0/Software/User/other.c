@@ -112,6 +112,12 @@ void Nixie_Test(void)
 {
   u8 state=0;
   u8 row;
+	
+	__disable_irq();
+	memset((u8*)WS2812_RGB,0,sizeof(WS2812_RGB));
+	WS2812_Send_Px();
+	__enable_irq();
+	
 	Nixie_Light_Ctl(100);
   for(;state<10;state++)
   {
@@ -161,6 +167,7 @@ void Nixie_DateToHC595(void)
   Nixie_HC595_Data[2][GetTime.date>>4]=1;
   Nixie_HC595_Data[3][GetTime.date&0x0F]=1;
   
+	Dot1_OFF;Dot2_ON;
   Nixie_Load(Nixie_HC595_Data);
   Nixie_Update();
 }
@@ -173,6 +180,7 @@ void Nixie_WeekToHC595(void)
   Nixie_HC595_Data[2][GetTime.week>>4]=1;
   Nixie_HC595_Data[3][GetTime.week&0x0F]=1;
   
+	Dot1_ON;Dot2_OFF;
   Nixie_Load(Nixie_HC595_Data);
   Nixie_Update();
 }
@@ -184,6 +192,7 @@ void Nixie_TempToHC595(void)
   Nixie_HC595_Data[2][(u8)DS18B20_Temp/10]=1;
   Nixie_HC595_Data[3][(u8)DS18B20_Temp%10]=1;
   
+	Dot1_ON;Dot2_ON;
   Nixie_Load(Nixie_HC595_Data);
   Nixie_Update();
 }
@@ -444,9 +453,9 @@ void Nixie_Show(__IO u8 *state)
   switch(*state)
   {
     case DEFAULT:Nixie_TimeToHC595();break;
-    case SHOWTEMP:Nixie_TempToHC595();cnt++;if(cnt>=4){cnt=0;*state=DEFAULT;}break;
-    case SHOWDATE:Nixie_DateToHC595();cnt++;if(cnt>=4){cnt=0;*state=DEFAULT;}break;
-    case SHOWWEEK:Nixie_WeekToHC595();cnt++;if(cnt>=4){cnt=0;*state=DEFAULT;}break;
+    case SHOWTEMP:Nixie_TempToHC595();cnt++;if(cnt>=4){cnt=0;Dot1_OFF;Dot2_OFF;*state=DEFAULT;Nixie_TimeToHC595();}break;
+    case SHOWDATE:Nixie_DateToHC595();cnt++;if(cnt>=4){cnt=0;Dot1_OFF;Dot2_OFF;*state=DEFAULT;Nixie_TimeToHC595();}break;
+    case SHOWWEEK:Nixie_WeekToHC595();cnt++;if(cnt>=4){cnt=0;Dot1_OFF;Dot2_OFF;*state=DEFAULT;Nixie_TimeToHC595();}break;
     default:break;
   }
 }
@@ -457,9 +466,7 @@ extern u8 SetChannel;
 extern u8 SetType;
 extern u8 NewNum;
 extern u8 __IO ForceLightOn;
-extern u8 RGBType;
 extern float Ruse,Guse,Buse;
-//u8 LightSwitch=1;
 float LightCoe=0;//亮度系数
 void Nixie_DealRemote(__IO u8 *state)
 {
@@ -482,56 +489,46 @@ void Nixie_DealRemote(__IO u8 *state)
                     LightCoe=LightLevel/200.0;
 										EE_SaveConfig();
 										break;
-      case RGBSTATE:*state=DEFAULT;RGB_Msg.state++; if(RGB_Msg.state>=3)RGB_Msg.state=0;
+      case RGBSTATE:*state=DEFAULT;RGB_Msg.state++; if(RGB_Msg.state>=3)RGB_Msg.state=EFFECTS_ON;
 										if(RGB_Msg.state==EFFECTS_OFF)
 											{RGB_Msg.R=(u8)Ruse;RGB_Msg.G=(u8)Guse;RGB_Msg.B=(u8)Buse;}
 										if(RGB_Msg.state==EFFECTS_ON)//更新颜色信息
-											*state=RGBType;
 										EE_SaveConfig();
 										break;
-      case REDCOLOR:*state=DEFAULT;RGB_Rcd.R=RGB_Msg.R=255,RGB_Rcd.G=RGB_Msg.G=  0,RGB_Rcd.B=RGB_Msg.B=  0;RGB_Msg.mode=SINGLECOLOUR;
+      case REDCOLOR:*state=DEFAULT;RGB_Msg.R=255,RGB_Msg.G=  0,RGB_Msg.B=  0;RGB_Msg.mode=SINGLECOLOR;
 										if(RGB_Msg.state==EFFECTS_OFF)RGB_Msg.state=EFFECTS_ON;
-										RGBType=REDCOLOR;
 										EE_SaveConfig();
 										break;
-      case ORGCOLOR:*state=DEFAULT;RGB_Rcd.R=RGB_Msg.R=255,RGB_Rcd.G=RGB_Msg.G=156,RGB_Rcd.B=RGB_Msg.B=  0;RGB_Msg.mode=SINGLECOLOUR;
+      case ORGCOLOR:*state=DEFAULT;RGB_Msg.R=255,RGB_Msg.G=156,RGB_Msg.B=  0;RGB_Msg.mode=SINGLECOLOR;
 										if(RGB_Msg.state==EFFECTS_OFF)RGB_Msg.state=EFFECTS_ON;
-										RGBType=ORGCOLOR;
 										EE_SaveConfig();
 										break;
-      case YELCOLOR:*state=DEFAULT;RGB_Rcd.R=RGB_Msg.R=255,RGB_Rcd.G=RGB_Msg.G=255,RGB_Rcd.B=RGB_Msg.B=  0;RGB_Msg.mode=SINGLECOLOUR;
+      case YELCOLOR:*state=DEFAULT;RGB_Msg.R=255,RGB_Msg.G=255,RGB_Msg.B=  0;RGB_Msg.mode=SINGLECOLOR;
 										if(RGB_Msg.state==EFFECTS_OFF)RGB_Msg.state=EFFECTS_ON;
-										RGBType=YELCOLOR;
 										EE_SaveConfig();
 										break;
-      case GRNCOLOR:*state=DEFAULT;RGB_Rcd.R=RGB_Msg.R=  0,RGB_Rcd.G=RGB_Msg.G=255,RGB_Rcd.B=RGB_Msg.B=  0;RGB_Msg.mode=SINGLECOLOUR;
+      case GRNCOLOR:*state=DEFAULT;RGB_Msg.R=  0,RGB_Msg.G=255,RGB_Msg.B=  0;RGB_Msg.mode=SINGLECOLOR;
 										if(RGB_Msg.state==EFFECTS_OFF)RGB_Msg.state=EFFECTS_ON;
-										RGBType=GRNCOLOR;
 										EE_SaveConfig();
 										break;
-      case CYACOLOR:*state=DEFAULT;RGB_Rcd.R=RGB_Msg.R=  0,RGB_Rcd.G=RGB_Msg.G=255,RGB_Rcd.B=RGB_Msg.B=255;RGB_Msg.mode=SINGLECOLOUR;
+      case CYACOLOR:*state=DEFAULT;RGB_Msg.R=  0,RGB_Msg.G=255,RGB_Msg.B=255;RGB_Msg.mode=SINGLECOLOR;
 										if(RGB_Msg.state==EFFECTS_OFF)RGB_Msg.state=EFFECTS_ON;
-										RGBType=CYACOLOR;
 										EE_SaveConfig();
 										break;
-      case BLUCOLOR:*state=DEFAULT;RGB_Rcd.R=RGB_Msg.R=  0,RGB_Rcd.G=RGB_Msg.G=  0,RGB_Rcd.B=RGB_Msg.B=255;RGB_Msg.mode=SINGLECOLOUR;
+      case BLUCOLOR:*state=DEFAULT;RGB_Msg.R=  0,RGB_Msg.G=  0,RGB_Msg.B=255;RGB_Msg.mode=SINGLECOLOR;
 										if(RGB_Msg.state==EFFECTS_OFF)RGB_Msg.state=EFFECTS_ON;
-										RGBType=BLUCOLOR;
 										EE_SaveConfig();
 										break;
-      case PURCOLOR:*state=DEFAULT;RGB_Rcd.R=RGB_Msg.R=255,RGB_Rcd.G=RGB_Msg.G=  0,RGB_Rcd.B=RGB_Msg.B=255;RGB_Msg.mode=SINGLECOLOUR;
+      case PURCOLOR:*state=DEFAULT;RGB_Msg.R=255,RGB_Msg.G=  0,RGB_Msg.B=255;RGB_Msg.mode=SINGLECOLOR;
 										if(RGB_Msg.state==EFFECTS_OFF)RGB_Msg.state=EFFECTS_ON;
-										RGBType=PURCOLOR;
 										EE_SaveConfig();
 										break;
-      case WHTCOLOR:*state=DEFAULT;RGB_Rcd.R=RGB_Msg.R=255,RGB_Rcd.G=RGB_Msg.G=255,RGB_Rcd.B=RGB_Msg.B=255;RGB_Msg.mode=SINGLECOLOUR;
-										if(RGB_Msg.state==EFFECTS_OFF)RGB_Msg.state=EFFECTS_ON;
-										RGBType=WHTCOLOR;
+      case WHTCOLOR:*state=DEFAULT;RGB_Msg.R=255,RGB_Msg.G=255,RGB_Msg.B=255;RGB_Msg.mode=SINGLECOLOR;
+										if(RGB_Msg.state==EFFECTS_OFF)RGB_Msg.state=EFFECTS_ON;//										RGBType=WHTCOLOR;
 										EE_SaveConfig();
 										break;
-      case COLORFUL:*state=DEFAULT;RGB_Rcd.R=RGB_Msg.R=255,RGB_Rcd.G=RGB_Msg.G=127,RGB_Rcd.B=RGB_Msg.B= 63;RGB_Msg.mode=MULTICOLOUR;
+      case COLORFUL:*state=DEFAULT;RGB_Msg.R=255,RGB_Msg.G=255,RGB_Msg.B=255;RGB_Msg.mode=MULTICOLOR;
 										if(RGB_Msg.state==EFFECTS_OFF)RGB_Msg.state=EFFECTS_ON;
-										RGBType=COLORFUL;
 										EE_SaveConfig();
 										break;
       case SETTING: *state=DEFAULT;Setting=1;
@@ -587,7 +584,6 @@ void EE_SaveConfig(void)
 	EE_WriteVariable(VirtAddVarTab[BMsgAddr],RGB_Msg.B);
 	EE_WriteVariable(VirtAddVarTab[RGBModeAddr],RGB_Msg.mode);
 	EE_WriteVariable(VirtAddVarTab[AlarmSwitchAddr],AlarmSwitch);
-	EE_WriteVariable(VirtAddVarTab[RGBTypeAddr],RGBType);
 	EE_WriteVariable(VirtAddVarTab[FirstRunFlagAddr],FirstRunFlag);
 	EE_WriteVariable(VirtAddVarTab[LightCoeAddr],(u16)(LightCoe*100));
 }
@@ -637,13 +633,6 @@ void HC595_PWM_Init(void)
     /* TIM3 enable counter */
     TIM_Cmd(TIM2, ENABLE);                   										//使能定时器3	
   }
-}
-
-//恢复出厂设置
-void Recovery(void)
-{
-  RGB_Msg.state=0;
-  LightLevel=100;
 }
 
 static void Nixie_Light_delay(void)

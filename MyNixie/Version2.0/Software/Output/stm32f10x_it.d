@@ -32,6 +32,7 @@
 ..\..\output\stm32f10x_it.o: ..\..\User\bsp_beep.h
 ..\..\output\stm32f10x_it.o: ..\..\User\bsp_ds18b20.h
 ..\..\output\stm32f10x_it.o: ..\..\User\WS2812B.h
+..\..\output\stm32f10x_it.o: D:\Keil\ARM\ARMCC\bin\..\include\math.h
 ..\..\output\stm32f10x_it.o: ..\..\User\other.h
 ..\..\output\stm32f10x_it.o: ..\..\User\remote.h
 ..\..\output\stm32f10x_it.o: ..\..\User\sys.h

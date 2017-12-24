@@ -31,6 +31,7 @@
 ..\..\output\main.o: ..\..\User\bsp_beep.h
 ..\..\output\main.o: ..\..\User\bsp_ds18b20.h
 ..\..\output\main.o: ..\..\User\WS2812B.h
+..\..\output\main.o: D:\Keil\ARM\ARMCC\bin\..\include\math.h
 ..\..\output\main.o: ..\..\User\other.h
 ..\..\output\main.o: ..\..\User\remote.h
 ..\..\output\main.o: ..\..\User\sys.h

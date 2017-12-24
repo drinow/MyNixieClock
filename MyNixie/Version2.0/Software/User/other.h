@@ -14,9 +14,8 @@
 #define BMsgAddr		   7
 #define RGBModeAddr		 8
 #define AlarmSwitchAddr   9
-#define RGBTypeAddr      10
-#define FirstRunFlagAddr 11
-#define LightCoeAddr 		 12
+#define FirstRunFlagAddr 10
+#define LightCoeAddr 		 11
 
 //遥控功能普通模式下按键值定义
 #define DEFAULT    0

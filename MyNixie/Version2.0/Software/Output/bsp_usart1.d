@@ -32,6 +32,7 @@
 ..\..\output\bsp_usart1.o: ..\..\User\include.h
 ..\..\output\bsp_usart1.o: ..\..\User\bsp_ds18b20.h
 ..\..\output\bsp_usart1.o: ..\..\User\WS2812B.h
+..\..\output\bsp_usart1.o: D:\Keil\ARM\ARMCC\bin\..\include\math.h
 ..\..\output\bsp_usart1.o: ..\..\User\other.h
 ..\..\output\bsp_usart1.o: ..\..\User\remote.h
 ..\..\output\bsp_usart1.o: ..\..\User\sys.h

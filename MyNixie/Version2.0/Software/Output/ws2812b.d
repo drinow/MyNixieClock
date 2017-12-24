@@ -21,3 +21,4 @@
 ..\..\output\ws2812b.o: ..\..\Libraries\FWlib\inc\misc.h
 ..\..\output\ws2812b.o: D:\Keil\ARM\ARMCC\bin\..\include\string.h
 ..\..\output\ws2812b.o: D:\Keil\ARM\ARMCC\bin\..\include\stdio.h
+..\..\output\ws2812b.o: D:\Keil\ARM\ARMCC\bin\..\include\math.h

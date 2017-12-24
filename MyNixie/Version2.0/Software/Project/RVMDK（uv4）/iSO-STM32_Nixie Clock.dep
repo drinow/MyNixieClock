@@ -471,7 +471,7 @@ I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\Libraries\FWlib\inc\stm32f1
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\Libraries\FWlib\inc\stm32f10x_tim.h)(0x5565E4AF)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\Libraries\FWlib\inc\stm32f10x_usart.h)(0x5565E4AF)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\Libraries\FWlib\inc\misc.h)(0x5565E4A7)
-F (..\..\User\main.c)(0x5A262438)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Libraries\CMSIS -I..\..\User -I..\..\Libraries\FWlib\inc -I..\..\User\Led -I..\..\User\SysTick-I D:\Keil\ARM\RV31\INC-I D:\Keil\ARM\CMSIS\Include-I D:\Keil\ARM\Inc\ST\STM32F10x-DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -DDEBUG -o ..\..\output\main.o --omf_browse ..\..\output\main.crf --depend ..\..\output\main.d)
+F (..\..\User\main.c)(0x5A3F1507)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Libraries\CMSIS -I..\..\User -I..\..\Libraries\FWlib\inc -I..\..\User\Led -I..\..\User\SysTick-I D:\Keil\ARM\RV31\INC-I D:\Keil\ARM\CMSIS\Include-I D:\Keil\ARM\Inc\ST\STM32F10x-DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -DDEBUG -o ..\..\output\main.o --omf_browse ..\..\output\main.crf --depend ..\..\output\main.d)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\include.h)(0x596D737E)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\Libraries\CMSIS\stm32f10x.h)(0x5565E4A2)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\Libraries\CMSIS\core_cm3.h)(0x5565E49E)
@@ -493,22 +493,22 @@ I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\Libraries\FWlib\inc\stm32f1
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\Libraries\FWlib\inc\misc.h)(0x5565E4A7)
 I (D:\Keil\ARM\ARMCC\include\stdio.h)(0x51C7B744)
 I (D:\Keil\ARM\ARMCC\include\string.h)(0x51C7B744)
-I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\bsp_SysTick.h)(0x595BAD1B)
+I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\bsp_SysTick.h)(0x5A262A58)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\bsp_led.h)(0x5970D71B)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\bsp_usart1.h)(0x595B5D8E)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\ds3231.h)(0x59709AFB)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\bsp_i2c_gpio.h)(0x596C56B4)
 I (D:\Keil\ARM\ARMCC\include\inttypes.h)(0x51C7B744)
-I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\bsp_beep.h)(0x5A242371)
+I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\bsp_beep.h)(0x5A263901)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\bsp_ds18b20.h)(0x596CB679)
-I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\WS2812B.h)(0x59AD1968)
-I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\other.h)(0x5A241F34)
+I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\WS2812B.h)(0x5A3F26D8)
+I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\other.h)(0x5A264277)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\remote.h)(0x595CF63E)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\sys.h)(0x5565A64A)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\bsp_74hc595.h)(0x596CB428)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\eeprom.h)(0x596D740D)
 F (..\..\User\stm32f10x_conf.h)(0x595B5EF7)()
-F (..\..\User\stm32f10x_it.c)(0x5A262438)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Libraries\CMSIS -I..\..\User -I..\..\Libraries\FWlib\inc -I..\..\User\Led -I..\..\User\SysTick-I D:\Keil\ARM\RV31\INC-I D:\Keil\ARM\CMSIS\Include-I D:\Keil\ARM\Inc\ST\STM32F10x-DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -DDEBUG -o ..\..\output\stm32f10x_it.o --omf_browse ..\..\output\stm32f10x_it.crf --depend ..\..\output\stm32f10x_it.d)
+F (..\..\User\stm32f10x_it.c)(0x5A263901)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Libraries\CMSIS -I..\..\User -I..\..\Libraries\FWlib\inc -I..\..\User\Led -I..\..\User\SysTick-I D:\Keil\ARM\RV31\INC-I D:\Keil\ARM\CMSIS\Include-I D:\Keil\ARM\Inc\ST\STM32F10x-DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -DDEBUG -o ..\..\output\stm32f10x_it.o --omf_browse ..\..\output\stm32f10x_it.crf --depend ..\..\output\stm32f10x_it.d)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\stm32f10x_it.h)(0x5565E4BC)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\Libraries\CMSIS\stm32f10x.h)(0x5565E4A2)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\Libraries\CMSIS\core_cm3.h)(0x5565E49E)
@@ -531,16 +531,16 @@ I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\Libraries\FWlib\inc\misc.h)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\include.h)(0x596D737E)
 I (D:\Keil\ARM\ARMCC\include\stdio.h)(0x51C7B744)
 I (D:\Keil\ARM\ARMCC\include\string.h)(0x51C7B744)
-I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\bsp_SysTick.h)(0x595BAD1B)
+I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\bsp_SysTick.h)(0x5A262A58)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\bsp_led.h)(0x5970D71B)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\bsp_usart1.h)(0x595B5D8E)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\ds3231.h)(0x59709AFB)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\bsp_i2c_gpio.h)(0x596C56B4)
 I (D:\Keil\ARM\ARMCC\include\inttypes.h)(0x51C7B744)
-I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\bsp_beep.h)(0x5A242371)
+I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\bsp_beep.h)(0x5A263901)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\bsp_ds18b20.h)(0x596CB679)
-I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\WS2812B.h)(0x59AD1968)
-I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\other.h)(0x5A241F34)
+I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\WS2812B.h)(0x5A3F26D8)
+I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\other.h)(0x5A264277)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\remote.h)(0x595CF63E)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\sys.h)(0x5565A64A)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\bsp_74hc595.h)(0x596CB428)
@@ -568,8 +568,8 @@ I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\Libraries\FWlib\inc\stm32f1
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\Libraries\FWlib\inc\stm32f10x_usart.h)(0x5565E4AF)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\Libraries\FWlib\inc\misc.h)(0x5565E4A7)
 F (..\..\User\bsp_led.h)(0x5970D71B)()
-F (..\..\User\bsp_SysTick.c)(0x595C74B8)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Libraries\CMSIS -I..\..\User -I..\..\Libraries\FWlib\inc -I..\..\User\Led -I..\..\User\SysTick-I D:\Keil\ARM\RV31\INC-I D:\Keil\ARM\CMSIS\Include-I D:\Keil\ARM\Inc\ST\STM32F10x-DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -DDEBUG -o ..\..\output\bsp_systick.o --omf_browse ..\..\output\bsp_systick.crf --depend ..\..\output\bsp_systick.d)
-I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\bsp_SysTick.h)(0x595BAD1B)
+F (..\..\User\bsp_SysTick.c)(0x5A262A58)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Libraries\CMSIS -I..\..\User -I..\..\Libraries\FWlib\inc -I..\..\User\Led -I..\..\User\SysTick-I D:\Keil\ARM\RV31\INC-I D:\Keil\ARM\CMSIS\Include-I D:\Keil\ARM\Inc\ST\STM32F10x-DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -DDEBUG -o ..\..\output\bsp_systick.o --omf_browse ..\..\output\bsp_systick.crf --depend ..\..\output\bsp_systick.d)
+I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\bsp_SysTick.h)(0x5A262A58)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\Libraries\CMSIS\stm32f10x.h)(0x5565E4A2)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\Libraries\CMSIS\core_cm3.h)(0x5565E49E)
 I (D:\Keil\ARM\ARMCC\include\stdint.h)(0x51C7B744)
@@ -588,7 +588,7 @@ I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\Libraries\FWlib\inc\stm32f1
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\Libraries\FWlib\inc\stm32f10x_tim.h)(0x5565E4AF)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\Libraries\FWlib\inc\stm32f10x_usart.h)(0x5565E4AF)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\Libraries\FWlib\inc\misc.h)(0x5565E4A7)
-F (..\..\User\bsp_SysTick.h)(0x595BAD1B)()
+F (..\..\User\bsp_SysTick.h)(0x5A262A58)()
 F (..\..\User\bsp_usart1.c)(0x595B5FBF)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Libraries\CMSIS -I..\..\User -I..\..\Libraries\FWlib\inc -I..\..\User\Led -I..\..\User\SysTick-I D:\Keil\ARM\RV31\INC-I D:\Keil\ARM\CMSIS\Include-I D:\Keil\ARM\Inc\ST\STM32F10x-DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -DDEBUG -o ..\..\output\bsp_usart1.o --omf_browse ..\..\output\bsp_usart1.crf --depend ..\..\output\bsp_usart1.d)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\bsp_usart1.h)(0x595B5D8E)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\include.h)(0x596D737E)
@@ -612,15 +612,15 @@ I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\Libraries\FWlib\inc\stm32f1
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\Libraries\FWlib\inc\misc.h)(0x5565E4A7)
 I (D:\Keil\ARM\ARMCC\include\stdio.h)(0x51C7B744)
 I (D:\Keil\ARM\ARMCC\include\string.h)(0x51C7B744)
-I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\bsp_SysTick.h)(0x595BAD1B)
+I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\bsp_SysTick.h)(0x5A262A58)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\bsp_led.h)(0x5970D71B)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\ds3231.h)(0x59709AFB)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\bsp_i2c_gpio.h)(0x596C56B4)
 I (D:\Keil\ARM\ARMCC\include\inttypes.h)(0x51C7B744)
-I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\bsp_beep.h)(0x5A242371)
+I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\bsp_beep.h)(0x5A263901)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\bsp_ds18b20.h)(0x596CB679)
-I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\WS2812B.h)(0x59AD1968)
-I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\other.h)(0x5A241F34)
+I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\WS2812B.h)(0x5A3F26D8)
+I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\other.h)(0x5A264277)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\remote.h)(0x595CF63E)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\sys.h)(0x5565A64A)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\bsp_74hc595.h)(0x596CB428)
@@ -672,8 +672,8 @@ I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\Libraries\FWlib\inc\misc.h)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\bsp_i2c_gpio.h)(0x596C56B4)
 I (D:\Keil\ARM\ARMCC\include\inttypes.h)(0x51C7B744)
 F (..\..\User\bsp_i2c_gpio.h)(0x596C56B4)()
-F (..\..\User\bsp_beep.c)(0x5A241836)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Libraries\CMSIS -I..\..\User -I..\..\Libraries\FWlib\inc -I..\..\User\Led -I..\..\User\SysTick-I D:\Keil\ARM\RV31\INC-I D:\Keil\ARM\CMSIS\Include-I D:\Keil\ARM\Inc\ST\STM32F10x-DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -DDEBUG -o ..\..\output\bsp_beep.o --omf_browse ..\..\output\bsp_beep.crf --depend ..\..\output\bsp_beep.d)
-I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\bsp_beep.h)(0x5A242371)
+F (..\..\User\bsp_beep.c)(0x5A3F2A4A)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Libraries\CMSIS -I..\..\User -I..\..\Libraries\FWlib\inc -I..\..\User\Led -I..\..\User\SysTick-I D:\Keil\ARM\RV31\INC-I D:\Keil\ARM\CMSIS\Include-I D:\Keil\ARM\Inc\ST\STM32F10x-DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -DDEBUG -o ..\..\output\bsp_beep.o --omf_browse ..\..\output\bsp_beep.crf --depend ..\..\output\bsp_beep.d)
+I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\bsp_beep.h)(0x5A263901)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\include.h)(0x596D737E)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\Libraries\CMSIS\stm32f10x.h)(0x5565E4A2)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\Libraries\CMSIS\core_cm3.h)(0x5565E49E)
@@ -695,21 +695,21 @@ I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\Libraries\FWlib\inc\stm32f1
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\Libraries\FWlib\inc\misc.h)(0x5565E4A7)
 I (D:\Keil\ARM\ARMCC\include\stdio.h)(0x51C7B744)
 I (D:\Keil\ARM\ARMCC\include\string.h)(0x51C7B744)
-I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\bsp_SysTick.h)(0x595BAD1B)
+I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\bsp_SysTick.h)(0x5A262A58)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\bsp_led.h)(0x5970D71B)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\bsp_usart1.h)(0x595B5D8E)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\ds3231.h)(0x59709AFB)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\bsp_i2c_gpio.h)(0x596C56B4)
 I (D:\Keil\ARM\ARMCC\include\inttypes.h)(0x51C7B744)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\bsp_ds18b20.h)(0x596CB679)
-I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\WS2812B.h)(0x59AD1968)
-I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\other.h)(0x5A241F34)
+I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\WS2812B.h)(0x5A3F26D8)
+I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\other.h)(0x5A264277)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\remote.h)(0x595CF63E)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\sys.h)(0x5565A64A)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\bsp_74hc595.h)(0x596CB428)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\eeprom.h)(0x596D740D)
-F (..\..\User\bsp_beep.h)(0x5A242371)()
-F (..\..\User\bsp_ds18b20.c)(0x5A262438)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Libraries\CMSIS -I..\..\User -I..\..\Libraries\FWlib\inc -I..\..\User\Led -I..\..\User\SysTick-I D:\Keil\ARM\RV31\INC-I D:\Keil\ARM\CMSIS\Include-I D:\Keil\ARM\Inc\ST\STM32F10x-DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -DDEBUG -o ..\..\output\bsp_ds18b20.o --omf_browse ..\..\output\bsp_ds18b20.crf --depend ..\..\output\bsp_ds18b20.d)
+F (..\..\User\bsp_beep.h)(0x5A263901)()
+F (..\..\User\bsp_ds18b20.c)(0x5A262A58)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Libraries\CMSIS -I..\..\User -I..\..\Libraries\FWlib\inc -I..\..\User\Led -I..\..\User\SysTick-I D:\Keil\ARM\RV31\INC-I D:\Keil\ARM\CMSIS\Include-I D:\Keil\ARM\Inc\ST\STM32F10x-DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -DDEBUG -o ..\..\output\bsp_ds18b20.o --omf_browse ..\..\output\bsp_ds18b20.crf --depend ..\..\output\bsp_ds18b20.d)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\bsp_ds18b20.h)(0x596CB679)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\Libraries\CMSIS\stm32f10x.h)(0x5565E4A2)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\Libraries\CMSIS\core_cm3.h)(0x5565E49E)
@@ -729,10 +729,10 @@ I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\Libraries\FWlib\inc\stm32f1
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\Libraries\FWlib\inc\stm32f10x_tim.h)(0x5565E4AF)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\Libraries\FWlib\inc\stm32f10x_usart.h)(0x5565E4AF)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\Libraries\FWlib\inc\misc.h)(0x5565E4A7)
-I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\bsp_SysTick.h)(0x595BAD1B)
+I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\bsp_SysTick.h)(0x5A262A58)
 F (..\..\User\bsp_ds18b20.h)(0x596CB679)()
-F (..\..\User\WS2812B.c)(0x59AD19C3)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Libraries\CMSIS -I..\..\User -I..\..\Libraries\FWlib\inc -I..\..\User\Led -I..\..\User\SysTick-I D:\Keil\ARM\RV31\INC-I D:\Keil\ARM\CMSIS\Include-I D:\Keil\ARM\Inc\ST\STM32F10x-DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -DDEBUG -o ..\..\output\ws2812b.o --omf_browse ..\..\output\ws2812b.crf --depend ..\..\output\ws2812b.d)
-I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\WS2812B.h)(0x59AD1968)
+F (..\..\User\WS2812B.c)(0x5A3F2BEB)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Libraries\CMSIS -I..\..\User -I..\..\Libraries\FWlib\inc -I..\..\User\Led -I..\..\User\SysTick-I D:\Keil\ARM\RV31\INC-I D:\Keil\ARM\CMSIS\Include-I D:\Keil\ARM\Inc\ST\STM32F10x-DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -DDEBUG -o ..\..\output\ws2812b.o --omf_browse ..\..\output\ws2812b.crf --depend ..\..\output\ws2812b.d)
+I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\WS2812B.h)(0x5A3F26D8)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\Libraries\CMSIS\stm32f10x.h)(0x5565E4A2)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\Libraries\CMSIS\core_cm3.h)(0x5565E49E)
 I (D:\Keil\ARM\ARMCC\include\stdint.h)(0x51C7B744)
@@ -753,9 +753,9 @@ I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\Libraries\FWlib\inc\stm32f1
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\Libraries\FWlib\inc\misc.h)(0x5565E4A7)
 I (D:\Keil\ARM\ARMCC\include\string.h)(0x51C7B744)
 I (D:\Keil\ARM\ARMCC\include\stdio.h)(0x51C7B744)
-F (..\..\User\WS2812B.h)(0x59AD1968)()
-F (..\..\User\other.c)(0x5A26208D)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Libraries\CMSIS -I..\..\User -I..\..\Libraries\FWlib\inc -I..\..\User\Led -I..\..\User\SysTick-I D:\Keil\ARM\RV31\INC-I D:\Keil\ARM\CMSIS\Include-I D:\Keil\ARM\Inc\ST\STM32F10x-DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -DDEBUG -o ..\..\output\other.o --omf_browse ..\..\output\other.crf --depend ..\..\output\other.d)
-I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\other.h)(0x5A241F34)
+F (..\..\User\WS2812B.h)(0x5A3F26D8)()
+F (..\..\User\other.c)(0x5A3F1AEC)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Libraries\CMSIS -I..\..\User -I..\..\Libraries\FWlib\inc -I..\..\User\Led -I..\..\User\SysTick-I D:\Keil\ARM\RV31\INC-I D:\Keil\ARM\CMSIS\Include-I D:\Keil\ARM\Inc\ST\STM32F10x-DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -DDEBUG -o ..\..\output\other.o --omf_browse ..\..\output\other.crf --depend ..\..\output\other.d)
+I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\other.h)(0x5A264277)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\include.h)(0x596D737E)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\Libraries\CMSIS\stm32f10x.h)(0x5565E4A2)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\Libraries\CMSIS\core_cm3.h)(0x5565E49E)
@@ -777,21 +777,21 @@ I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\Libraries\FWlib\inc\stm32f1
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\Libraries\FWlib\inc\misc.h)(0x5565E4A7)
 I (D:\Keil\ARM\ARMCC\include\stdio.h)(0x51C7B744)
 I (D:\Keil\ARM\ARMCC\include\string.h)(0x51C7B744)
-I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\bsp_SysTick.h)(0x595BAD1B)
+I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\bsp_SysTick.h)(0x5A262A58)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\bsp_led.h)(0x5970D71B)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\bsp_usart1.h)(0x595B5D8E)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\ds3231.h)(0x59709AFB)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\bsp_i2c_gpio.h)(0x596C56B4)
 I (D:\Keil\ARM\ARMCC\include\inttypes.h)(0x51C7B744)
-I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\bsp_beep.h)(0x5A242371)
+I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\bsp_beep.h)(0x5A263901)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\bsp_ds18b20.h)(0x596CB679)
-I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\WS2812B.h)(0x59AD1968)
+I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\WS2812B.h)(0x5A3F26D8)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\remote.h)(0x595CF63E)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\sys.h)(0x5565A64A)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\bsp_74hc595.h)(0x596CB428)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\eeprom.h)(0x596D740D)
-F (..\..\User\other.h)(0x5A241F34)()
-F (..\..\User\remote.c)(0x595D1B65)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Libraries\CMSIS -I..\..\User -I..\..\Libraries\FWlib\inc -I..\..\User\Led -I..\..\User\SysTick-I D:\Keil\ARM\RV31\INC-I D:\Keil\ARM\CMSIS\Include-I D:\Keil\ARM\Inc\ST\STM32F10x-DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -DDEBUG -o ..\..\output\remote.o --omf_browse ..\..\output\remote.crf --depend ..\..\output\remote.d)
+F (..\..\User\other.h)(0x5A264277)()
+F (..\..\User\remote.c)(0x5A264277)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Libraries\CMSIS -I..\..\User -I..\..\Libraries\FWlib\inc -I..\..\User\Led -I..\..\User\SysTick-I D:\Keil\ARM\RV31\INC-I D:\Keil\ARM\CMSIS\Include-I D:\Keil\ARM\Inc\ST\STM32F10x-DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -DDEBUG -o ..\..\output\remote.o --omf_browse ..\..\output\remote.crf --depend ..\..\output\remote.d)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\remote.h)(0x595CF63E)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\sys.h)(0x5565A64A)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\Libraries\CMSIS\stm32f10x.h)(0x5565E4A2)
@@ -812,7 +812,7 @@ I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\Libraries\FWlib\inc\stm32f1
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\Libraries\FWlib\inc\stm32f10x_tim.h)(0x5565E4AF)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\Libraries\FWlib\inc\stm32f10x_usart.h)(0x5565E4AF)
 I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\Libraries\FWlib\inc\misc.h)(0x5565E4A7)
-I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\bsp_SysTick.h)(0x595BAD1B)
+I (F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\User\bsp_SysTick.h)(0x5A262A58)
 F (..\..\User\remote.h)(0x595CF63E)()
 F (..\..\User\sys.h)(0x5565A64A)()
 F (..\..\User\bsp_74hc595.c)(0x596CBAED)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\..\Libraries\CMSIS -I..\..\User -I..\..\Libraries\FWlib\inc -I..\..\User\Led -I..\..\User\SysTick-I D:\Keil\ARM\RV31\INC-I D:\Keil\ARM\CMSIS\Include-I D:\Keil\ARM\Inc\ST\STM32F10x-DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -DDEBUG -o ..\..\output\bsp_74hc595.o --omf_browse ..\..\output\bsp_74hc595.crf --depend ..\..\output\bsp_74hc595.d)

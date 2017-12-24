@@ -56,7 +56,7 @@ void CheckAlarm(void);
 void OnTimeLightCheck(void);
 void DealRemoteSignal(void);
 void OnTimeAlarm(void);
-void RunDefaultSet(void);
+void Recovery(void);
 void EE_ReadConfig(void);
 void Breathing(void);
 
@@ -80,7 +80,6 @@ u8 Setting=0;
 u8 SetChannel=0;//设置模式下的通道选择
 u8 SetType=0;//设置类型选择
 u8 NewNum=0xff;//期望被设置的数
-u8 RGBType=0xff;
 u8 FirstRunFlag=0;
 u16 EE_tmp=0;
 __IO u8 AlarmState=0;//又是闹铃启动标志位又是闹铃计时变量，单位为秒
@@ -178,40 +177,39 @@ void EE_ReadConfig(void)
 	if(FirstRunFlag!=0xAA)
 	{
 		FirstRunFlag=0xAA;
-		RunDefaultSet();
+		Recovery();
 	}
 	
   EE_ReadVariable(VirtAddVarTab[RunTimeAddr],&EE_tmp);RunTime15min=EE_tmp;
   EE_ReadVariable(VirtAddVarTab[LightTimeAddr],&EE_tmp);LightTime15min=EE_tmp;
   EE_ReadVariable(VirtAddVarTab[LightLevelAddr],&EE_tmp);LightLevel=EE_tmp;
-  EE_ReadVariable(VirtAddVarTab[RGBStateAddr],&EE_tmp);RGB_Msg.state=EE_tmp;
+  EE_ReadVariable(VirtAddVarTab[RGBStateAddr],&EE_tmp);RGB_Msg.state=(EffectState_e)EE_tmp;
   EE_ReadVariable(VirtAddVarTab[AlarmAddr],&EE_tmp);Alarm.hour =(EE_tmp&0xff00)>>8;Alarm.min =EE_tmp&0x00ff;
-	EE_ReadVariable(VirtAddVarTab[RGBStateAddr],&EE_tmp);RGB_Msg.state=EE_tmp;
+	EE_ReadVariable(VirtAddVarTab[RGBStateAddr],&EE_tmp);RGB_Msg.state=(EffectState_e)EE_tmp;
 	EE_ReadVariable(VirtAddVarTab[RMsgAddr],&EE_tmp); RGB_Msg.R=EE_tmp;
 	EE_ReadVariable(VirtAddVarTab[GMsgAddr],&EE_tmp); RGB_Msg.G=EE_tmp;
 	EE_ReadVariable(VirtAddVarTab[BMsgAddr],&EE_tmp); RGB_Msg.B=EE_tmp;
-	EE_ReadVariable(VirtAddVarTab[RGBModeAddr],&EE_tmp);RGB_Msg.mode=EE_tmp;
+	EE_ReadVariable(VirtAddVarTab[RGBModeAddr],&EE_tmp);RGB_Msg.mode=(ColorMode_e)EE_tmp;
 	EE_ReadVariable(VirtAddVarTab[AlarmSwitchAddr],&EE_tmp);AlarmSwitch=EE_tmp;
-	EE_ReadVariable(VirtAddVarTab[RGBTypeAddr],&EE_tmp);RGBType=EE_tmp;
 	EE_ReadVariable(VirtAddVarTab[LightCoeAddr],&EE_tmp);LightCoe=EE_tmp/100.0;	
 	
   printf(" RunTime  :%.2f Hour \r\n",RunTime15min/4.0);
 	printf("LightTime :%.2f Hour \r\n",LightTime15min/4.0);
   printf("LightLevel:%d \r\n",LightLevel);
 	printf("LightCoe  :%.2f \r\n",LightCoe);
-  printf("RGB:State-%d Mode-%d Type-%d\r\n",RGB_Msg.state,RGB_Msg.mode,RGBType);
+  printf("RGB:State-%d Mode-%d\r\n",RGB_Msg.state,RGB_Msg.mode);
 	printf("R:%d G:%d B:%d  \r\n",RGB_Msg.R,RGB_Msg.G,RGB_Msg.B);
   printf("Alarm:%x:%x Switch:%d\r\n",Alarm.hour,Alarm.min,AlarmSwitch);
 }
 
-void RunDefaultSet(void)
+void Recovery(void)
 {
 	printf("Factory Reseting...\r\n\r\n");
 	Alarm.hour=Alarm.min=0x88;
 	AlarmSwitch=0;
 	RGB_Msg.R=RGB_Msg.G=RGB_Msg.B=255;
-	RGB_Msg.mode=RGB_Msg.state =0;
-	RGBType=WHTCOLOR;
+	RGB_Msg.mode=SINGLECOLOR;
+	RGB_Msg.state=EFFECTS_ON;
 //	RunTime15min=LightTime15min=0;
 	LightLevel=100;
 	LightCoe=0.5;
@@ -226,7 +224,6 @@ void RunDefaultSet(void)
 	EE_WriteVariable(VirtAddVarTab[BMsgAddr],RGB_Msg.B);
 	EE_WriteVariable(VirtAddVarTab[RGBModeAddr],RGB_Msg.mode);
 	EE_WriteVariable(VirtAddVarTab[AlarmSwitchAddr],AlarmSwitch);
-	EE_WriteVariable(VirtAddVarTab[RGBTypeAddr],RGBType);
 	EE_WriteVariable(VirtAddVarTab[FirstRunFlagAddr],FirstRunFlag);
 	EE_WriteVariable(VirtAddVarTab[LightCoeAddr],(u16)(LightCoe*100));
 	Beep_State(800000*2);
@@ -234,7 +231,7 @@ void RunDefaultSet(void)
 	printf("RunTime:%.2f Hour \r\n",RunTime15min/4.0);
 	printf("LightTime:%.2f Hour \r\n",LightTime15min/4.0);
   printf("LightLevel:%d \r\n",LightLevel);
-  printf("RGB:State-%d Mode-%d Type-%d\r\n",RGB_Msg.state,RGB_Msg.mode,RGBType);
+  printf("RGB:State-%d Mode-%d\r\n",RGB_Msg.state,RGB_Msg.mode);
 	printf("R:%d G:%d B:%d  \r\n",RGB_Msg.R,RGB_Msg.G,RGB_Msg.B);
   printf("Alarm:%x:%x Switch:%d\r\n\r\n",Alarm.hour,Alarm.min,AlarmSwitch);
 	LightCoe=LightLevel/255.0;
@@ -261,6 +258,7 @@ void DealRemoteSignal(void)
 					ShowState=DEFAULT;
 				else
 					ShowState=RemoteKey;
+				Nixie_Show(&ShowState);
 				ForceLightOn=1;Nixie_Light_Ctl(100);
 			}
 			else //
@@ -269,7 +267,9 @@ void DealRemoteSignal(void)
 					ShowState=DEFAULT;
 				else
 					ShowState=RemoteKey;
+				Nixie_Show(&ShowState);
 			}
+			
 		}
 		else if(Remote_Cnt==15)//长按
 		{
@@ -280,7 +280,7 @@ void DealRemoteSignal(void)
 			}
 			else if(RemoteKey==SHOWSWITCH)
 			{
-				RunDefaultSet();
+				Recovery();
 			}
 		}
 		else
@@ -321,7 +321,7 @@ void OnTimeLightCheck(void)
 		if(ForceLightOn)
 			ForceLightOn++;
 		
-		if(GetTime.hour<0x06||nobodyCnt>=3600)//半夜和一小时无人操作后修改为1小时间隔点亮
+		if(GetTime.hour<0x06/*||nobodyCnt>=3600*/)//半夜和一小时无人操作后修改为1小时间隔点亮
 		{
 			if(GetTime.min == 0&&GetTime.sec == 0)
 			{
@@ -338,6 +338,7 @@ void OnTimeLightCheck(void)
 		
 		if(ForceLightOn>0&&ForceLightOn<6)
 			Nixie_Light_Ctl(100);
+		
 		if(ForceLightOn>=6)
 		{
 			ForceLightOn=0;
@@ -361,6 +362,7 @@ void OnTimeAlarm(void)
 
 void SettingFunc(void)
 {
+	u8 lightflag=0;
   if(Setting)
   {
     SetTime.year=GetTime.year;
@@ -372,8 +374,11 @@ void SettingFunc(void)
     SetTime.week=GetTime.week;
     SetChannel=0;
 		SetType=4;//先进入Alarm设置模式下
-		LightLevel=100;//强制点亮
-		Nixie_Light_Ctl(LightLevel);
+		if(LightLevel==0)
+		{
+			Nixie_Light_Ctl(100);//强制点亮
+			lightflag=1;
+		}
     while(Setting)//注意进来后因为未松按钮导致又退出去
     {
       Nixie_DealRemote(&ShowState); 
@@ -407,6 +412,8 @@ void SettingFunc(void)
 			else ShowState=DEFAULT;
 			
     }
+		if(lightflag==1)
+			Nixie_Light_Ctl(0);
     //闹钟设置模式下不修改时间
     if(SetType==SETALARM)
     {
