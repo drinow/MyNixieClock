@@ -66,6 +66,19 @@ void WS2812_Send_Px(void)
 	}
 }
 
+float SCurve(float Xvalue)
+{
+	float y=0;
+	if(Xvalue<TurnPoint)
+		y=1/( 1+pow(loge,-(Xvalue-TurnPoint/2) ) );
+	else if(Xvalue<2*TurnPoint)
+	{
+		y=1-1/(1+pow(loge,-(Xvalue-3*TurnPoint/2.0)) );
+	}
+	
+	return y;
+}
+
 //WS2812灯特效控制
 //参数：RGB信息、亮度等级、是否呼吸，颜色模式
 //RGB:0-255
@@ -97,12 +110,17 @@ void WS2812_Breath(void)
   {
     if(RGB_Msg.mode==SINGLECOLOR)
     {
-			Ruse=Rmax*LightCoe*sin(step);
-			Guse=Gmax*LightCoe*sin(step);
-			Buse=Bmax*LightCoe*sin(step);
-			if(Ruse<0)Ruse=-Ruse;
-			if(Guse<0)Guse=-Guse;
-			if(Buse<0)Buse=-Buse;
+//			Ruse=Rmax*LightCoe*sin(step);//正弦曲线
+//			Guse=Gmax*LightCoe*sin(step);
+//			Buse=Bmax*LightCoe*sin(step);
+//			if(Ruse<0)Ruse=-Ruse;
+//			if(Guse<0)Guse=-Guse;
+//			if(Buse<0)Buse=-Buse;
+			
+			 Ruse=Rmax*LightCoe*SCurve(step);//S型曲线
+			 Guse=Gmax*LightCoe*SCurve(step);
+			 Buse=Bmax*LightCoe*SCurve(step);
+			 if(step>20)step=0;
 //			printf("R %.1f ;G %.1f B: %.1f M: %d; S: %d\r\n",Ruse,Guse,Buse,RGB_Msg.mode,RGB_Msg.state);
 			step+=STEPSIZE;
     }

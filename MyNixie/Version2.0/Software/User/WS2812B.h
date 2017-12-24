@@ -13,7 +13,9 @@
 #define WS2812_Set    PORT_WS2812->BSRR = Pin_WS2812;
 #define WS2812_Reset  PORT_WS2812->BRR  = Pin_WS2812;
 
-#define STEPSIZE 0.03 //步长参数 
+#define STEPSIZE 0.2 //步长参数 
+#define loge 2.7182818
+#define TurnPoint 10
 
 //灯珠数量
 #define WS2812_NUM 4
