@@ -120,8 +120,7 @@ void WS2812_Breath(void)
 			 Ruse=Rmax*LightCoe*SCurve(step);//SÐÍÇúÏß
 			 Guse=Gmax*LightCoe*SCurve(step);
 			 Buse=Bmax*LightCoe*SCurve(step);
-			 if(step>20)step=0;
-//			printf("R %.1f ;G %.1f B: %.1f M: %d; S: %d\r\n",Ruse,Guse,Buse,RGB_Msg.mode,RGB_Msg.state);
+			 if(step>TurnPoint*2)step=0;
 			step+=STEPSIZE;
     }
     if(RGB_Msg.mode==MULTICOLOR)
