@@ -189,6 +189,9 @@ void Nixie_WeekToHC595(void)
 void Nixie_TempToHC595(void)
 {
   memset(Nixie_HC595_Data,0,sizeof(Nixie_HC595_Data));
+	
+	Nixie_HC595_Data[0][(u8)(SHT20.HUMI_POLL)/10]=1;
+	Nixie_HC595_Data[1][(u8)(SHT20.HUMI_POLL)%10]=1;
   Nixie_HC595_Data[2][(u8)DS18B20_Temp/10]=1;
   Nixie_HC595_Data[3][(u8)DS18B20_Temp%10]=1;
   

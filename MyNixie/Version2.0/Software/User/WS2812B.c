@@ -127,13 +127,13 @@ void WS2812_Breath(void)
     {
 				switch(MultiColorState)
 				{
-					case 0:Ruse+=4;if(Ruse>250*LightCoe)MultiColorState++;break;//首先是点亮
-					case 1:Guse+=4;if(Guse>250*LightCoe)MultiColorState++;break;//此时才是变色
-					case 2:Ruse-=4;if(Ruse==0)MultiColorState++;break;
-					case 3:Buse+=4;if(Buse>250*LightCoe)MultiColorState++;break;
-					case 4:Guse-=4;if(Guse==0)MultiColorState++;break;
-					case 5:Ruse+=4;if(Ruse>250*LightCoe)MultiColorState++;break;
-					case 6:Buse-=4;if(Buse==0)MultiColorState=1;break;//不应该从0开始
+					case 0:Ruse+=0.2;if(Ruse>250*LightCoe)MultiColorState++;break;//首先是点亮
+					case 1:Guse+=0.2;if(Guse>250*LightCoe)MultiColorState++;break;//此时才是变色
+					case 2:Ruse-=0.2;if(Ruse<=0)MultiColorState++;break;
+					case 3:Buse+=0.2;if(Buse>250*LightCoe)MultiColorState++;break;
+					case 4:Guse-=0.2;if(Guse<=0)MultiColorState++;break;
+					case 5:Ruse+=0.2;if(Ruse>250*LightCoe)MultiColorState++;break;
+					case 6:Buse-=0.2;if(Buse<=0)MultiColorState=1;break;//不应该从0开始
 					default:break;
 				}
     }
@@ -159,8 +159,11 @@ void WS2812_Breath(void)
     
   //熄灭
   if(RGB_Msg.state==RGB_OFF||(RGB_Msg.R==0&&RGB_Msg.G==0&&RGB_Msg.B==0)||LightCoe==0) memset((u8*)WS2812_RGB,0,sizeof(WS2812_RGB));
-    
+  
+	__disable_irq();
   WS2812_Send_Px();
+	__enable_irq();
+	
 }
 
 //不管条件，强行写入RGB信息

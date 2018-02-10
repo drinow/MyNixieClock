@@ -1,7 +1,7 @@
 ..\..\output\bsp_i2c_gpio.o: ..\..\User\bsp_i2c_gpio.c
 ..\..\output\bsp_i2c_gpio.o: ..\..\Libraries\CMSIS\stm32f10x.h
 ..\..\output\bsp_i2c_gpio.o: ..\..\Libraries\CMSIS\core_cm3.h
-..\..\output\bsp_i2c_gpio.o: D:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+..\..\output\bsp_i2c_gpio.o: D:\Keil_V5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\..\output\bsp_i2c_gpio.o: ..\..\Libraries\CMSIS\system_stm32f10x.h
 ..\..\output\bsp_i2c_gpio.o: ..\..\User\stm32f10x_conf.h
 ..\..\output\bsp_i2c_gpio.o: ..\..\Libraries\FWlib\inc\stm32f10x_adc.h
@@ -19,4 +19,4 @@
 ..\..\output\bsp_i2c_gpio.o: ..\..\Libraries\FWlib\inc\stm32f10x_usart.h
 ..\..\output\bsp_i2c_gpio.o: ..\..\Libraries\FWlib\inc\misc.h
 ..\..\output\bsp_i2c_gpio.o: ..\..\User\bsp_i2c_gpio.h
-..\..\output\bsp_i2c_gpio.o: D:\Keil\ARM\ARMCC\bin\..\include\inttypes.h
+..\..\output\bsp_i2c_gpio.o: D:\Keil_V5\ARM\ARMCC\Bin\..\include\inttypes.h

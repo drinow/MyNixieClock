@@ -89,18 +89,20 @@ static __IO u16 nobodyCnt=0;//无人操作计时
 int main(void)
 {	
 	LED_GPIO_Config();
+	USART1_Config();
 	SysTick_Init();
   NVIC_Config();
+	FLASH_Unlock();
+  EE_Init();
+	
   hc595_init();
   DS18B20_Init();
-  USART1_Config();
   DS3231_Config();
+	SHT2x_Init();
   BeepInit();
   WS2812_Init();
   Remote_Init();
   HC595_PWM_Init();
-  FLASH_Unlock();
-  EE_Init();
 	
 	EE_ReadConfig();
   
@@ -115,11 +117,20 @@ int main(void)
 //  SetTime.week =0x05;
 //  DS3231_WriteTime(&SetTime);
 //  DS3231_WriteTime(&SetTime);
-  
+//  while(1)
+//	{
+//		u32 i=0,j=0;
+//		for(;j<3;j++)
+//			for(;i<0xffff;i++);
+//		printf("temp:%.2f ",SHT2x_GetTempPoll());//不能读太快。
+//		printf("humi:%.2f\r\n",SHT2x_GetHumiPoll());
+//	}
+
 	Nixie_Light_Ctl(LightLevel);
 	ForceLightOn=1;
 	for(;;)
 	{
+			
     Beep_Alarm();
 		SettingFunc();
     Nixie_DealRemote(&ShowState);
@@ -132,6 +143,8 @@ int main(void)
 			if(RuntimeSecCnt==900){RuntimeSecCnt=0;RunTime15min++; EE_SaveConfig();}
       if(LightOnSecCnt==900){LightOnSecCnt=0;LightTime15min++;}
       if(GetTime.sec==0) Nixie_Cathode_Prevention();
+			SHT20.HUMI_POLL	=SHT2x_GetHumiPoll();
+			SHT20.TEMP_POLL	=SHT2x_GetTempPoll();
       DS18B20_Temp=DS18B20_Get_Temp();
       Nixie_Show(&ShowState);
 			OnTimeLightCheck();//遥控唤醒或强制点亮10秒
@@ -139,7 +152,7 @@ int main(void)
       CheckAlarm();
       LED1_TOGGLE;
       printf("D:%02x-%02x T:%02x:%02x:%02x Wk:%x ",GetTime.month,GetTime.date,GetTime.hour ,GetTime.min ,GetTime.sec,GetTime.week );
-      printf("Tmp:%3.1f℃ | ",DS18B20_Temp);
+      printf("Tmp:%3.1f℃ Humi:%3.1f%% | ",DS18B20_Temp,SHT20.HUMI_POLL);
 			printf("Nbdy:%d ",nobodyCnt);
 			printf("LLvl:%d ",LightLevel);
 			printf("FosLt:%d ",ForceLightOn);
@@ -163,10 +176,10 @@ void Breathing(void)
     if(Breath_Frq)
     {
 //      SysTick->CTRL &= ~ SysTick_CTRL_ENABLE_Msk;
-			__disable_irq();
+//			__disable_irq();
       WS2812_Breath();
       Breath_Frq=0;
-			__enable_irq();
+//			__enable_irq();
 //      SysTick->CTRL |=  SysTick_CTRL_ENABLE_Msk;
     }
 }

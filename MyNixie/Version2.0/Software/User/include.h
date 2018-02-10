@@ -17,4 +17,6 @@
 #include "sys.h"
 #include "bsp_74hc595.h"
 #include "eeprom.h"
+#include "SHT2x.h"
+
 #endif
