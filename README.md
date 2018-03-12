@@ -1,11 +1,9 @@
 ﻿# 辉光钟--By drinow
 ## 条目解释
-	MyNixie/Version2.0为工程文件，其余为一些资料或者测试数据
+- MyNixie/Version2.0为工程文件，其余为一些资料或者测试数据
 
 ## 实物图
-	![image](https://github.com/drinow/MyNixieClock/blob/master/MyNixie/Version2.0/picture/nixietube1.jpg)
-
-	![image](https://github.com/drinow/MyNixieClock/blob/master/MyNixie/Version2.0/picture/nixietube2.jpg)
+![image](https://github.com/drinow/MyNixieClock/blob/master/MyNixie/Version2.0/picture/nixietube1.jpg)
 
 ## 硬件错误
 - IRF740的封装画的有些小了，有点难焊，其余没有问题
