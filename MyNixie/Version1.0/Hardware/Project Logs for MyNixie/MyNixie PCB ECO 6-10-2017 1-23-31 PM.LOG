@@ -1,4 +1,0 @@
-Removed Pin From Net: NetName=TX1 Pin=P3-1
-Removed Pin From Net: NetName=RX1 Pin=P3-2
-Removed Member From Class: ClassName=MyNixie Member=P3
-Added Member To Class: ClassName=MyNixie Member=Component C26 100nF(104) 10% 50V

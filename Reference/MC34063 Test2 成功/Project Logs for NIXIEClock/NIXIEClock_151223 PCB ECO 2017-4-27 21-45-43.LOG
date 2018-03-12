@@ -1,0 +1,7 @@
+Change Component Footprint: Designator=C1 Old Footprint=C0603 New Footprint=C0805
+Change Component Footprint: Designator=C2 Old Footprint=C0603 New Footprint=C0805
+Change Component Footprint: Designator=C5 Old Footprint=C0603 New Footprint=C0805
+Change Component Footprint: Designator=C4 Old Footprint=HONOR_63X77 New Footprint=C-RB-6
+Change Component Footprint: Designator=Q1 Old Footprint=TO-263-2L New Footprint=TO-220AB
+Change Component Footprint: Designator=C3 Old Footprint=µÁ»›Œ‘∑≈2.54mm-1 New Footprint=C-RB-8
+Change Component Comment : Designator=Q1 Old Comment=IRF840 New Comment=IRF740

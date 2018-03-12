@@ -1,4 +1,0 @@
-Added Component: Designator=P1(HDR3X1_A)
-Added Pin To Net: NetName=VH Pin=P1-1
-Added Pin To Net: NetName=GND Pin=P1-3
-Added Member To Class: ClassName=SCH Member=Component P1 Header 3

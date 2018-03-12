@@ -1,0 +1,16 @@
+Change Component Designator: OldDesignator=C1 NewDesignator=C4
+Change Component Designator: OldDesignator=C4 NewDesignator=C1
+Change Component Designator: OldDesignator=R1 NewDesignator=R2
+Change Component Designator: OldDesignator=R2 NewDesignator=R4
+Change Component Designator: OldDesignator=R3 NewDesignator=R5
+Change Component Designator: OldDesignator=R4 NewDesignator=R3
+Change Component Designator: OldDesignator=R5 NewDesignator=R1
+Added Component: Designator=P1(HDR2X1_A)
+Added Component: Designator=P2(HDR2X1_A)
+Added Pin To Net: NetName=VH Pin=P1-1
+Added Pin To Net: NetName=GND Pin=P1-2
+Added Pin To Net: NetName=VCC12 Pin=P2-1
+Added Pin To Net: NetName=GND Pin=P2-2
+Change Net Name : Old Net Name=NetR5_2 New Net Name=NetR1_2
+Added Member To Class: ClassName=SCH Member=Component P1 Header 2
+Added Member To Class: ClassName=SCH Member=Component P2 Header 2

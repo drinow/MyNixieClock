@@ -1,0 +1,24 @@
+Board Information Report
+Filename     : E:\Disk E\ปินโนÜ\mc34063 test2\NIXIEClock_151223.PcbDoc
+Date         : 2017/4/28
+Time         : 14:24:36
+Time Elapsed : 00:00:00
+
+Routing Information
+    Routing completion, 100.00%
+    Connections, 28
+    Connections routed, 28
+    Connections remaining, 0
+count : 4
+
+Track Width, Count
+    1.969mils, 2
+    3.937mils, 7
+    7.874mils, 22
+    10mils, 62
+    20mils, 19
+count : 5
+
+Net Via Size, Count
+    50mils, 7
+count : 1

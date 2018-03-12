@@ -1,0 +1,6 @@
+Added Component: Designator=U1(MP1584 Module)
+Added Pin To Net: NetName=NetC1_2 Pin=U1-1
+Added Pin To Net: NetName=+12 Pin=U1-2
+Added Pin To Net: NetName=+5 Pin=U1-3
+Added Pin To Net: NetName=GND Pin=U1-4
+Added Member To Class: ClassName=MyNixie Member=Component U1 MP1584 Module
