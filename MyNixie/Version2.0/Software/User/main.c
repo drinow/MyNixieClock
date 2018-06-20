@@ -88,25 +88,25 @@ __IO u8 ForceLightOn=0;
 static __IO u16 nobodyCnt=0;//无人操作计时
 int main(void)
 {	
-	LED_GPIO_Config();
-	USART1_Config();
-	SysTick_Init();
-  NVIC_Config();
-	FLASH_Unlock();
-  EE_Init();
-	
-  hc595_init();
-  DS18B20_Init();
-  DS3231_Config();
-	SHT2x_Init();
-  BeepInit();
-  WS2812_Init();
-  Remote_Init();
-  HC595_PWM_Init();
-	
-	EE_ReadConfig();
-  
-  Nixie_Test();
+    LED_GPIO_Config();
+    USART1_Config();
+    SysTick_Init();
+    NVIC_Config();
+    FLASH_Unlock();
+    EE_Init();
+
+    hc595_init();
+    DS18B20_Init();
+    DS3231_Config();
+    SHT2x_Init();
+    BeepInit();
+    WS2812_Init();
+    Remote_Init();
+    HC595_PWM_Init();
+
+    EE_ReadConfig();
+
+    Nixie_Test();
 	
 //  SetTime.year =0x17;
 //  SetTime.month =0x07;
@@ -129,44 +129,43 @@ int main(void)
 	Nixie_Light_Ctl(LightLevel);
 	ForceLightOn=1;
 	for(;;)
-	{
-			
-    Beep_Alarm();
-		SettingFunc();
-    Nixie_DealRemote(&ShowState);
-    if(SecAlarm)
-    {
-      SecAlarm=0;
-			RuntimeSecCnt++;
-			if(LightLevel==0&&nobodyCnt<3600)nobodyCnt++;//无人操作计时
-      if(LightLevel!=0||TIM2->CCR4!=0)LightOnSecCnt++;//点亮的时间记录
-			if(RuntimeSecCnt==900){RuntimeSecCnt=0;RunTime15min++; EE_SaveConfig();}
-      if(LightOnSecCnt==900){LightOnSecCnt=0;LightTime15min++;}
-      if(GetTime.sec==0) Nixie_Cathode_Prevention();
-			SHT20.HUMI_POLL	=SHT2x_GetHumiPoll();
-			SHT20.TEMP_POLL	=SHT2x_GetTempPoll();
-      DS18B20_Temp=DS18B20_Get_Temp();
-      Nixie_Show(&ShowState);
-			OnTimeLightCheck();//遥控唤醒或强制点亮10秒
-			OnTimeAlarm();
-      CheckAlarm();
-      LED1_TOGGLE;
-      printf("D:%02x-%02x T:%02x:%02x:%02x Wk:%x ",GetTime.month,GetTime.date,GetTime.hour ,GetTime.min ,GetTime.sec,GetTime.week );
-      printf("Tmp:%3.1f℃ Humi:%3.1f%% | ",DS18B20_Temp,SHT20.HUMI_POLL);
-			printf("Nbdy:%d ",nobodyCnt);
-			printf("LLvl:%d ",LightLevel);
-			printf("FosLt:%d ",ForceLightOn);
-			printf("Alm:%d ",AlarmState);
-			printf("RmRdy:%d ",Remote_Rdy);
-			printf("Rmkey:%d ",RemoteKey);
-			printf("RmCnt:%d ",Remote_Cnt);
-			printf("RGBste:%d | ",RGB_Msg.state);
-			printf("LT:%d:%d:%d ",(LightTime15min*15+LightOnSecCnt/60)/60,(LightTime15min*15+LightOnSecCnt/60)%60,LightOnSecCnt%60);
-			printf("RT:%d:%d:%d ",(RunTime15min*15+RuntimeSecCnt/60)/60,(RunTime15min*15+RuntimeSecCnt/60)%60,RuntimeSecCnt%60);
-      printf("\r\n");
-    }
-		Breathing();
-    DealRemoteSignal();
+	{		
+        Beep_Alarm();
+        SettingFunc();
+        Nixie_DealRemote(&ShowState);
+        if(SecAlarm)
+        {
+            SecAlarm=0;
+            RuntimeSecCnt++;
+            if(LightLevel==0&&nobodyCnt<3600)nobodyCnt++;//无人操作计时
+            if(LightLevel!=0||TIM2->CCR4!=0)LightOnSecCnt++;//点亮的时间记录
+            if(RuntimeSecCnt>=900){RuntimeSecCnt=0;RunTime15min++; EE_SaveConfig();}
+            if(LightOnSecCnt>=900){LightOnSecCnt=0;LightTime15min++;}
+            if(GetTime.sec==0) Nixie_Cathode_Prevention();
+            SHT20.HUMI_POLL	=SHT2x_GetHumiPoll();
+            SHT20.TEMP_POLL	=SHT2x_GetTempPoll();
+            DS18B20_Temp=DS18B20_Get_Temp();
+            Nixie_Show(&ShowState);
+            OnTimeLightCheck();//遥控唤醒或强制点亮10秒
+            OnTimeAlarm();
+            CheckAlarm();
+            LED1_TOGGLE;
+            printf("D:%02x-%02x T:%02x:%02x:%02x Wk:%x ",GetTime.month,GetTime.date,GetTime.hour ,GetTime.min ,GetTime.sec,GetTime.week );
+            printf("Tmp:%3.1f℃ Humi:%3.1f%% | ",(DS18B20_Temp+SHT20.TEMP_POLL)/2 ,SHT20.HUMI_POLL);
+            printf("Nbdy:%d ",nobodyCnt);
+            printf("LLvl:%d ",LightLevel);
+            printf("FosLt:%d ",ForceLightOn);
+            printf("Alm:%d ",AlarmState);
+            printf("RmRdy:%d ",Remote_Rdy);
+            printf("Rmkey:%d ",RemoteKey);
+            printf("RmCnt:%d ",Remote_Cnt);
+            printf("RGBste:%d | ",RGB_Msg.state);
+            printf("LT:%dD-%02d:%02d:%02d ",(u8)((LightTime15min*15.0+LightOnSecCnt/60)/60/24),(LightTime15min*15+LightOnSecCnt/60)/60%24,(LightTime15min*15+LightOnSecCnt/60)%60,LightOnSecCnt%60);
+            printf("RT:%dD-%02d:%02d:%02d ",(u8)((  RunTime15min*15.0+RuntimeSecCnt/60)/60/24),(  RunTime15min*15+RuntimeSecCnt/60)/60%24,(  RunTime15min*15+RuntimeSecCnt/60)%60,RuntimeSecCnt%60);
+            printf("\r\n");
+        }
+        Breathing();
+        DealRemoteSignal();
 	}     
 }
 
@@ -241,14 +240,14 @@ void Recovery(void)
 	EE_WriteVariable(VirtAddVarTab[LightCoeAddr],(u16)(LightCoe*100));
 	Beep_State(800000*2);
 	
-	printf("RunTime:%.2f Hour \r\n",RunTime15min/4.0);
-	printf("LightTime:%.2f Hour \r\n",LightTime15min/4.0);
-  printf("LightLevel:%d \r\n",LightLevel);
-  printf("RGB:State-%d Mode-%d\r\n",RGB_Msg.state,RGB_Msg.mode);
-	printf("R:%d G:%d B:%d  \r\n",RGB_Msg.R,RGB_Msg.G,RGB_Msg.B);
-  printf("Alarm:%x:%x Switch:%d\r\n\r\n",Alarm.hour,Alarm.min,AlarmSwitch);
-	LightCoe=LightLevel/255.0;
-	Nixie_Light_Ctl(LightLevel);
+    printf("RunTime:%.2f Hour \r\n",RunTime15min/4.0);
+    printf("LightTime:%.2f Hour \r\n",LightTime15min/4.0);
+    printf("LightLevel:%d \r\n",LightLevel);
+    printf("RGB:State-%d Mode-%d\r\n",RGB_Msg.state,RGB_Msg.mode);
+    printf("R:%d G:%d B:%d  \r\n",RGB_Msg.R,RGB_Msg.G,RGB_Msg.B);
+    printf("Alarm:%x:%x Switch:%d\r\n\r\n",Alarm.hour,Alarm.min,AlarmSwitch);
+    LightCoe=LightLevel/255.0;
+    Nixie_Light_Ctl(LightLevel);
 }
 
 //遥控按键处理

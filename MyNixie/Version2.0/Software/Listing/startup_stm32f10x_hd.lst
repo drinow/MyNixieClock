@@ -553,11 +553,11 @@ ARM Macro Assembler    Page 9
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
 ork --depend=..\..\output\startup_stm32f10x_hd.d -o..\..\output\startup_stm32f1
-0x_hd.o -I"F:\MyData\Nixie Clock\MyNixie\Version2.0\Software\Project\RVMDK£¨uv4
-£©\RTE" -ID:\Keil_V5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0 -ID:\Keil_V5\ARM\CMSIS\I
-nclude --predefine="__MICROLIB SETA 1" --predefine="__UVISION_VERSION SETA 514"
- --predefine="STM32F10X_MD SETA 1" --list=..\..\listing\startup_stm32f10x_hd.ls
-t ..\..\Libraries\CMSIS\startup\startup_stm32f10x_hd.s
+0x_hd.o -I.\RTE\_Nixie_Clock -IC:\Keil_V5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Dev
+ice\Include -IC:\Keil_V5\ARM\CMSIS\Include -IC:\Keil_V5\ARM\PACK\Keil\STM32F1xx
+_DFP\2.2.0 --predefine="__MICROLIB SETA 1" --predefine="__UVISION_VERSION SETA 
+525" --predefine="STM32F10X_MD SETA 1" --list=..\..\listing\startup_stm32f10x_h
+d.lst ..\..\Libraries\CMSIS\startup\startup_stm32f10x_hd.s
 
 
 

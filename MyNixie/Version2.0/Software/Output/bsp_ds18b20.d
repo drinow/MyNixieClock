@@ -2,7 +2,7 @@
 ..\..\output\bsp_ds18b20.o: ..\..\User\bsp_ds18b20.h
 ..\..\output\bsp_ds18b20.o: ..\..\Libraries\CMSIS\stm32f10x.h
 ..\..\output\bsp_ds18b20.o: ..\..\Libraries\CMSIS\core_cm3.h
-..\..\output\bsp_ds18b20.o: D:\Keil_V5\ARM\ARMCC\Bin\..\include\stdint.h
+..\..\output\bsp_ds18b20.o: C:\Keil_V5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\..\output\bsp_ds18b20.o: ..\..\Libraries\CMSIS\system_stm32f10x.h
 ..\..\output\bsp_ds18b20.o: ..\..\User\stm32f10x_conf.h
 ..\..\output\bsp_ds18b20.o: ..\..\Libraries\FWlib\inc\stm32f10x_adc.h
