@@ -641,7 +641,7 @@ void HC595_PWM_Init(void)
 static void Nixie_Light_delay(void)
 {
 	uint32_t i=0;
-	for(i=0;i<10000;i++);
+	for(i=0;i<13000;i++);
 }
 //PWM亮度控制
 //0-255亮度等级

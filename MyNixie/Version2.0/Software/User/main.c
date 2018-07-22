@@ -85,7 +85,6 @@ u16 EE_tmp=0;
 __IO u8 AlarmState=0;//又是闹铃启动标志位又是闹铃计时变量，单位为秒
 __IO u8 AlarmSwitch=0;//闹铃开关
 __IO u8 ForceLightOn=0;
-static __IO u16 nobodyCnt=0;//无人操作计时
 int main(void)
 {	
     LED_GPIO_Config();
@@ -137,7 +136,6 @@ int main(void)
         {
             SecAlarm=0;
             RuntimeSecCnt++;
-            if(LightLevel==0&&nobodyCnt<3600)nobodyCnt++;//无人操作计时
             if(LightLevel!=0||TIM2->CCR4!=0)LightOnSecCnt++;//点亮的时间记录
             if(RuntimeSecCnt>=900){RuntimeSecCnt=0;RunTime15min++; EE_SaveConfig();}
             if(LightOnSecCnt>=900){LightOnSecCnt=0;LightTime15min++;}
@@ -152,7 +150,6 @@ int main(void)
             LED1_TOGGLE;
             printf("D:%02x-%02x T:%02x:%02x:%02x Wk:%x ",GetTime.month,GetTime.date,GetTime.hour ,GetTime.min ,GetTime.sec,GetTime.week );
             printf("Tmp:%3.1f℃ Humi:%3.1f%% | ",(DS18B20_Temp+SHT20.TEMP_POLL)/2 ,SHT20.HUMI_POLL);
-            printf("Nbdy:%d ",nobodyCnt);
             printf("LLvl:%d ",LightLevel);
             printf("FosLt:%d ",ForceLightOn);
             printf("Alm:%d ",AlarmState);
@@ -192,26 +189,26 @@ void EE_ReadConfig(void)
 		Recovery();
 	}
 	
-  EE_ReadVariable(VirtAddVarTab[RunTimeAddr],&EE_tmp);RunTime15min=EE_tmp;
-  EE_ReadVariable(VirtAddVarTab[LightTimeAddr],&EE_tmp);LightTime15min=EE_tmp;
-  EE_ReadVariable(VirtAddVarTab[LightLevelAddr],&EE_tmp);LightLevel=EE_tmp;
-  EE_ReadVariable(VirtAddVarTab[RGBStateAddr],&EE_tmp);RGB_Msg.state=(EffectState_e)EE_tmp;
-  EE_ReadVariable(VirtAddVarTab[AlarmAddr],&EE_tmp);Alarm.hour =(EE_tmp&0xff00)>>8;Alarm.min =EE_tmp&0x00ff;
-	EE_ReadVariable(VirtAddVarTab[RGBStateAddr],&EE_tmp);RGB_Msg.state=(EffectState_e)EE_tmp;
-	EE_ReadVariable(VirtAddVarTab[RMsgAddr],&EE_tmp); RGB_Msg.R=EE_tmp;
-	EE_ReadVariable(VirtAddVarTab[GMsgAddr],&EE_tmp); RGB_Msg.G=EE_tmp;
-	EE_ReadVariable(VirtAddVarTab[BMsgAddr],&EE_tmp); RGB_Msg.B=EE_tmp;
-	EE_ReadVariable(VirtAddVarTab[RGBModeAddr],&EE_tmp);RGB_Msg.mode=(ColorMode_e)EE_tmp;
-	EE_ReadVariable(VirtAddVarTab[AlarmSwitchAddr],&EE_tmp);AlarmSwitch=EE_tmp;
-	EE_ReadVariable(VirtAddVarTab[LightCoeAddr],&EE_tmp);LightCoe=EE_tmp/100.0;	
+    EE_ReadVariable(VirtAddVarTab[RunTimeAddr],&EE_tmp);RunTime15min=EE_tmp;
+    EE_ReadVariable(VirtAddVarTab[LightTimeAddr],&EE_tmp);LightTime15min=EE_tmp;
+    EE_ReadVariable(VirtAddVarTab[LightLevelAddr],&EE_tmp);LightLevel=EE_tmp;
+    EE_ReadVariable(VirtAddVarTab[RGBStateAddr],&EE_tmp);RGB_Msg.state=(EffectState_e)EE_tmp;
+    EE_ReadVariable(VirtAddVarTab[AlarmAddr],&EE_tmp);Alarm.hour =(EE_tmp&0xff00)>>8;Alarm.min =EE_tmp&0x00ff;
+    EE_ReadVariable(VirtAddVarTab[RGBStateAddr],&EE_tmp);RGB_Msg.state=(EffectState_e)EE_tmp;
+    EE_ReadVariable(VirtAddVarTab[RMsgAddr],&EE_tmp); RGB_Msg.R=EE_tmp;
+    EE_ReadVariable(VirtAddVarTab[GMsgAddr],&EE_tmp); RGB_Msg.G=EE_tmp;
+    EE_ReadVariable(VirtAddVarTab[BMsgAddr],&EE_tmp); RGB_Msg.B=EE_tmp;
+    EE_ReadVariable(VirtAddVarTab[RGBModeAddr],&EE_tmp);RGB_Msg.mode=(ColorMode_e)EE_tmp;
+    EE_ReadVariable(VirtAddVarTab[AlarmSwitchAddr],&EE_tmp);AlarmSwitch=EE_tmp;
+    EE_ReadVariable(VirtAddVarTab[LightCoeAddr],&EE_tmp);LightCoe=EE_tmp/100.0;	
 	
-  printf(" RunTime  :%.2f Hour \r\n",RunTime15min/4.0);
-	printf("LightTime :%.2f Hour \r\n",LightTime15min/4.0);
-  printf("LightLevel:%d \r\n",LightLevel);
-	printf("LightCoe  :%.2f \r\n",LightCoe);
-  printf("RGB:State-%d Mode-%d\r\n",RGB_Msg.state,RGB_Msg.mode);
-	printf("R:%d G:%d B:%d  \r\n",RGB_Msg.R,RGB_Msg.G,RGB_Msg.B);
-  printf("Alarm:%x:%x Switch:%d\r\n",Alarm.hour,Alarm.min,AlarmSwitch);
+    printf(" RunTime  :%.2f Hour \r\n",RunTime15min/4.0);
+    printf("LightTime :%.2f Hour \r\n",LightTime15min/4.0);
+    printf("LightLevel:%d \r\n",LightLevel);
+    printf("LightCoe  :%.2f \r\n",LightCoe);
+    printf("RGB:State-%d Mode-%d\r\n",RGB_Msg.state,RGB_Msg.mode);
+    printf("R:%d G:%d B:%d  \r\n",RGB_Msg.R,RGB_Msg.G,RGB_Msg.B);
+    printf("Alarm:%x:%x Switch:%d\r\n",Alarm.hour,Alarm.min,AlarmSwitch);
 }
 
 void Recovery(void)
@@ -262,8 +259,9 @@ void DealRemoteSignal(void)
 	{
 		if(Remote_Cnt==1)//短按
 		{
-			nobodyCnt=0;AlarmState=0xff;
-			Beep_State(5);
+            AlarmState=0xff;
+            if(GetTime.hour>=0x06)
+                Beep_State(5);
 			if(LightLevel==0)//熄灭状态
 			{
 				if(RemoteKey==LIGHT_UP||RemoteKey==LIGHT_DN||RemoteKey==SETTING)
@@ -271,7 +269,7 @@ void DealRemoteSignal(void)
 				else
 					ShowState=RemoteKey;
 				Nixie_Show(&ShowState);
-				ForceLightOn=1;Nixie_Light_Ctl(100);
+				ForceLightOn=1;Nixie_Light_Ctl(150);
 			}
 			else //
 			{
@@ -315,7 +313,7 @@ void CheckAlarm(void)
 		//闹铃计时
 		if(AlarmState>0&&AlarmState<32)
 		{
-			AlarmState++;if(LightLevel==0)Nixie_Light_Ctl(100);
+			AlarmState++;if(LightLevel==0)Nixie_Light_Ctl(150);
 		}
 		if(AlarmState==32)
 		{
@@ -333,7 +331,7 @@ void OnTimeLightCheck(void)
 		if(ForceLightOn)
 			ForceLightOn++;
 		
-		if(GetTime.hour<0x06/*||nobodyCnt>=3600*/)//半夜和一小时无人操作后修改为1小时间隔点亮
+		if(GetTime.hour<0x06)//半夜修改为1小时间隔点亮
 		{
 			if(GetTime.min == 0&&GetTime.sec == 0)
 			{
@@ -342,14 +340,15 @@ void OnTimeLightCheck(void)
 		}
 		else
 		{
-			if(GetTime.sec == 0||GetTime.sec == 0x30)
+			if(GetTime.sec == 0x00||GetTime.sec == 0x10||GetTime.sec == 0x20||
+               GetTime.sec == 0x30||GetTime.sec == 0x40||GetTime.sec == 0x50)
 			{
 				ForceLightOn++;
 			}
 		}
 		
 		if(ForceLightOn>0&&ForceLightOn<6)
-			Nixie_Light_Ctl(100);
+			Nixie_Light_Ctl(150);
 		
 		if(ForceLightOn>=6)
 		{
@@ -388,7 +387,7 @@ void SettingFunc(void)
 		SetType=4;//先进入Alarm设置模式下
 		if(LightLevel==0)
 		{
-			Nixie_Light_Ctl(100);//强制点亮
+			Nixie_Light_Ctl(150);//强制点亮
 			lightflag=1;
 		}
     while(Setting)//注意进来后因为未松按钮导致又退出去

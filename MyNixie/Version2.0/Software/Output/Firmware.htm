@@ -3,7 +3,7 @@
 <title>Static Call Graph - [..\..\Output\Firmware.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image ..\..\Output\Firmware.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Wed Jun 20 18:18:37 2018
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Sun Jul 22 10:45:14 2018
 <BR><P>
 <H3>Maximum Stack Usage =        376 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1010,7 +1010,7 @@ Global Symbols
 <LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DealRemoteSignal
 </UL>
 
-<P><STRONG><a name="[83]"></a>DealRemoteSignal</STRONG> (Thumb, 368 bytes, Stack size 8 bytes, main.o(.text))
+<P><STRONG><a name="[83]"></a>DealRemoteSignal</STRONG> (Thumb, 370 bytes, Stack size 8 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 132<LI>Call Chain = DealRemoteSignal &rArr; Recovery &rArr; EE_WriteVariable &rArr; EE_PageTransfer &rArr; EE_VerifyPageFullWriteVariable &rArr; FLASH_ProgramHalfWord &rArr; FLASH_WaitForLastOperation
 </UL>
 <BR>[Calls]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Remote_Process
@@ -1048,7 +1048,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[8c]"></a>OnTimeLightCheck</STRONG> (Thumb, 422 bytes, Stack size 8 bytes, main.o(.text))
+<P><STRONG><a name="[8c]"></a>OnTimeLightCheck</STRONG> (Thumb, 446 bytes, Stack size 8 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = OnTimeLightCheck &rArr; Nixie_Light_Ctl
 </UL>
 <BR>[Calls]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Nixie_Light_Ctl
@@ -1085,7 +1085,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[46]"></a>main</STRONG> (Thumb, 1044 bytes, Stack size 32 bytes, main.o(.text))
+<P><STRONG><a name="[46]"></a>main</STRONG> (Thumb, 996 bytes, Stack size 32 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 376<LI>Call Chain = main &rArr; Breathing &rArr; WS2812_Breath &rArr; SCurve &rArr; pow &rArr; __kernel_poly &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_Unlock
