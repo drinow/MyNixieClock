@@ -90,79 +90,96 @@ extern float LightCoe;
 float Ruse=0,Guse=0,Buse=0;
 void WS2812_Breath(void)
 {
-  //数据更新记录
-  static u8 Rmax=0,Gmax=0,Bmax=0;
-	static u8 MultiColorState=0;//彩色状态机控制
-	static float step=0.0;//单色移步控制
-  u8 row=0,line=0;
-  
-  //RGB数据更新
-  if(Rmax!=RGB_Msg.R||Gmax!=RGB_Msg.G||Bmax!=RGB_Msg.B)
-  {
-    Rmax=RGB_Msg.R;Gmax=RGB_Msg.G;Bmax=RGB_Msg.B;
-		Ruse=0;Guse=0;Buse=0;
-		step=0;//从0开始
-		MultiColorState=0;//用状态机控制
-  }
-  
-  //渐变
-  if(RGB_Msg.state==EFFECTS_ON)
-  {
-    if(RGB_Msg.mode==SINGLECOLOR)
+    //数据更新记录
+    static u8 Rmax=0,Gmax=0,Bmax=0;
+    static u8 MultiColorState=0;//彩色状态机控制
+    static float step=0.0;//单色移步控制
+    u8 row=0,line=0;
+
+    //RGB数据更新
+    if(Rmax!=RGB_Msg.R||Gmax!=RGB_Msg.G||Bmax!=RGB_Msg.B)
     {
-//			Ruse=Rmax*LightCoe*sin(step);//正弦曲线
-//			Guse=Gmax*LightCoe*sin(step);
-//			Buse=Bmax*LightCoe*sin(step);
-//			if(Ruse<0)Ruse=-Ruse;
-//			if(Guse<0)Guse=-Guse;
-//			if(Buse<0)Buse=-Buse;
-			
-			 Ruse=Rmax*LightCoe*SCurve(step);//S型曲线
-			 Guse=Gmax*LightCoe*SCurve(step);
-			 Buse=Bmax*LightCoe*SCurve(step);
-			 if(step>TurnPoint*2)step=0;
-			step+=STEPSIZE;
+        Rmax=RGB_Msg.R;Gmax=RGB_Msg.G;Bmax=RGB_Msg.B;
+        Ruse=0;Guse=0;Buse=0;
+        step=0;//从0开始
+        MultiColorState=0;//用状态机控制
     }
-    if(RGB_Msg.mode==MULTICOLOR)
-    {
-				switch(MultiColorState)
-				{
-					case 0:Ruse+=0.2;if(Ruse>250*LightCoe)MultiColorState++;break;//首先是点亮
-					case 1:Guse+=0.2;if(Guse>250*LightCoe)MultiColorState++;break;//此时才是变色
-					case 2:Ruse-=0.2;if(Ruse<=0)MultiColorState++;break;
-					case 3:Buse+=0.2;if(Buse>250*LightCoe)MultiColorState++;break;
-					case 4:Guse-=0.2;if(Guse<=0)MultiColorState++;break;
-					case 5:Ruse+=0.2;if(Ruse>250*LightCoe)MultiColorState++;break;
-					case 6:Buse-=0.2;if(Buse<=0)MultiColorState=1;break;//不应该从0开始
-					default:break;
-				}
-    }
-  }
-	else if(RGB_Msg.state==EFFECTS_OFF)
-	{
-		Ruse=RGB_Msg.R;//若state无变化，则RGB信息由Flash读出
-		Guse=RGB_Msg.G;
-		Buse=RGB_Msg.B;
-	}
   
-	//数据填充
-  for(row=0;row<WS2812_NUM;row++)
-    for(line=0;line<3;line++)
+    //渐变
+    if(RGB_Msg.state==EFFECTS_ON)
     {
-      switch(line)
-      {
-        case 0:WS2812_RGB[row][line]=Guse;break;//R、G调换一下，因为好像定义不一样
-        case 1:WS2812_RGB[row][line]=Ruse;break;
-        case 2:WS2812_RGB[row][line]=Buse;break;
-      }
+        if(RGB_Msg.mode==SINGLECOLOR)
+        {
+        //			Ruse=Rmax*LightCoe*sin(step);//正弦曲线
+        //			Guse=Gmax*LightCoe*sin(step);
+        //			Buse=Bmax*LightCoe*sin(step);
+        //			if(Ruse<0)Ruse=-Ruse;
+        //			if(Guse<0)Guse=-Guse;
+        //			if(Buse<0)Buse=-Buse;
+
+            Ruse=Rmax*LightCoe*SCurve(step);//S型曲线
+            Guse=Gmax*LightCoe*SCurve(step);
+            Buse=Bmax*LightCoe*SCurve(step);
+            if(step>TurnPoint*2)step=0;
+            step+=STEPSIZE;
+        }
+        if(RGB_Msg.mode==MULTICOLOR)
+        {
+            switch(MultiColorState)
+            {
+                case 0:Ruse+=0.2;if(Ruse>250*LightCoe)MultiColorState++;break;//首先是点亮
+                case 1:Guse+=0.2;if(Guse>250*LightCoe)MultiColorState++;break;//此时才是变色
+                case 2:Ruse-=0.2;if(Ruse<=0)MultiColorState++;break;
+                case 3:Buse+=0.2;if(Buse>250*LightCoe)MultiColorState++;break;
+                case 4:Guse-=0.2;if(Guse<=0)MultiColorState++;break;
+                case 5:Ruse+=0.2;if(Ruse>250*LightCoe)MultiColorState++;break;
+                case 6:Buse-=0.2;if(Buse<=0)MultiColorState=1;break;//不应该从0开始
+                default:break;
+            }
+        }
+    }
+    else if(RGB_Msg.state==EFFECTS_OFF)
+    {
+        Ruse=RGB_Msg.R;//若state无变化，则RGB信息由Flash读出
+        Guse=RGB_Msg.G;
+        Buse=RGB_Msg.B;
     }
     
-  //熄灭
-  if(RGB_Msg.state==RGB_OFF||(RGB_Msg.R==0&&RGB_Msg.G==0&&RGB_Msg.B==0)||LightCoe==0) memset((u8*)WS2812_RGB,0,sizeof(WS2812_RGB));
+    if(RGB_Msg.mode!=RAINBOW)
+    {
+        //数据填充
+        for(row=0;row<WS2812_NUM;row++)
+        for(line=0;line<3;line++)
+        {
+          switch(line)
+          {
+            case 0:WS2812_RGB[row][line]=Guse;break;//R、G调换一下，因为好像定义不一样
+            case 1:WS2812_RGB[row][line]=Ruse;break;
+            case 2:WS2812_RGB[row][line]=Buse;break;
+          }
+        }
+    }
+    else
+    {
+        //数据填充
+        for(row=0;row<WS2812_NUM;row++)
+        for(line=0;line<3;line++)
+        {
+          switch(line)
+          {
+            case 0:WS2812_RGB[row][line]=Guse;break;//R、G调换一下，因为好像定义不一样
+            case 1:WS2812_RGB[row][line]=Ruse;break;
+            case 2:WS2812_RGB[row][line]=Buse;break;
+          }
+        }
+    }
+
+    //熄灭
+    if(RGB_Msg.state==RGB_OFF||(RGB_Msg.R==0&&RGB_Msg.G==0&&RGB_Msg.B==0)||LightCoe==0) memset((u8*)WS2812_RGB,0,sizeof(WS2812_RGB));
   
-	__disable_irq();
-  WS2812_Send_Px();
-	__enable_irq();
+    __disable_irq();
+    WS2812_Send_Px();
+    __enable_irq();
 	
 }
 

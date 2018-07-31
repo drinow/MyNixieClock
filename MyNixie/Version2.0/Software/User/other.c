@@ -527,10 +527,10 @@ void Nixie_DealRemote(__IO u8 *state)
 										EE_SaveConfig();
 										break;
       case WHTCOLOR:*state=DEFAULT;RGB_Msg.R=255,RGB_Msg.G=255,RGB_Msg.B=255;RGB_Msg.mode=SINGLECOLOR;
-										if(RGB_Msg.state==EFFECTS_OFF)RGB_Msg.state=EFFECTS_ON;//										RGBType=WHTCOLOR;
+										if(RGB_Msg.state==EFFECTS_OFF)RGB_Msg.state=EFFECTS_ON;//   RGBType=WHTCOLOR;
 										EE_SaveConfig();
 										break;
-      case COLORFUL:*state=DEFAULT;RGB_Msg.R=255,RGB_Msg.G=255,RGB_Msg.B=255;RGB_Msg.mode=MULTICOLOR;
+      case COLORFUL:*state=DEFAULT;RGB_Msg.R=255,RGB_Msg.G=255,RGB_Msg.B=255;if(RGB_Msg.mode!=MULTICOLOR)RGB_Msg.mode=MULTICOLOR;else RGB_Msg.mode=RAINBOW;
 										if(RGB_Msg.state==EFFECTS_OFF)RGB_Msg.state=EFFECTS_ON;
 										EE_SaveConfig();
 										break;

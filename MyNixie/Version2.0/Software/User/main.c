@@ -220,7 +220,7 @@ void Recovery(void)
 	RGB_Msg.mode=SINGLECOLOR;
 	RGB_Msg.state=EFFECTS_ON;
 //	RunTime15min=LightTime15min=0;
-	LightLevel=100;
+	LightLevel=150;
 	LightCoe=0.5;
 	
 	EE_WriteVariable(VirtAddVarTab[LightTimeAddr],LightTime15min);
@@ -260,7 +260,7 @@ void DealRemoteSignal(void)
 		if(Remote_Cnt==1)//¶Ì°´
 		{
             AlarmState=0xff;
-            if(GetTime.hour>=0x06)
+            if(GetTime.hour>=0x06&&GetTime.hour<0x22)
                 Beep_State(5);
 			if(LightLevel==0)//Ï¨Ãð×´Ì¬
 			{
@@ -350,7 +350,7 @@ void OnTimeLightCheck(void)
 		if(ForceLightOn>0&&ForceLightOn<6)
 			Nixie_Light_Ctl(150);
 		
-		if(ForceLightOn>=6)
+		if(ForceLightOn>=6&&GetTime.sec>0x10&&GetTime.sec<0x50)
 		{
 			ForceLightOn=0;
 			Nixie_Light_Ctl(0);

@@ -471,7 +471,7 @@ I (..\..\Libraries\FWlib\inc\stm32f10x_spi.h)(0x5565E4AC)
 I (..\..\Libraries\FWlib\inc\stm32f10x_tim.h)(0x5565E4AF)
 I (..\..\Libraries\FWlib\inc\stm32f10x_usart.h)(0x5565E4AF)
 I (..\..\Libraries\FWlib\inc\misc.h)(0x5565E4A7)
-F (..\..\User\main.c)(0x5B53EE4C)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I ..\..\Libraries\CMSIS -I ..\..\User -I ..\..\Libraries\FWlib\inc -I ..\..\User\Led -I ..\..\User\SysTick-I.\RTE\_Nixie_Clock-IC:\Keil_V5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-IC:\Keil_V5\ARM\CMSIS\Include-IC:\Keil_V5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0-D__UVISION_VERSION="525" -DSTM32F10X_MD -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -DDEBUG-o ..\..\output\main.o --omf_browse ..\..\output\main.crf --depend ..\..\output\main.d)
+F (..\..\User\main.c)(0x5B5FE71C)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I ..\..\Libraries\CMSIS -I ..\..\User -I ..\..\Libraries\FWlib\inc -I ..\..\User\Led -I ..\..\User\SysTick-I.\RTE\_Nixie_Clock-IC:\Keil_V5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-IC:\Keil_V5\ARM\CMSIS\Include-IC:\Keil_V5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0-D__UVISION_VERSION="525" -DSTM32F10X_MD -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -DDEBUG-o ..\..\output\main.o --omf_browse ..\..\output\main.crf --depend ..\..\output\main.d)
 I (..\..\User\include.h)(0x5A5B24C4)
 I (..\..\Libraries\CMSIS\stm32f10x.h)(0x5565E4A2)
 I (..\..\Libraries\CMSIS\core_cm3.h)(0x5565E49E)
@@ -501,7 +501,7 @@ I (..\..\User\bsp_i2c_gpio.h)(0x596C56B4)
 I (C:\Keil_V5\ARM\ARMCC\include\inttypes.h)(0x599ECD2E)
 I (..\..\User\bsp_beep.h)(0x5A263901)
 I (..\..\User\bsp_ds18b20.h)(0x596CB679)
-I (..\..\User\WS2812B.h)(0x5A4CBBFA)
+I (..\..\User\WS2812B.h)(0x5B5FF4D0)
 I (C:\Keil_V5\ARM\ARMCC\include\math.h)(0x599ECD2E)
 I (..\..\User\other.h)(0x5A3F5897)
 I (..\..\User\remote.h)(0x595CF63E)
@@ -510,7 +510,7 @@ I (..\..\User\bsp_74hc595.h)(0x596CB428)
 I (..\..\User\eeprom.h)(0x596D740D)
 I (..\..\User\SHT2x.h)(0x5A5B56A5)
 F (..\..\User\stm32f10x_conf.h)(0x595B5EF7)()
-F (..\..\User\stm32f10x_it.c)(0x5A5B7374)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I ..\..\Libraries\CMSIS -I ..\..\User -I ..\..\Libraries\FWlib\inc -I ..\..\User\Led -I ..\..\User\SysTick-I.\RTE\_Nixie_Clock-IC:\Keil_V5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-IC:\Keil_V5\ARM\CMSIS\Include-IC:\Keil_V5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0-D__UVISION_VERSION="525" -DSTM32F10X_MD -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -DDEBUG-o ..\..\output\stm32f10x_it.o --omf_browse ..\..\output\stm32f10x_it.crf --depend ..\..\output\stm32f10x_it.d)
+F (..\..\User\stm32f10x_it.c)(0x5B5FF52A)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I ..\..\Libraries\CMSIS -I ..\..\User -I ..\..\Libraries\FWlib\inc -I ..\..\User\Led -I ..\..\User\SysTick-I.\RTE\_Nixie_Clock-IC:\Keil_V5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-IC:\Keil_V5\ARM\CMSIS\Include-IC:\Keil_V5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0-D__UVISION_VERSION="525" -DSTM32F10X_MD -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -DDEBUG-o ..\..\output\stm32f10x_it.o --omf_browse ..\..\output\stm32f10x_it.crf --depend ..\..\output\stm32f10x_it.d)
 I (..\..\User\stm32f10x_it.h)(0x5565E4BC)
 I (..\..\Libraries\CMSIS\stm32f10x.h)(0x5565E4A2)
 I (..\..\Libraries\CMSIS\core_cm3.h)(0x5565E49E)
@@ -541,7 +541,7 @@ I (..\..\User\bsp_i2c_gpio.h)(0x596C56B4)
 I (C:\Keil_V5\ARM\ARMCC\include\inttypes.h)(0x599ECD2E)
 I (..\..\User\bsp_beep.h)(0x5A263901)
 I (..\..\User\bsp_ds18b20.h)(0x596CB679)
-I (..\..\User\WS2812B.h)(0x5A4CBBFA)
+I (..\..\User\WS2812B.h)(0x5B5FF4D0)
 I (C:\Keil_V5\ARM\ARMCC\include\math.h)(0x599ECD2E)
 I (..\..\User\other.h)(0x5A3F5897)
 I (..\..\User\remote.h)(0x595CF63E)
@@ -623,7 +623,7 @@ I (..\..\User\bsp_i2c_gpio.h)(0x596C56B4)
 I (C:\Keil_V5\ARM\ARMCC\include\inttypes.h)(0x599ECD2E)
 I (..\..\User\bsp_beep.h)(0x5A263901)
 I (..\..\User\bsp_ds18b20.h)(0x596CB679)
-I (..\..\User\WS2812B.h)(0x5A4CBBFA)
+I (..\..\User\WS2812B.h)(0x5B5FF4D0)
 I (C:\Keil_V5\ARM\ARMCC\include\math.h)(0x599ECD2E)
 I (..\..\User\other.h)(0x5A3F5897)
 I (..\..\User\remote.h)(0x595CF63E)
@@ -708,7 +708,7 @@ I (..\..\User\ds3231.h)(0x59709AFB)
 I (..\..\User\bsp_i2c_gpio.h)(0x596C56B4)
 I (C:\Keil_V5\ARM\ARMCC\include\inttypes.h)(0x599ECD2E)
 I (..\..\User\bsp_ds18b20.h)(0x596CB679)
-I (..\..\User\WS2812B.h)(0x5A4CBBFA)
+I (..\..\User\WS2812B.h)(0x5B5FF4D0)
 I (C:\Keil_V5\ARM\ARMCC\include\math.h)(0x599ECD2E)
 I (..\..\User\other.h)(0x5A3F5897)
 I (..\..\User\remote.h)(0x595CF63E)
@@ -739,8 +739,8 @@ I (..\..\Libraries\FWlib\inc\stm32f10x_usart.h)(0x5565E4AF)
 I (..\..\Libraries\FWlib\inc\misc.h)(0x5565E4A7)
 I (..\..\User\bsp_SysTick.h)(0x5A262A58)
 F (..\..\User\bsp_ds18b20.h)(0x596CB679)()
-F (..\..\User\WS2812B.c)(0x5A4CBEF0)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I ..\..\Libraries\CMSIS -I ..\..\User -I ..\..\Libraries\FWlib\inc -I ..\..\User\Led -I ..\..\User\SysTick-I.\RTE\_Nixie_Clock-IC:\Keil_V5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-IC:\Keil_V5\ARM\CMSIS\Include-IC:\Keil_V5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0-D__UVISION_VERSION="525" -DSTM32F10X_MD -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -DDEBUG-o ..\..\output\ws2812b.o --omf_browse ..\..\output\ws2812b.crf --depend ..\..\output\ws2812b.d)
-I (..\..\User\WS2812B.h)(0x5A4CBBFA)
+F (..\..\User\WS2812B.c)(0x5B5FF4D0)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I ..\..\Libraries\CMSIS -I ..\..\User -I ..\..\Libraries\FWlib\inc -I ..\..\User\Led -I ..\..\User\SysTick-I.\RTE\_Nixie_Clock-IC:\Keil_V5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-IC:\Keil_V5\ARM\CMSIS\Include-IC:\Keil_V5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0-D__UVISION_VERSION="525" -DSTM32F10X_MD -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -DDEBUG-o ..\..\output\ws2812b.o --omf_browse ..\..\output\ws2812b.crf --depend ..\..\output\ws2812b.d)
+I (..\..\User\WS2812B.h)(0x5B5FF4D0)
 I (..\..\Libraries\CMSIS\stm32f10x.h)(0x5565E4A2)
 I (..\..\Libraries\CMSIS\core_cm3.h)(0x5565E49E)
 I (C:\Keil_V5\ARM\ARMCC\include\stdint.h)(0x599ECD2E)
@@ -762,8 +762,8 @@ I (..\..\Libraries\FWlib\inc\misc.h)(0x5565E4A7)
 I (C:\Keil_V5\ARM\ARMCC\include\string.h)(0x5B45BE83)
 I (C:\Keil_V5\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
 I (C:\Keil_V5\ARM\ARMCC\include\math.h)(0x599ECD2E)
-F (..\..\User\WS2812B.h)(0x5A4CBBFA)()
-F (..\..\User\other.c)(0x5B53EFB8)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I ..\..\Libraries\CMSIS -I ..\..\User -I ..\..\Libraries\FWlib\inc -I ..\..\User\Led -I ..\..\User\SysTick-I.\RTE\_Nixie_Clock-IC:\Keil_V5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-IC:\Keil_V5\ARM\CMSIS\Include-IC:\Keil_V5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0-D__UVISION_VERSION="525" -DSTM32F10X_MD -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -DDEBUG-o ..\..\output\other.o --omf_browse ..\..\output\other.crf --depend ..\..\output\other.d)
+F (..\..\User\WS2812B.h)(0x5B5FF4D0)()
+F (..\..\User\other.c)(0x5B5FF4D0)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I ..\..\Libraries\CMSIS -I ..\..\User -I ..\..\Libraries\FWlib\inc -I ..\..\User\Led -I ..\..\User\SysTick-I.\RTE\_Nixie_Clock-IC:\Keil_V5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-IC:\Keil_V5\ARM\CMSIS\Include-IC:\Keil_V5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0-D__UVISION_VERSION="525" -DSTM32F10X_MD -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -DDEBUG-o ..\..\output\other.o --omf_browse ..\..\output\other.crf --depend ..\..\output\other.d)
 I (..\..\User\other.h)(0x5A3F5897)
 I (..\..\User\include.h)(0x5A5B24C4)
 I (..\..\Libraries\CMSIS\stm32f10x.h)(0x5565E4A2)
@@ -794,7 +794,7 @@ I (..\..\User\bsp_i2c_gpio.h)(0x596C56B4)
 I (C:\Keil_V5\ARM\ARMCC\include\inttypes.h)(0x599ECD2E)
 I (..\..\User\bsp_beep.h)(0x5A263901)
 I (..\..\User\bsp_ds18b20.h)(0x596CB679)
-I (..\..\User\WS2812B.h)(0x5A4CBBFA)
+I (..\..\User\WS2812B.h)(0x5B5FF4D0)
 I (C:\Keil_V5\ARM\ARMCC\include\math.h)(0x599ECD2E)
 I (..\..\User\remote.h)(0x595CF63E)
 I (..\..\User\sys.h)(0x5565A64A)
