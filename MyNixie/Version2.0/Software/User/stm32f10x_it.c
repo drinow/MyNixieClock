@@ -156,24 +156,39 @@ u8  __IO AlarmWaveFlag=0;
 extern __IO u8 AlarmState;
 void SysTick_Handler(void)
 {
-  static u8 cnt=0;  
-	TimingDelay_Decrement();	
-  tick++;
-  
-  if(tick%4==0)Breath_Frq=1;
-  if(tick%500==0)Pulse=1;
-  if(tick%1000<500)Period_1S=1;else Period_1S=0;//
-  if(AlarmState)
-  {
-    if(tick%100==0)
+    static u8 cnt=0; 
+    static u8 lastRemoteCnt=0;
+    TimingDelay_Decrement();	
+    tick++;
+
+    if(RGB_Msg.mode==SINGLECOLOR)
     {
-      if(cnt%2==0&&cnt<7)AlarmWaveFlag=1;
-      else AlarmWaveFlag=0;
-      if(cnt>=7&&cnt<=13)AlarmWaveFlag=0;
-      if(cnt>=10)cnt=0;
-      cnt++;
+      if(tick%36==0)Breath_Frq=1;
     }
-  }
+    else 
+    {
+      if(tick%12==0)Breath_Frq=1;
+    }
+    if(tick%500==0)
+    {
+        Pulse=1;
+        //周期清空遥控计数值
+        if(lastRemoteCnt==Remote_Cnt)
+            lastRemoteCnt=Remote_Cnt=0;
+        lastRemoteCnt=Remote_Cnt;
+    }
+    if(tick%1000<500)Period_1S=1;else Period_1S=0;//
+    if(AlarmState)
+    {
+        if(tick%100==0)
+        {
+          if(cnt%2==0&&cnt<7)AlarmWaveFlag=1;
+          else AlarmWaveFlag=0;
+          if(cnt>=7&&cnt<=13)AlarmWaveFlag=0;
+          if(cnt>=10)cnt=0;
+          cnt++;
+        }
+    }
 }
 
 

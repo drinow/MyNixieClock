@@ -119,16 +119,16 @@ u8 Remote_Process(void)
     u8 t1,t2;   
     t1=Remote_Odr>>24; //得到地址码
     t2=(Remote_Odr>>16)&0xff;//得到地址反码 
-		if(Remote_Rdy)
-		{
-			Remote_Rdy=0;//清除标记 
-			if(t1==(u8)~t2&&t1==REMOTE_ID)//检验遥控识别码(ID)及地址 
-			{ 
-					t1=Remote_Odr>>8;
-					t2=Remote_Odr; 	
-					if(t1==(u8)~t2)return t1; //处理键值  
-			}     
-		}
+    if(Remote_Rdy)
+    {
+        Remote_Rdy=0;//清除标记 
+        if(t1==(u8)~t2&&t1==REMOTE_ID)//检验遥控识别码(ID)及地址 
+        { 
+            t1=Remote_Odr>>8;
+            t2=Remote_Odr; 	
+            if(t1==(u8)~t2)return t1; //处理键值
+        }
+    }
     return 0;
 }
 

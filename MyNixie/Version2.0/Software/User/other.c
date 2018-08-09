@@ -110,34 +110,34 @@ void Nixie_Update(void)
 //自检程序。
 void Nixie_Test(void)
 {
-  u8 state=0;
-  u8 row;
-	
-	__disable_irq();
-	memset((u8*)WS2812_RGB,0,sizeof(WS2812_RGB));
-	WS2812_Send_Px();
-	__enable_irq();
-	
-	Nixie_Light_Ctl(100);
-  for(;state<10;state++)
-  {
-    //循环点亮
-    memset(Nixie_HC595_Data,0,sizeof(Nixie_HC595_Data));
-    for(row=0;row<4;row++)
+    u8 state=0;
+    u8 row;
+
+    __disable_irq();
+    memset((u8*)WS2812_RGB,0,sizeof(WS2812_RGB));
+    WS2812_Send_Px();
+    __enable_irq();
+
+    Nixie_Light_Ctl(100);
+    for(;state<10;state++)
     {
-      Nixie_HC595_Data[row][state]=1;
+        //循环点亮
+        memset(Nixie_HC595_Data,0,sizeof(Nixie_HC595_Data));
+        for(row=0;row<4;row++)
+        {
+          Nixie_HC595_Data[row][state]=1;
+        }
+
+        Nixie_Load(Nixie_HC595_Data);
+        Nixie_Update();
+
+        Nixie_Delay();
     }
-    
-    Nixie_Load(Nixie_HC595_Data);
-    Nixie_Update();
-    
-    Nixie_Delay();
-  }
 }
 
 
 //将时间数据转换到HC595数组中。
-extern __IO u8 LightLevel;
+extern __IO u16 LightLevel;
 extern __IO u8 ForceLightOn;
 void Nixie_TimeToHC595(void)
 {
@@ -463,7 +463,7 @@ void Nixie_Show(__IO u8 *state)
   }
 }
 
-extern __IO u8 LightLevel;
+extern __IO u16 LightLevel;
 extern u8 Setting;
 extern u8 SetChannel;
 extern u8 SetType;
@@ -477,66 +477,188 @@ void Nixie_DealRemote(__IO u8 *state)
   {
     switch(*state)
     {
-      case DEFAULT:break;
-      case SHOWSWITCH:*state=DEFAULT;if(LightLevel==0)LightLevel=100;else {LightLevel=0;ForceLightOn=0;} 
-											Nixie_Light_Ctl(LightLevel);printf("LightLevel:%d\r\n",LightLevel);
-											EE_SaveConfig();
-										break;
-      case LIGHT_UP:*state=DEFAULT;
-                    LightLevel=LightLevel+50;if(LightLevel>200)LightLevel=50;printf("LightLevel:%d\r\n",LightLevel);Nixie_Light_Ctl(LightLevel);
-                    LightCoe=LightLevel/200.0;//取200是为了增大比例
-										EE_SaveConfig();
-										break;
-      case LIGHT_DN:*state=DEFAULT;
-                    LightLevel=LightLevel-50;if(LightLevel<50)LightLevel=200;printf("LightLevel:%d\r\n",LightLevel);Nixie_Light_Ctl(LightLevel);
-                    LightCoe=LightLevel/200.0;
-										EE_SaveConfig();
-										break;
-      case RGBSTATE:*state=DEFAULT;RGB_Msg.state++; if(RGB_Msg.state>=3)RGB_Msg.state=EFFECTS_ON;
-										if(RGB_Msg.state==EFFECTS_OFF)
-											{RGB_Msg.R=(u8)Ruse;RGB_Msg.G=(u8)Guse;RGB_Msg.B=(u8)Buse;}
-										if(RGB_Msg.state==EFFECTS_ON)//更新颜色信息
-										EE_SaveConfig();
-										break;
-      case REDCOLOR:*state=DEFAULT;RGB_Msg.R=255,RGB_Msg.G=  0,RGB_Msg.B=  0;RGB_Msg.mode=SINGLECOLOR;
-										if(RGB_Msg.state==EFFECTS_OFF)RGB_Msg.state=EFFECTS_ON;
-										EE_SaveConfig();
-										break;
-      case ORGCOLOR:*state=DEFAULT;RGB_Msg.R=255,RGB_Msg.G=156,RGB_Msg.B=  0;RGB_Msg.mode=SINGLECOLOR;
-										if(RGB_Msg.state==EFFECTS_OFF)RGB_Msg.state=EFFECTS_ON;
-										EE_SaveConfig();
-										break;
-      case YELCOLOR:*state=DEFAULT;RGB_Msg.R=255,RGB_Msg.G=255,RGB_Msg.B=  0;RGB_Msg.mode=SINGLECOLOR;
-										if(RGB_Msg.state==EFFECTS_OFF)RGB_Msg.state=EFFECTS_ON;
-										EE_SaveConfig();
-										break;
-      case GRNCOLOR:*state=DEFAULT;RGB_Msg.R=  0,RGB_Msg.G=255,RGB_Msg.B=  0;RGB_Msg.mode=SINGLECOLOR;
-										if(RGB_Msg.state==EFFECTS_OFF)RGB_Msg.state=EFFECTS_ON;
-										EE_SaveConfig();
-										break;
-      case CYACOLOR:*state=DEFAULT;RGB_Msg.R=  0,RGB_Msg.G=255,RGB_Msg.B=255;RGB_Msg.mode=SINGLECOLOR;
-										if(RGB_Msg.state==EFFECTS_OFF)RGB_Msg.state=EFFECTS_ON;
-										EE_SaveConfig();
-										break;
-      case BLUCOLOR:*state=DEFAULT;RGB_Msg.R=  0,RGB_Msg.G=  0,RGB_Msg.B=255;RGB_Msg.mode=SINGLECOLOR;
-										if(RGB_Msg.state==EFFECTS_OFF)RGB_Msg.state=EFFECTS_ON;
-										EE_SaveConfig();
-										break;
-      case PURCOLOR:*state=DEFAULT;RGB_Msg.R=255,RGB_Msg.G=  0,RGB_Msg.B=255;RGB_Msg.mode=SINGLECOLOR;
-										if(RGB_Msg.state==EFFECTS_OFF)RGB_Msg.state=EFFECTS_ON;
-										EE_SaveConfig();
-										break;
-      case WHTCOLOR:*state=DEFAULT;RGB_Msg.R=255,RGB_Msg.G=255,RGB_Msg.B=255;RGB_Msg.mode=SINGLECOLOR;
-										if(RGB_Msg.state==EFFECTS_OFF)RGB_Msg.state=EFFECTS_ON;//   RGBType=WHTCOLOR;
-										EE_SaveConfig();
-										break;
-      case COLORFUL:*state=DEFAULT;RGB_Msg.R=255,RGB_Msg.G=255,RGB_Msg.B=255;if(RGB_Msg.mode!=MULTICOLOR)RGB_Msg.mode=MULTICOLOR;else RGB_Msg.mode=RAINBOW;
-										if(RGB_Msg.state==EFFECTS_OFF)RGB_Msg.state=EFFECTS_ON;
-										EE_SaveConfig();
-										break;
-      case SETTING: *state=DEFAULT;Setting=1;
-									  break;
-      default:if(*state!=SHOWTEMP&&*state!=SHOWDATE&&*state!=SHOWWEEK)*state=DEFAULT;break;
+        case DEFAULT:break;
+        case SHOWSWITCH:  *state=DEFAULT;if(LightLevel==0)LightLevel=180;else {LightLevel=0;ForceLightOn=0;} 
+                        Nixie_Light_Ctl(LightLevel);printf("LightLevel:%d\r\n",LightLevel);
+                        EE_SaveConfig();
+                        break;
+        case LIGHT_UP:*state=DEFAULT;
+                    LightLevel=LightLevel+20;if(LightLevel>=220)LightLevel=220;printf("LightLevel:%d\r\n",LightLevel);Nixie_Light_Ctl(LightLevel);
+                    LightCoe=LightCoe+0.15;if(LightCoe>=1)LightCoe=1;printf("LightCoe:%.1f\r\n",LightCoe);
+                    EE_SaveConfig();
+                    break;
+        case LIGHT_DN:*state=DEFAULT;
+                    LightLevel=LightLevel-20;if(LightLevel<=60)LightLevel=60;printf("LightLevel:%d\r\n",LightLevel);Nixie_Light_Ctl(LightLevel);
+                    LightCoe=LightCoe-0.15;if(LightCoe<=0.1)LightCoe=0.1;printf("LightCoe:%.1f\r\n",LightCoe);
+                    EE_SaveConfig();
+                    break;
+        case RGBSTATE:
+                    *state=DEFAULT;
+                    RGB_Msg.state++; 
+                    if(RGB_Msg.state>=3)RGB_Msg.state=EFFECTS_ON;
+//                    if(RGB_Msg.state==EFFECTS_OFF)
+//                        {RGB_Msg.R=(u8)Ruse;RGB_Msg.G=(u8)Guse;RGB_Msg.B=(u8)Buse;}
+                    if(RGB_Msg.state==EFFECTS_ON)//更新颜色信息
+                        EE_SaveConfig();
+                    break;
+        case REDCOLOR:
+                    *state=DEFAULT;
+                    RGB_Msg.R=255,RGB_Msg.G=  0,RGB_Msg.B=  0;
+                    WS2812_RGB[TUBE0][RED]=WS2812_RGB[TUBE0][GREEN]=WS2812_RGB[TUBE0][BLUE]=0;
+                    WS2812_RGB[TUBE1][RED]=WS2812_RGB[TUBE1][GREEN]=WS2812_RGB[TUBE1][BLUE]=0;
+                    WS2812_RGB[TUBE2][RED]=WS2812_RGB[TUBE2][GREEN]=WS2812_RGB[TUBE2][BLUE]=0;
+                    WS2812_RGB[TUBE3][RED]=WS2812_RGB[TUBE3][GREEN]=WS2812_RGB[TUBE3][BLUE]=0;
+                    RcdMAX_RGB[TUBE0][RED]=255;RcdMAX_RGB[TUBE0][GREEN]=0;RcdMAX_RGB[TUBE0][BLUE]=0;
+                    RcdMAX_RGB[TUBE1][RED]=255;RcdMAX_RGB[TUBE1][GREEN]=0;RcdMAX_RGB[TUBE1][BLUE]=0;
+                    RcdMAX_RGB[TUBE2][RED]=255;RcdMAX_RGB[TUBE2][GREEN]=0;RcdMAX_RGB[TUBE2][BLUE]=0;
+                    RcdMAX_RGB[TUBE3][RED]=255;RcdMAX_RGB[TUBE3][GREEN]=0;RcdMAX_RGB[TUBE3][BLUE]=0;
+                    RGB_Msg.mode=SINGLECOLOR;
+                    if(RGB_Msg.state==EFFECTS_OFF)RGB_Msg.state=EFFECTS_ON;
+                    EE_SaveConfig();
+                    break;
+        case ORGCOLOR:
+                    *state=DEFAULT;
+                    RGB_Msg.R=255,RGB_Msg.G=156,RGB_Msg.B=  0;
+                    WS2812_RGB[TUBE0][RED]=WS2812_RGB[TUBE0][GREEN]=WS2812_RGB[TUBE0][BLUE]=0;
+                    WS2812_RGB[TUBE1][RED]=WS2812_RGB[TUBE1][GREEN]=WS2812_RGB[TUBE1][BLUE]=0;
+                    WS2812_RGB[TUBE2][RED]=WS2812_RGB[TUBE2][GREEN]=WS2812_RGB[TUBE2][BLUE]=0;
+                    WS2812_RGB[TUBE3][RED]=WS2812_RGB[TUBE3][GREEN]=WS2812_RGB[TUBE3][BLUE]=0;
+                    RcdMAX_RGB[TUBE0][RED]=255;RcdMAX_RGB[TUBE0][GREEN]=127;RcdMAX_RGB[TUBE0][BLUE]=0;
+                    RcdMAX_RGB[TUBE1][RED]=255;RcdMAX_RGB[TUBE1][GREEN]=127;RcdMAX_RGB[TUBE1][BLUE]=0;
+                    RcdMAX_RGB[TUBE2][RED]=255;RcdMAX_RGB[TUBE2][GREEN]=127;RcdMAX_RGB[TUBE2][BLUE]=0;
+                    RcdMAX_RGB[TUBE3][RED]=255;RcdMAX_RGB[TUBE3][GREEN]=127;RcdMAX_RGB[TUBE3][BLUE]=0;
+                    RGB_Msg.mode=SINGLECOLOR;
+                    if(RGB_Msg.state==EFFECTS_OFF)RGB_Msg.state=EFFECTS_ON;
+                    EE_SaveConfig();
+                    break;
+        case YELCOLOR:
+                    *state=DEFAULT;
+                    RGB_Msg.R=255,RGB_Msg.G=255,RGB_Msg.B=  0;
+                    WS2812_RGB[TUBE0][RED]=WS2812_RGB[TUBE0][GREEN]=WS2812_RGB[TUBE0][BLUE]=0;
+                    WS2812_RGB[TUBE1][RED]=WS2812_RGB[TUBE1][GREEN]=WS2812_RGB[TUBE1][BLUE]=0;
+                    WS2812_RGB[TUBE2][RED]=WS2812_RGB[TUBE2][GREEN]=WS2812_RGB[TUBE2][BLUE]=0;
+                    WS2812_RGB[TUBE3][RED]=WS2812_RGB[TUBE3][GREEN]=WS2812_RGB[TUBE3][BLUE]=0;
+                    RcdMAX_RGB[TUBE0][RED]=255;RcdMAX_RGB[TUBE0][GREEN]=255;RcdMAX_RGB[TUBE0][BLUE]=0;
+                    RcdMAX_RGB[TUBE1][RED]=255;RcdMAX_RGB[TUBE1][GREEN]=255;RcdMAX_RGB[TUBE1][BLUE]=0;
+                    RcdMAX_RGB[TUBE2][RED]=255;RcdMAX_RGB[TUBE2][GREEN]=255;RcdMAX_RGB[TUBE2][BLUE]=0;
+                    RcdMAX_RGB[TUBE3][RED]=255;RcdMAX_RGB[TUBE3][GREEN]=255;RcdMAX_RGB[TUBE3][BLUE]=0;
+                    RGB_Msg.mode=SINGLECOLOR;
+                    if(RGB_Msg.state==EFFECTS_OFF)RGB_Msg.state=EFFECTS_ON;
+                    EE_SaveConfig();
+                    break;
+        case GRNCOLOR:
+                    *state=DEFAULT;
+                    RGB_Msg.R=  0,RGB_Msg.G=255,RGB_Msg.B=  0;
+                    WS2812_RGB[TUBE0][RED]=WS2812_RGB[TUBE0][GREEN]=WS2812_RGB[TUBE0][BLUE]=0;
+                    WS2812_RGB[TUBE1][RED]=WS2812_RGB[TUBE1][GREEN]=WS2812_RGB[TUBE1][BLUE]=0;
+                    WS2812_RGB[TUBE2][RED]=WS2812_RGB[TUBE2][GREEN]=WS2812_RGB[TUBE2][BLUE]=0;
+                    WS2812_RGB[TUBE3][RED]=WS2812_RGB[TUBE3][GREEN]=WS2812_RGB[TUBE3][BLUE]=0;
+                    RcdMAX_RGB[TUBE0][RED]=0;RcdMAX_RGB[TUBE0][GREEN]=255;RcdMAX_RGB[TUBE0][BLUE]=0;
+                    RcdMAX_RGB[TUBE1][RED]=0;RcdMAX_RGB[TUBE1][GREEN]=255;RcdMAX_RGB[TUBE1][BLUE]=0;
+                    RcdMAX_RGB[TUBE2][RED]=0;RcdMAX_RGB[TUBE2][GREEN]=255;RcdMAX_RGB[TUBE2][BLUE]=0;
+                    RcdMAX_RGB[TUBE3][RED]=0;RcdMAX_RGB[TUBE3][GREEN]=255;RcdMAX_RGB[TUBE3][BLUE]=0;
+                    RGB_Msg.mode=SINGLECOLOR;
+                    if(RGB_Msg.state==EFFECTS_OFF)RGB_Msg.state=EFFECTS_ON;
+                    EE_SaveConfig();
+                    break;
+        case CYACOLOR:
+                    *state=DEFAULT;
+                    RGB_Msg.R=  0,RGB_Msg.G=255,RGB_Msg.B=255;
+                    WS2812_RGB[TUBE0][RED]=WS2812_RGB[TUBE0][GREEN]=WS2812_RGB[TUBE0][BLUE]=0;
+                    WS2812_RGB[TUBE1][RED]=WS2812_RGB[TUBE1][GREEN]=WS2812_RGB[TUBE1][BLUE]=0;
+                    WS2812_RGB[TUBE2][RED]=WS2812_RGB[TUBE2][GREEN]=WS2812_RGB[TUBE2][BLUE]=0;
+                    WS2812_RGB[TUBE3][RED]=WS2812_RGB[TUBE3][GREEN]=WS2812_RGB[TUBE3][BLUE]=0;
+                    RcdMAX_RGB[TUBE0][RED]=0;RcdMAX_RGB[TUBE0][GREEN]=255;RcdMAX_RGB[TUBE0][BLUE]=255;
+                    RcdMAX_RGB[TUBE1][RED]=0;RcdMAX_RGB[TUBE1][GREEN]=255;RcdMAX_RGB[TUBE1][BLUE]=255;
+                    RcdMAX_RGB[TUBE2][RED]=0;RcdMAX_RGB[TUBE2][GREEN]=255;RcdMAX_RGB[TUBE2][BLUE]=255;
+                    RcdMAX_RGB[TUBE3][RED]=0;RcdMAX_RGB[TUBE3][GREEN]=255;RcdMAX_RGB[TUBE3][BLUE]=255;
+                    RGB_Msg.mode=SINGLECOLOR;
+                    if(RGB_Msg.state==EFFECTS_OFF)RGB_Msg.state=EFFECTS_ON;
+                    EE_SaveConfig();
+                    break;
+        case BLUCOLOR:
+                    *state=DEFAULT;
+                    RGB_Msg.R=  0,RGB_Msg.G=  0,RGB_Msg.B=255;
+                    WS2812_RGB[TUBE0][RED]=WS2812_RGB[TUBE0][GREEN]=WS2812_RGB[TUBE0][BLUE]=0;
+                    WS2812_RGB[TUBE1][RED]=WS2812_RGB[TUBE1][GREEN]=WS2812_RGB[TUBE1][BLUE]=0;
+                    WS2812_RGB[TUBE2][RED]=WS2812_RGB[TUBE2][GREEN]=WS2812_RGB[TUBE2][BLUE]=0;
+                    WS2812_RGB[TUBE3][RED]=WS2812_RGB[TUBE3][GREEN]=WS2812_RGB[TUBE3][BLUE]=0;
+                    RcdMAX_RGB[TUBE0][RED]=0;RcdMAX_RGB[TUBE0][GREEN]=0;RcdMAX_RGB[TUBE0][BLUE]=255;
+                    RcdMAX_RGB[TUBE1][RED]=0;RcdMAX_RGB[TUBE1][GREEN]=0;RcdMAX_RGB[TUBE1][BLUE]=255;
+                    RcdMAX_RGB[TUBE2][RED]=0;RcdMAX_RGB[TUBE2][GREEN]=0;RcdMAX_RGB[TUBE2][BLUE]=255;
+                    RcdMAX_RGB[TUBE3][RED]=0;RcdMAX_RGB[TUBE3][GREEN]=0;RcdMAX_RGB[TUBE3][BLUE]=255;
+                    RGB_Msg.mode=SINGLECOLOR;
+                    if(RGB_Msg.state==EFFECTS_OFF)RGB_Msg.state=EFFECTS_ON;
+                    EE_SaveConfig();
+                    break;
+        case PURCOLOR:
+                    *state=DEFAULT;
+                    RGB_Msg.R=255,RGB_Msg.G=  0,RGB_Msg.B=255;
+                    WS2812_RGB[TUBE0][RED]=WS2812_RGB[TUBE0][GREEN]=WS2812_RGB[TUBE0][BLUE]=0;
+                    WS2812_RGB[TUBE1][RED]=WS2812_RGB[TUBE1][GREEN]=WS2812_RGB[TUBE1][BLUE]=0;
+                    WS2812_RGB[TUBE2][RED]=WS2812_RGB[TUBE2][GREEN]=WS2812_RGB[TUBE2][BLUE]=0;
+                    WS2812_RGB[TUBE3][RED]=WS2812_RGB[TUBE3][GREEN]=WS2812_RGB[TUBE3][BLUE]=0;
+                    RcdMAX_RGB[TUBE0][RED]=255;RcdMAX_RGB[TUBE0][GREEN]=0;RcdMAX_RGB[TUBE0][BLUE]=255;
+                    RcdMAX_RGB[TUBE1][RED]=255;RcdMAX_RGB[TUBE1][GREEN]=0;RcdMAX_RGB[TUBE1][BLUE]=255;
+                    RcdMAX_RGB[TUBE2][RED]=255;RcdMAX_RGB[TUBE2][GREEN]=0;RcdMAX_RGB[TUBE2][BLUE]=255;
+                    RcdMAX_RGB[TUBE3][RED]=255;RcdMAX_RGB[TUBE3][GREEN]=0;RcdMAX_RGB[TUBE3][BLUE]=255;
+                    RGB_Msg.mode=SINGLECOLOR;
+                    if(RGB_Msg.state==EFFECTS_OFF)RGB_Msg.state=EFFECTS_ON;
+                    EE_SaveConfig();
+                    break;
+        case WHTCOLOR:
+                    *state=DEFAULT;
+                    RGB_Msg.R=255,RGB_Msg.G=255,RGB_Msg.B=255;
+                    WS2812_RGB[TUBE0][RED]=WS2812_RGB[TUBE0][GREEN]=WS2812_RGB[TUBE0][BLUE]=0;
+                    WS2812_RGB[TUBE1][RED]=WS2812_RGB[TUBE1][GREEN]=WS2812_RGB[TUBE1][BLUE]=0;
+                    WS2812_RGB[TUBE2][RED]=WS2812_RGB[TUBE2][GREEN]=WS2812_RGB[TUBE2][BLUE]=0;
+                    WS2812_RGB[TUBE3][RED]=WS2812_RGB[TUBE3][GREEN]=WS2812_RGB[TUBE3][BLUE]=0;
+                    RcdMAX_RGB[TUBE0][RED]=RcdMAX_RGB[TUBE0][GREEN]=RcdMAX_RGB[TUBE0][BLUE]=255;
+                    RcdMAX_RGB[TUBE1][RED]=RcdMAX_RGB[TUBE1][GREEN]=RcdMAX_RGB[TUBE1][BLUE]=255;
+                    RcdMAX_RGB[TUBE2][RED]=RcdMAX_RGB[TUBE2][GREEN]=RcdMAX_RGB[TUBE2][BLUE]=255;
+                    RcdMAX_RGB[TUBE3][RED]=RcdMAX_RGB[TUBE3][GREEN]=RcdMAX_RGB[TUBE3][BLUE]=255;
+                    RGB_Msg.mode=SINGLECOLOR;
+                    if(RGB_Msg.state==EFFECTS_OFF)RGB_Msg.state=EFFECTS_ON;//   RGBType=WHTCOLOR;
+                    EE_SaveConfig();
+                    break;
+        case COLORFUL:
+                    *state=DEFAULT;
+                    RGB_Msg.R=255,RGB_Msg.G=255,RGB_Msg.B=255;
+                    if(RGB_Msg.mode!=MULTICOLOR)
+                    {
+                        RGB_Msg.mode=MULTICOLOR;
+                        WS2812_RGB[TUBE0][RED]=WS2812_RGB[TUBE0][GREEN]=WS2812_RGB[TUBE0][BLUE]=0;
+                        WS2812_RGB[TUBE1][RED]=WS2812_RGB[TUBE1][GREEN]=WS2812_RGB[TUBE1][BLUE]=0;
+                        WS2812_RGB[TUBE2][RED]=WS2812_RGB[TUBE2][GREEN]=WS2812_RGB[TUBE2][BLUE]=0;
+                        WS2812_RGB[TUBE3][RED]=WS2812_RGB[TUBE3][GREEN]=WS2812_RGB[TUBE3][BLUE]=0;
+                        RcdMAX_RGB[TUBE0][RED]=255;RcdMAX_RGB[TUBE0][GREEN]=255;RcdMAX_RGB[TUBE0][BLUE]=255;
+                        RcdMAX_RGB[TUBE1][RED]=255;RcdMAX_RGB[TUBE1][GREEN]=255;RcdMAX_RGB[TUBE1][BLUE]=255;
+                        RcdMAX_RGB[TUBE2][RED]=255;RcdMAX_RGB[TUBE2][GREEN]=255;RcdMAX_RGB[TUBE2][BLUE]=255;
+                        RcdMAX_RGB[TUBE3][RED]=255;RcdMAX_RGB[TUBE3][GREEN]=255;RcdMAX_RGB[TUBE3][BLUE]=255;
+                    }
+                    else 
+                    {
+                        RGB_Msg.mode=RAINBOW;
+                        RainBowstate[0]=0;
+                        RainBowstate[1]=1;
+                        RainBowstate[2]=2;
+                        RainBowstate[3]=3;
+                        WS2812_RGB[TUBE0][RED]=255;WS2812_RGB[TUBE0][GREEN]=0;WS2812_RGB[TUBE0][BLUE]=0;
+                        WS2812_RGB[TUBE1][RED]=255;WS2812_RGB[TUBE1][GREEN]=0;WS2812_RGB[TUBE1][BLUE]=255;
+                        WS2812_RGB[TUBE2][RED]=0;WS2812_RGB[TUBE2][GREEN]=0;WS2812_RGB[TUBE2][BLUE]=255;
+                        WS2812_RGB[TUBE3][RED]=0;WS2812_RGB[TUBE3][GREEN]=255;WS2812_RGB[TUBE3][BLUE]=255;
+                        RcdMAX_RGB[TUBE0][RED]=255;RcdMAX_RGB[TUBE0][GREEN]=255;RcdMAX_RGB[TUBE0][BLUE]=255;
+                        RcdMAX_RGB[TUBE1][RED]=255;RcdMAX_RGB[TUBE1][GREEN]=255;RcdMAX_RGB[TUBE1][BLUE]=255;
+                        RcdMAX_RGB[TUBE2][RED]=255;RcdMAX_RGB[TUBE2][GREEN]=255;RcdMAX_RGB[TUBE2][BLUE]=255;
+                        RcdMAX_RGB[TUBE3][RED]=255;RcdMAX_RGB[TUBE3][GREEN]=255;RcdMAX_RGB[TUBE3][BLUE]=255;
+                    }
+                    if(RGB_Msg.state==EFFECTS_OFF)RGB_Msg.state=EFFECTS_ON;
+                    EE_SaveConfig();
+                    break;
+        case SETTING:
+                    *state=DEFAULT;Setting=1;
+                    break;
+        default:if(*state!=SHOWTEMP&&*state!=SHOWDATE&&*state!=SHOWWEEK)*state=DEFAULT;break;
     }
   }
   else

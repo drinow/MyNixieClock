@@ -1,5 +1,0 @@
-Change Component Footprint: Designator=U9 Old Footprint=SOP16 New Footprint=LC-SOIC-16_150mil
-Change Component Footprint: Designator=U10 Old Footprint=SOP16 New Footprint=LC-SOIC-16_150mil
-Change Component Footprint: Designator=U11 Old Footprint=SOP16 New Footprint=LC-SOIC-16_150mil
-Change Component Footprint: Designator=U12 Old Footprint=SOP16 New Footprint=LC-SOIC-16_150mil
-Added Member To Class: ClassName=MyNixie Member=Component C1 100nF(104) 10% 50V

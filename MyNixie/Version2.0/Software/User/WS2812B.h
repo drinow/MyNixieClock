@@ -29,6 +29,21 @@
 //#define EFFECTS_OFF  1
 //#define RGB_OFF      2
 
+//管子类
+typedef enum{
+	TUBE0=0,
+	TUBE1,
+    TUBE2,
+    TUBE3,
+}TubeNum_e;
+
+//基色类
+typedef enum{
+	GREEN=0,
+	RED=1,
+    BLUE=2,
+}BaseColor_e;
+
 //模式选择-mode
 typedef enum{
 	SINGLECOLOR=0,
@@ -55,7 +70,9 @@ typedef struct{
 //行表示灯珠数量，列表示RGB信息
 
 extern __IO u8 WS2812_RGB[WS2812_NUM][3];
+extern __IO u8 RcdMAX_RGB[WS2812_NUM][3];
 extern __IO RGB_TypeDef RGB_Msg;
+extern u8 RainBowstate[WS2812_NUM];
 
 void WS2812_Init(void);
 void WS2812_Send_Px(void);

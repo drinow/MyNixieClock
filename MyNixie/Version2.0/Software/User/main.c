@@ -75,7 +75,7 @@ __IO u32 LightOnSecCnt=0;
 __IO u32 RuntimeSecCnt=0;
 u16 LightTime15min=0;
 u16 RunTime15min=0;
-__IO u8 LightLevel=100;
+__IO u16 LightLevel=180;
 u8 Setting=0;
 u8 SetChannel=0;//设置模式下的通道选择
 u8 SetType=0;//设置类型选择
@@ -202,7 +202,15 @@ void EE_ReadConfig(void)
     EE_ReadVariable(VirtAddVarTab[AlarmSwitchAddr],&EE_tmp);AlarmSwitch=EE_tmp;
     EE_ReadVariable(VirtAddVarTab[LightCoeAddr],&EE_tmp);LightCoe=EE_tmp/100.0;	
 	
-    printf(" RunTime  :%.2f Hour \r\n",RunTime15min/4.0);
+    if(RGB_Msg.mode==SINGLECOLOR)
+    {
+        RcdMAX_RGB[TUBE0][RED]=RGB_Msg.R;RcdMAX_RGB[TUBE0][GREEN]=RGB_Msg.G;RcdMAX_RGB[TUBE0][BLUE]=RGB_Msg.B;
+        RcdMAX_RGB[TUBE1][RED]=RGB_Msg.R;RcdMAX_RGB[TUBE1][GREEN]=RGB_Msg.G;RcdMAX_RGB[TUBE1][BLUE]=RGB_Msg.B;
+        RcdMAX_RGB[TUBE2][RED]=RGB_Msg.R;RcdMAX_RGB[TUBE2][GREEN]=RGB_Msg.G;RcdMAX_RGB[TUBE2][BLUE]=RGB_Msg.B;
+        RcdMAX_RGB[TUBE3][RED]=RGB_Msg.R;RcdMAX_RGB[TUBE3][GREEN]=RGB_Msg.G;RcdMAX_RGB[TUBE3][BLUE]=RGB_Msg.B;
+    }
+    
+    printf("RunTime  :%.2f Hour \r\n",RunTime15min/4.0);
     printf("LightTime :%.2f Hour \r\n",LightTime15min/4.0);
     printf("LightLevel:%d \r\n",LightLevel);
     printf("LightCoe  :%.2f \r\n",LightCoe);
@@ -217,11 +225,11 @@ void Recovery(void)
 	Alarm.hour=Alarm.min=0x88;
 	AlarmSwitch=0;
 	RGB_Msg.R=RGB_Msg.G=RGB_Msg.B=255;
-	RGB_Msg.mode=SINGLECOLOR;
+	RGB_Msg.mode=RAINBOW;
 	RGB_Msg.state=EFFECTS_ON;
 //	RunTime15min=LightTime15min=0;
-	LightLevel=150;
-	LightCoe=0.5;
+	LightLevel=180;
+	LightCoe=0.7;
 	
 	EE_WriteVariable(VirtAddVarTab[LightTimeAddr],LightTime15min);
 	EE_WriteVariable(VirtAddVarTab[LightLevelAddr],LightLevel);
@@ -243,13 +251,15 @@ void Recovery(void)
     printf("RGB:State-%d Mode-%d\r\n",RGB_Msg.state,RGB_Msg.mode);
     printf("R:%d G:%d B:%d  \r\n",RGB_Msg.R,RGB_Msg.G,RGB_Msg.B);
     printf("Alarm:%x:%x Switch:%d\r\n\r\n",Alarm.hour,Alarm.min,AlarmSwitch);
-    LightCoe=LightLevel/255.0;
     Nixie_Light_Ctl(LightLevel);
 }
 
 //遥控按键处理
 void DealRemoteSignal(void)
 {
+    static u8 finish=0;
+    if(Remote_Cnt==0)
+        finish=0;
 	RemoteKey=Remote_Process();
 	if(RemoteKey==SHOWTEMP||RemoteKey==SHOWDATE||RemoteKey==SHOWWEEK||RemoteKey==SHOWSWITCH||\
 		 RemoteKey==SETTING ||RemoteKey==RGBSTATE||RemoteKey==REDCOLOR||RemoteKey==ORGCOLOR||\
@@ -257,11 +267,12 @@ void DealRemoteSignal(void)
 		 RemoteKey==PURCOLOR||RemoteKey==WHTCOLOR||RemoteKey==COLORFUL||RemoteKey==LIGHT_UP||\
 		 RemoteKey==LIGHT_DN||RemoteKey==PREV    ||RemoteKey==NEXT    ||RemoteKey==P100    ||RemoteKey==P200)//有些宏定义相同数值的不再写上
 	{
-		if(Remote_Cnt==1)//短按
+		if(Remote_Cnt<=5&&finish==0)//短按
 		{
+            finish=1;
             AlarmState=0xff;
             if(GetTime.hour>=0x06&&GetTime.hour<0x22)
-                Beep_State(5);
+                Beep_State(1);
 			if(LightLevel==0)//熄灭状态
 			{
 				if(RemoteKey==LIGHT_UP||RemoteKey==LIGHT_DN||RemoteKey==SETTING)
@@ -269,7 +280,7 @@ void DealRemoteSignal(void)
 				else
 					ShowState=RemoteKey;
 				Nixie_Show(&ShowState);
-				ForceLightOn=1;Nixie_Light_Ctl(150);
+				ForceLightOn=1;Nixie_Light_Ctl(180);
 			}
 			else //
 			{
@@ -285,7 +296,7 @@ void DealRemoteSignal(void)
 		{
 			if(RemoteKey==SETTING)
 			{
-				Beep_State(5);
+				Beep_State(1);
 				ShowState=RemoteKey;
 			}
 			else if(RemoteKey==SHOWSWITCH)
@@ -299,6 +310,11 @@ void DealRemoteSignal(void)
 		printf("RemoteKey:%d ",RemoteKey);//显示键值
 		printf("cnt:%d \r\n",Remote_Cnt);//显示按键次数	
 	}
+    else if(RemoteKey!=0)
+    {
+        printf("UnexpectRemoteKey:%d ",RemoteKey);//显示键值
+		printf("UnexpectCnt:%d \r\n",Remote_Cnt);//显示按键次数	
+    }
 }
 
 //检查闹铃，并持续响60秒
@@ -313,7 +329,7 @@ void CheckAlarm(void)
 		//闹铃计时
 		if(AlarmState>0&&AlarmState<32)
 		{
-			AlarmState++;if(LightLevel==0)Nixie_Light_Ctl(150);
+			AlarmState++;if(LightLevel==0)Nixie_Light_Ctl(180);
 		}
 		if(AlarmState==32)
 		{
@@ -348,7 +364,7 @@ void OnTimeLightCheck(void)
 		}
 		
 		if(ForceLightOn>0&&ForceLightOn<6)
-			Nixie_Light_Ctl(150);
+			Nixie_Light_Ctl(180);
 		
 		if(ForceLightOn>=6&&GetTime.sec>0x10&&GetTime.sec<0x50)
 		{
@@ -387,7 +403,7 @@ void SettingFunc(void)
 		SetType=4;//先进入Alarm设置模式下
 		if(LightLevel==0)
 		{
-			Nixie_Light_Ctl(150);//强制点亮
+			Nixie_Light_Ctl(180);//强制点亮
 			lightflag=1;
 		}
     while(Setting)//注意进来后因为未松按钮导致又退出去
