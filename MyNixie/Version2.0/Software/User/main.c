@@ -158,8 +158,8 @@ int main(void)
             printf("Rmkey:%d ",RemoteKey);
             printf("RmCnt:%d ",Remote_Cnt);
             printf("RGBste:%d | ",RGB_Msg.state);
-            printf("LT:%dD-%02d:%02d:%02d ",(u8)((LightTime15min*15.0+LightOnSecCnt/60)/60/24),(LightTime15min*15+LightOnSecCnt/60)/60%24,(LightTime15min*15+LightOnSecCnt/60)%60,LightOnSecCnt%60);
-            printf("RT:%dD-%02d:%02d:%02d ",(u8)((  RunTime15min*15.0+RuntimeSecCnt/60)/60/24),(  RunTime15min*15+RuntimeSecCnt/60)/60%24,(  RunTime15min*15+RuntimeSecCnt/60)%60,RuntimeSecCnt%60);
+            printf("LT:%dD-%02d:%02d:%02d ",(u16)((LightTime15min*15.0+LightOnSecCnt/60)/60/24),(LightTime15min*15+LightOnSecCnt/60)/60%24,(LightTime15min*15+LightOnSecCnt/60)%60,LightOnSecCnt%60);
+            printf("RT:%dD-%02d:%02d:%02d ",(u16)((  RunTime15min*15.0+RuntimeSecCnt/60)/60/24),(  RunTime15min*15+RuntimeSecCnt/60)/60%24,(  RunTime15min*15+RuntimeSecCnt/60)%60,RuntimeSecCnt%60);
             printf("\r\n");
         }
         Breathing();//呼吸灯
@@ -316,8 +316,8 @@ void DealRemoteSignal(void)
 	}
     else if(RemoteKey!=0)
     {
-        printf("UnexpectRemoteKey:%d ",RemoteKey);//显示键值
-		printf("UnexpectCnt:%d \r\n",Remote_Cnt);//显示按键次数	
+      printf("UnexpectRemoteKey:%d ",RemoteKey);//显示键值
+		  printf("UnexpectCnt:%d \r\n",Remote_Cnt);//显示按键次数	
     }
 }
 
@@ -353,7 +353,7 @@ void OnTimeLightCheck(void)
 		
 		if(GetTime.hour<0x06)//半夜修改为1小时间隔点亮
 		{
-			if(GetTime.min == 0&&GetTime.sec == 0)
+			if(GetTime.min == 0 && GetTime.sec == 0)
 			{
 				ForceLightOn++;
 			}
