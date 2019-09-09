@@ -73,8 +73,8 @@ __IO u8 RemoteKey=DEFAULT;
 u8 ShowState=DEFAULT;
 __IO u32 LightOnSecCnt=0;
 __IO u32 RuntimeSecCnt=0;
-u16 LightTime15min=0;
-u16 RunTime15min=0;
+u16 LightTime1H=0;
+u16 RunTime1H=0;
 __IO u16 LightLevel=180;
 u8 Setting=0;
 u8 SetChannel=0;//设置模式下的通道选择
@@ -106,7 +106,7 @@ int main(void)
     EE_ReadConfig();
 
     Nixie_Test();
-	
+
 //  SetTime.year =0x17;
 //  SetTime.month =0x07;
 //  SetTime.date =0x28;
@@ -137,8 +137,8 @@ int main(void)
             SecAlarm=0;
             RuntimeSecCnt++;
             if(LightLevel!=0||TIM2->CCR4!=0)LightOnSecCnt++;//点亮的时间记录
-            if(RuntimeSecCnt>=900){RuntimeSecCnt=0;RunTime15min++; EE_SaveConfig();}//运行时长记录
-            if(LightOnSecCnt>=900){LightOnSecCnt=0;LightTime15min++;}
+            if(RuntimeSecCnt>=3600){RuntimeSecCnt=0;RunTime1H++; EE_SaveConfig();}//运行时长记录
+            if(LightOnSecCnt>=3600){LightOnSecCnt=0;LightTime1H++;}
             if(GetTime.sec==0) Nixie_Cathode_Prevention();//阴极保护
             SHT20.HUMI_POLL	=SHT2x_GetHumiPoll();//未添加温湿度传感器则一定要屏蔽
             SHT20.TEMP_POLL	=SHT2x_GetTempPoll();//未添加温湿度传感器则一定要屏蔽
@@ -158,9 +158,9 @@ int main(void)
             printf("Rmkey:%d ",RemoteKey);
             printf("RmCnt:%d ",Remote_Cnt);
             printf("RGBste:%d | ",RGB_Msg.state);
-            printf("LT:%dD-%02d:%02d:%02d ",(u16)((LightTime15min*15.0+LightOnSecCnt/60)/60/24),(LightTime15min*15+LightOnSecCnt/60)/60%24,(LightTime15min*15+LightOnSecCnt/60)%60,LightOnSecCnt%60);
-            printf("RT:%dD-%02d:%02d:%02d ",(u16)((  RunTime15min*15.0+RuntimeSecCnt/60)/60/24),(  RunTime15min*15+RuntimeSecCnt/60)/60%24,(  RunTime15min*15+RuntimeSecCnt/60)%60,RuntimeSecCnt%60);
-            printf("\r\n");
+            printf("LT:%dD-%02d:%02d:%02d ",(LightTime1H*60+LightOnSecCnt/60)/60/24,(LightTime1H*60+LightOnSecCnt/60)/60%24,(LightTime1H*60+LightOnSecCnt/60)%60,LightOnSecCnt%60);
+            printf("RT:%dD-%02d:%02d:%02d ",(RunTime1H*60+RuntimeSecCnt/60)/60/24,(RunTime1H*60+RuntimeSecCnt/60)/60%24,(RunTime1H*60+RuntimeSecCnt/60)%60,RuntimeSecCnt%60);
+						printf("\r\n");
         }
         Breathing();//呼吸灯
         DealRemoteSignal();//处理遥控信号
@@ -192,8 +192,8 @@ void EE_ReadConfig(void)
 		Recovery();
 	}
 	
-    EE_ReadVariable(VirtAddVarTab[RunTimeAddr],&EE_tmp);RunTime15min=EE_tmp;
-    EE_ReadVariable(VirtAddVarTab[LightTimeAddr],&EE_tmp);LightTime15min=EE_tmp;
+    EE_ReadVariable(VirtAddVarTab[RunTimeAddr],&EE_tmp);RunTime1H=EE_tmp;
+    EE_ReadVariable(VirtAddVarTab[LightTimeAddr],&EE_tmp);LightTime1H=EE_tmp;
     EE_ReadVariable(VirtAddVarTab[LightLevelAddr],&EE_tmp);LightLevel=EE_tmp;
     EE_ReadVariable(VirtAddVarTab[RGBStateAddr],&EE_tmp);RGB_Msg.state=(EffectState_e)EE_tmp;
     EE_ReadVariable(VirtAddVarTab[AlarmAddr],&EE_tmp);Alarm.hour =(EE_tmp&0xff00)>>8;Alarm.min =EE_tmp&0x00ff;
@@ -213,8 +213,8 @@ void EE_ReadConfig(void)
         RcdMAX_RGB[TUBE3][RED]=RGB_Msg.R;RcdMAX_RGB[TUBE3][GREEN]=RGB_Msg.G;RcdMAX_RGB[TUBE3][BLUE]=RGB_Msg.B;
     }
     
-    printf("RunTime  :%.2f Hour \r\n",RunTime15min/4.0);
-    printf("LightTime :%.2f Hour \r\n",LightTime15min/4.0);
+    printf("RunTime  :%d Hour \r\n",RunTime1H);
+    printf("LightTime :%d Hour \r\n",LightTime1H);
     printf("LightLevel:%d \r\n",LightLevel);
     printf("LightCoe  :%.2f \r\n",LightCoe);
     printf("RGB:State-%d Mode-%d\r\n",RGB_Msg.state,RGB_Msg.mode);
@@ -231,15 +231,15 @@ void Recovery(void)
 	RGB_Msg.R=RGB_Msg.G=RGB_Msg.B=255;
 	RGB_Msg.mode=RAINBOW;
 	RGB_Msg.state=EFFECTS_ON;
-//	RunTime15min=LightTime15min=0;
+//	RunTime1H=LightTime1H=0;
 	LightLevel=180;
 	LightCoe=0.7;
 	
-	EE_WriteVariable(VirtAddVarTab[LightTimeAddr],LightTime15min);
+	EE_WriteVariable(VirtAddVarTab[LightTimeAddr],LightTime1H);
 	EE_WriteVariable(VirtAddVarTab[LightLevelAddr],LightLevel);
 	EE_WriteVariable(VirtAddVarTab[RGBStateAddr],RGB_Msg.state);
 	EE_WriteVariable(VirtAddVarTab[AlarmAddr],((u16)Alarm.hour<<8)|Alarm.min);
-	EE_WriteVariable(VirtAddVarTab[RunTimeAddr],RunTime15min);
+	EE_WriteVariable(VirtAddVarTab[RunTimeAddr],RunTime1H);
 	EE_WriteVariable(VirtAddVarTab[RMsgAddr],RGB_Msg.R);
 	EE_WriteVariable(VirtAddVarTab[GMsgAddr],RGB_Msg.G);
 	EE_WriteVariable(VirtAddVarTab[BMsgAddr],RGB_Msg.B);
@@ -249,8 +249,8 @@ void Recovery(void)
 	EE_WriteVariable(VirtAddVarTab[LightCoeAddr],(u16)(LightCoe*100));
 	Beep_State(800000*2);
 	
-    printf("RunTime:%.2f Hour \r\n",RunTime15min/4.0);
-    printf("LightTime:%.2f Hour \r\n",LightTime15min/4.0);
+    printf("RunTime:%d Hour \r\n",RunTime1H);
+    printf("LightTime:%d Hour \r\n",LightTime1H);
     printf("LightLevel:%d \r\n",LightLevel);
     printf("RGB:State-%d Mode-%d\r\n",RGB_Msg.state,RGB_Msg.mode);
     printf("R:%d G:%d B:%d  \r\n",RGB_Msg.R,RGB_Msg.G,RGB_Msg.B);
@@ -418,8 +418,8 @@ void SettingFunc(void)
         SecAlarm=0;
 				RuntimeSecCnt++;
         if(LightLevel!=0)LightOnSecCnt++;//运行时间计时
-				if(RuntimeSecCnt==900){RuntimeSecCnt=0;RunTime15min++;}
-        if(LightOnSecCnt==900){LightOnSecCnt=0;LightTime15min++;}
+				if(RuntimeSecCnt==3600){RuntimeSecCnt=0;RunTime1H++;}
+        if(LightOnSecCnt==3600){LightOnSecCnt=0;LightTime1H++;}
 				if(GetTime.sec==0)
 				{
 					Nixie_Cathode_Prevention();

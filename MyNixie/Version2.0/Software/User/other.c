@@ -700,18 +700,18 @@ void Nixie_DealRemote(__IO u8 *state)
   }
 }
 
-extern u16 LightTime15min;
-extern u16 RunTime15min;
+extern u16 LightTime1H;
+extern u16 RunTime1H;
 extern __IO u8 AlarmSwitch;
 extern u8 FirstRunFlag;
 void EE_SaveConfig(void)
 {
 	
-	EE_WriteVariable(VirtAddVarTab[LightTimeAddr],LightTime15min);
+	EE_WriteVariable(VirtAddVarTab[LightTimeAddr],LightTime1H);
 	EE_WriteVariable(VirtAddVarTab[LightLevelAddr],LightLevel);
 	EE_WriteVariable(VirtAddVarTab[RGBStateAddr],RGB_Msg.state);
 	EE_WriteVariable(VirtAddVarTab[AlarmAddr],((u16)Alarm.hour<<8)|Alarm.min);
-	EE_WriteVariable(VirtAddVarTab[RunTimeAddr],RunTime15min);
+	EE_WriteVariable(VirtAddVarTab[RunTimeAddr],RunTime1H);
 	EE_WriteVariable(VirtAddVarTab[RMsgAddr],RGB_Msg.R);
 	EE_WriteVariable(VirtAddVarTab[GMsgAddr],RGB_Msg.G);
 	EE_WriteVariable(VirtAddVarTab[BMsgAddr],RGB_Msg.B);
