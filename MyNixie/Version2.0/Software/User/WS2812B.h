@@ -5,6 +5,7 @@
 #include <string.h>
 #include "stdio.h"
 #include "math.h"
+#include "ds3231.h"
 
 #define PORT_WS2812 GPIOB
 #define Pin_WS2812  GPIO_Pin_0

@@ -129,25 +129,26 @@ int main(void)
 	ForceLightOn=1;
 	for(;;)
 	{		
-        Beep_Alarm();
-        SettingFunc();
-        Nixie_DealRemote(&ShowState);
+        Beep_Alarm();//蜂鸣器控制
+        SettingFunc();//设置功能
+        Nixie_DealRemote(&ShowState);//遥控信号解析
         if(SecAlarm)
         {
             SecAlarm=0;
             RuntimeSecCnt++;
             if(LightLevel!=0||TIM2->CCR4!=0)LightOnSecCnt++;//点亮的时间记录
-            if(RuntimeSecCnt>=900){RuntimeSecCnt=0;RunTime15min++; EE_SaveConfig();}
+            if(RuntimeSecCnt>=900){RuntimeSecCnt=0;RunTime15min++; EE_SaveConfig();}//运行时长记录
             if(LightOnSecCnt>=900){LightOnSecCnt=0;LightTime15min++;}
-            if(GetTime.sec==0) Nixie_Cathode_Prevention();
-            SHT20.HUMI_POLL	=SHT2x_GetHumiPoll();
-            SHT20.TEMP_POLL	=SHT2x_GetTempPoll();
-            DS18B20_Temp=DS18B20_Get_Temp();
-            Nixie_Show(&ShowState);
+            if(GetTime.sec==0) Nixie_Cathode_Prevention();//阴极保护
+            SHT20.HUMI_POLL	=SHT2x_GetHumiPoll();//未添加温湿度传感器则一定要屏蔽
+            SHT20.TEMP_POLL	=SHT2x_GetTempPoll();//未添加温湿度传感器则一定要屏蔽
+            DS18B20_Temp=DS18B20_Get_Temp();//温度传感器
+            Nixie_Show(&ShowState);//显示函数
             OnTimeLightCheck();//遥控唤醒或强制点亮10秒
-            OnTimeAlarm();
-            CheckAlarm();
-            LED1_TOGGLE;
+            OnTimeAlarm();//整点报时
+            CheckAlarm();//闹钟检查
+            LED1_TOGGLE;//运行状态指示
+						//DEBUG
             printf("D:%02x-%02x T:%02x:%02x:%02x Wk:%x ",GetTime.month,GetTime.date,GetTime.hour ,GetTime.min ,GetTime.sec,GetTime.week );
             printf("Tmp:%3.1f℃ Humi:%3.1f%% | ",(DS18B20_Temp+SHT20.TEMP_POLL)/2 ,SHT20.HUMI_POLL);
             printf("LLvl:%d ",LightLevel);
@@ -161,8 +162,8 @@ int main(void)
             printf("RT:%dD-%02d:%02d:%02d ",(u8)((  RunTime15min*15.0+RuntimeSecCnt/60)/60/24),(  RunTime15min*15+RuntimeSecCnt/60)/60%24,(  RunTime15min*15+RuntimeSecCnt/60)%60,RuntimeSecCnt%60);
             printf("\r\n");
         }
-        Breathing();
-        DealRemoteSignal();
+        Breathing();//呼吸灯
+        DealRemoteSignal();//处理遥控信号
 	}     
 }
 
@@ -179,6 +180,8 @@ void Breathing(void)
 //      SysTick->CTRL |=  SysTick_CTRL_ENABLE_Msk;
     }
 }
+
+
 void EE_ReadConfig(void)
 {
   //读取设置值
@@ -219,6 +222,7 @@ void EE_ReadConfig(void)
     printf("Alarm:%x:%x Switch:%d\r\n",Alarm.hour,Alarm.min,AlarmSwitch);
 }
 
+//恢复初始化设置
 void Recovery(void)
 {
 	printf("Factory Reseting...\r\n\r\n");

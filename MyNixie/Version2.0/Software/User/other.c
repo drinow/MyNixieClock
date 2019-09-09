@@ -484,12 +484,20 @@ void Nixie_DealRemote(__IO u8 *state)
                         break;
         case LIGHT_UP:*state=DEFAULT;
                     LightLevel=LightLevel+20;if(LightLevel>=220)LightLevel=220;printf("LightLevel:%d\r\n",LightLevel);Nixie_Light_Ctl(LightLevel);
-                    LightCoe=LightCoe+0.15;if(LightCoe>=1)LightCoe=1;printf("LightCoe:%.1f\r\n",LightCoe);
+//                    LightCoe=LightCoe+0.15;if(LightCoe>=1)LightCoe=1;printf("LightCoe:%.1f\r\n",LightCoe);
                     EE_SaveConfig();
                     break;
         case LIGHT_DN:*state=DEFAULT;
                     LightLevel=LightLevel-20;if(LightLevel<=60)LightLevel=60;printf("LightLevel:%d\r\n",LightLevel);Nixie_Light_Ctl(LightLevel);
+//                    LightCoe=LightCoe-0.15;if(LightCoe<=0.1)LightCoe=0.1;printf("LightCoe:%.1f\r\n",LightCoe);
+                    EE_SaveConfig();
+                    break;
+        case PREV:  *state=DEFAULT;
                     LightCoe=LightCoe-0.15;if(LightCoe<=0.1)LightCoe=0.1;printf("LightCoe:%.1f\r\n",LightCoe);
+                    EE_SaveConfig();
+                    break;
+        case NEXT:  *state=DEFAULT;
+                    LightCoe=LightCoe+0.15;if(LightCoe>=1)LightCoe=1;printf("LightCoe:%.1f\r\n",LightCoe);
                     EE_SaveConfig();
                     break;
         case RGBSTATE:

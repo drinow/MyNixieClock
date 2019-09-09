@@ -2,7 +2,7 @@
 ..\..\output\iicsht2x.o: ..\..\User\iicSHT2x.h
 ..\..\output\iicsht2x.o: ..\..\Libraries\CMSIS\stm32f10x.h
 ..\..\output\iicsht2x.o: ..\..\Libraries\CMSIS\core_cm3.h
-..\..\output\iicsht2x.o: C:\Keil_V5\ARM\ARMCC\Bin\..\include\stdint.h
+..\..\output\iicsht2x.o: C:\Program Files\0Software\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\..\output\iicsht2x.o: ..\..\Libraries\CMSIS\system_stm32f10x.h
 ..\..\output\iicsht2x.o: ..\..\User\stm32f10x_conf.h
 ..\..\output\iicsht2x.o: ..\..\Libraries\FWlib\inc\stm32f10x_adc.h

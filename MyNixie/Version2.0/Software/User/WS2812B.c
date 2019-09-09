@@ -1,21 +1,46 @@
 #include "WS2812B.h"
 
+__IO u8 GammaLUT[256]={0};//Gamma Look Up Table
 __IO u8 WS2812_RGB[WS2812_NUM][3];
 __IO u8 RcdMAX_RGB[WS2812_NUM][3];
 
 __IO RGB_TypeDef RGB_Msg={255,128,64,SINGLECOLOR,EFFECTS_ON};
 //__IO RGB_TypeDef RGB_Rcd={255,128,64,1,255,0};//记录Msg
   
+//建立gamma校正表
+void BuildGammaCorrectionTable(void)
+{
+    #define GammaON 0
+    #if GammaON
+        int i;
+        float f;
+        float Precompensation=0.7;
+        for( i=0;i<256;i++)
+        {
+         f=i/256.0;//归一化
+         f=(float)pow(f,Precompensation);
+         GammaLUT[i]=(u8)(f*256.0+0.5);//反归一化
+        }
+    #else
+        int i;
+        for( i=0;i<256;i++)
+        {
+         GammaLUT[i]=i;
+        }
+    #endif
+}
+
 void WS2812_Init(void)
 {
-		GPIO_InitTypeDef GPIO_InitStructure;
+    GPIO_InitTypeDef GPIO_InitStructure;
 
-		RCC_APB2PeriphClockCmd(RCC_WS2812, ENABLE);
-		
-		GPIO_InitStructure.GPIO_Pin = Pin_WS2812;
-		GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
-		GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-		GPIO_Init(PORT_WS2812, &GPIO_InitStructure);
+    RCC_APB2PeriphClockCmd(RCC_WS2812, ENABLE);
+
+    GPIO_InitStructure.GPIO_Pin = Pin_WS2812;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+    GPIO_Init(PORT_WS2812, &GPIO_InitStructure);
+    BuildGammaCorrectionTable();
 }
 
 
@@ -64,7 +89,10 @@ void WS2812_Send_Px(void)
 	{
     //强制转换为1维数组
     for(row=0;row<3;row++)
-      WS2812_Send_Data(WS2812_RGB[line][row]*LightCoe); 
+        if(GetTime.hour>=22||GetTime.hour<6)
+            WS2812_Send_Data(GammaLUT[(u8)(WS2812_RGB[line][row]*LightCoe*0.2)]);
+        else
+            WS2812_Send_Data(GammaLUT[(u8)(WS2812_RGB[line][row]*LightCoe)]); 
 	}
 }
 
@@ -109,6 +137,32 @@ void TubeBreath(u8 num)
     WS2812_RGB[num][RED]  =sin(step[num])*RcdMAX_RGB[num][RED];
     WS2812_RGB[num][BLUE] =sin(step[num])*RcdMAX_RGB[num][BLUE];
     step[num]+=STEPLENGTH;
+
+//    static u8 Rdown=0,Gdown=0,Bdown=0;
+//    
+//    if(Rdown)
+//        WS2812_RGB[num][RED]--;
+//    else
+//        WS2812_RGB[num][RED]++;
+//    if(Gdown)
+//        WS2812_RGB[num][GREEN]--;
+//    else
+//        WS2812_RGB[num][GREEN]++;
+//    if(Bdown)
+//        WS2812_RGB[num][BLUE]--;
+//    else
+//        WS2812_RGB[num][BLUE]++;
+//    
+//    if(RcdMAX_RGB[num][RED]==0)WS2812_RGB[num][RED]=0;
+//    if(RcdMAX_RGB[num][GREEN]==0)WS2812_RGB[num][GREEN]=0;
+//    if(RcdMAX_RGB[num][BLUE]==0)WS2812_RGB[num][BLUE]=0;
+//    
+//    if(WS2812_RGB[num][RED]==RcdMAX_RGB[num][RED])Rdown=1;
+//    else if(WS2812_RGB[num][RED]==0)Rdown=0;
+//    if(WS2812_RGB[num][GREEN]==RcdMAX_RGB[num][GREEN])Gdown=1;
+//    else if(WS2812_RGB[num][GREEN]==0)Gdown=0;
+//    if(WS2812_RGB[num][BLUE]==RcdMAX_RGB[num][BLUE])Bdown=1;
+//    else if(WS2812_RGB[num][BLUE]==0)Bdown=0;
 }
 
 //管子彩虹效果
@@ -152,99 +206,6 @@ extern __IO u16 LightLevel;
 float Ruse=0,Guse=0,Buse=0;
 void WS2812_Breath(void)
 {
-//    //数据更新记录
-//    static u8 Rmax=0,Gmax=0,Bmax=0;
-//    static u8 MultiColorState=0;//彩色状态机控制
-//    static float step=0.0;//单色移步控制
-//    u8 row=0,line=0;
-
-//    //RGB数据更新
-//    if(Rmax!=RGB_Msg.R||Gmax!=RGB_Msg.G||Bmax!=RGB_Msg.B)
-//    {
-//        Rmax=RGB_Msg.R;Gmax=RGB_Msg.G;Bmax=RGB_Msg.B;
-//        Ruse=0;Guse=0;Buse=0;
-//        step=0;//从0开始
-//        MultiColorState=0;//用状态机控制
-//    }
-//  
-//    //渐变
-//    if(RGB_Msg.state==EFFECTS_ON)
-//    {
-//        if(RGB_Msg.mode==SINGLECOLOR)
-//        {
-//        //			Ruse=Rmax*LightCoe*sin(step);//正弦曲线
-//        //			Guse=Gmax*LightCoe*sin(step);
-//        //			Buse=Bmax*LightCoe*sin(step);
-//        //			if(Ruse<0)Ruse=-Ruse;
-//        //			if(Guse<0)Guse=-Guse;
-//        //			if(Buse<0)Buse=-Buse;
-
-//            Ruse=Rmax*LightCoe*SCurve(step);//S型曲线
-//            Guse=Gmax*LightCoe*SCurve(step);
-//            Buse=Bmax*LightCoe*SCurve(step);
-//            if(step>TurnPoint*2)step=0;
-//            step+=STEPSIZE;
-//        }
-//        if(RGB_Msg.mode==MULTICOLOR)
-//        {
-//            switch(MultiColorState)
-//            {
-//                case 0:Ruse+=0.2;if(Ruse>250*LightCoe)MultiColorState++;break;//首先是点亮
-//                case 1:Guse+=0.2;if(Guse>250*LightCoe)MultiColorState++;break;//此时才是变色
-//                case 2:Ruse-=0.2;if(Ruse<=0)MultiColorState++;break;
-//                case 3:Buse+=0.2;if(Buse>250*LightCoe)MultiColorState++;break;
-//                case 4:Guse-=0.2;if(Guse<=0)MultiColorState++;break;
-//                case 5:Ruse+=0.2;if(Ruse>250*LightCoe)MultiColorState++;break;
-//                case 6:Buse-=0.2;if(Buse<=0)MultiColorState=1;break;//不应该从0开始
-//                default:break;
-//            }
-//        }
-//    }
-//    else if(RGB_Msg.state==EFFECTS_OFF)
-//    {
-//        Ruse=RGB_Msg.R;//若state无变化，则RGB信息由Flash读出
-//        Guse=RGB_Msg.G;
-//        Buse=RGB_Msg.B;
-//    }
-//    
-//    if(RGB_Msg.mode!=RAINBOW)
-//    {
-//        //数据填充
-//        for(row=0;row<WS2812_NUM;row++)
-//        for(line=0;line<3;line++)
-//        {
-//          switch(line)
-//          {
-//            case 0:WS2812_RGB[row][line]=Guse;break;//R、G调换一下，因为好像定义不一样
-//            case 1:WS2812_RGB[row][line]=Ruse;break;
-//            case 2:WS2812_RGB[row][line]=Buse;break;
-//          }
-//        }
-//    }
-//    else
-//    {
-//        //数据填充
-//        for(row=0;row<WS2812_NUM;row++)
-//        for(line=0;line<3;line++)
-//        {
-//          switch(line)
-//          {
-//            case 0:WS2812_RGB[row][line]=Guse;break;//R、G调换一下，因为好像定义不一样
-//            case 1:WS2812_RGB[row][line]=Ruse;break;
-//            case 2:WS2812_RGB[row][line]=Buse;break;
-//          }
-//        }
-//    }
-
-//    //熄灭
-//    if(RGB_Msg.state==RGB_OFF||(RGB_Msg.R==0&&RGB_Msg.G==0&&RGB_Msg.B==0)||LightCoe==0) memset((u8*)WS2812_RGB,0,sizeof(WS2812_RGB));
-//  
-//    __disable_irq();
-//    WS2812_Send_Px();
-//    __enable_irq();
-
-
-
     u8 i=0;
     static u8 MultiColorState=0;
     if(RGB_Msg.state==EFFECTS_ON)
@@ -350,3 +311,6 @@ void WS2812_Refresh(u8 R,u8 G,u8 B)
 		
 	__enable_irq();
 }
+
+
+
