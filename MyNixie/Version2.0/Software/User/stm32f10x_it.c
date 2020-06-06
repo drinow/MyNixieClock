@@ -135,12 +135,12 @@ u8 SecAlarm=0;
 extern TIME_TypeDef SetTime,GetTime;
 void EXTI2_IRQHandler(void)
 {
-	if(EXTI_GetITStatus(EXTI_Line2) != RESET) //
-	{
-		DS3231_ReadTime(&GetTime);
-    SecAlarm=1;
-		EXTI_ClearITPendingBit(EXTI_Line2);     //
-	}  
+    if(EXTI_GetITStatus(EXTI_Line2) != RESET) //
+    {
+        DS3231_ReadTime(&GetTime);
+        SecAlarm=1;
+        EXTI_ClearITPendingBit(EXTI_Line2);     //
+    }  
 }
 
 /**

@@ -32,9 +32,9 @@
 //可用于存储的地址
 //实际是虚拟地址，写在4B的高2B中，判断高2B来确认低2B的数是最新的，这样可以连续写，再通过双页交替循环实现少擦除不断写
 uint16_t VirtAddVarTab[NumbOfVar] = {0xAA00, 0xAA01, 0xAA02, 0xAA03, 0xAA04, 0xAA05, 0xAA06, 0xAA07, 0xAA08, 0xAA09, 0xAA0A, 0xAA0B, 0xAA0C, 0xAA0D, 0xAA0E, 0xAA0F,
-																		 0xAA10, 0xAA11, 0xAA12, 0xAA13, 0xAA14, 0xAA15, 0xAA16, 0xAA17, 0xAA18, 0xAA19, 0xAA1A, 0xAA1B, 0xAA1C, 0xAA1D, 0xAA1E, 0xAA1F,
-																		 0xAA20, 0xAA21, 0xAA22, 0xAA23, 0xAA24, 0xAA25, 0xAA26, 0xAA27, 0xAA28, 0xAA29, 0xAA2A, 0xAA2B, 0xAA2C, 0xAA2D, 0xAA2E, 0xAA2F,
-																		 0xAA30, 0xAA31, 0xAA32, 0xAA33, 0xAA34, 0xAA35, 0xAA36, 0xAA37, 0xAA38,};
+                                    0xAA10, 0xAA11, 0xAA12, 0xAA13, 0xAA14, 0xAA15, 0xAA16, 0xAA17, 0xAA18, 0xAA19, 0xAA1A, 0xAA1B, 0xAA1C, 0xAA1D, 0xAA1E, 0xAA1F,
+                                    0xAA20, 0xAA21, 0xAA22, 0xAA23, 0xAA24, 0xAA25, 0xAA26, 0xAA27, 0xAA28, 0xAA29, 0xAA2A, 0xAA2B, 0xAA2C, 0xAA2D, 0xAA2E, 0xAA2F,
+                                    0xAA30, 0xAA31, 0xAA32, 0xAA33, 0xAA34, 0xAA35, 0xAA36, 0xAA37, 0xAA38,};
 
 /* Global variable used to store variable value in read sequence */
 uint16_t DataVar = 0;
@@ -107,7 +107,7 @@ uint16_t __EE_Init(void)
 {
   uint16_t PageStatus0 = 6, PageStatus1 = 6;
   uint16_t VarIdx = 0;
-  uint16_t EepromStatus = 0, ReadStatus = 0;
+  uint16_t EepromStatus = 0, ReadStatus = READ_FAILED;
   int16_t x = -1;
   uint16_t  FlashStatus;
 
@@ -174,7 +174,7 @@ uint16_t __EE_Init(void)
             /* Read the last variables' updates */
             ReadStatus = EE_ReadVariable(VirtAddVarTab[VarIdx], &DataVar);
             /* In case variable corresponding to the virtual address was found */
-            if (ReadStatus != 0x1)
+            if (ReadStatus != READ_FAILED)
             {
               /* Transfer the variable to the Page0 */
               EepromStatus = EE_VerifyPageFullWriteVariable(VirtAddVarTab[VarIdx], DataVar);
@@ -265,7 +265,7 @@ uint16_t __EE_Init(void)
             /* Read the last variables' updates */
             ReadStatus = EE_ReadVariable(VirtAddVarTab[VarIdx], &DataVar);
             /* In case variable corresponding to the virtual address was found */
-            if (ReadStatus != 0x1)
+            if (ReadStatus != READ_FAILED)
             {
               /* Transfer the variable to the Page1 */
               EepromStatus = EE_VerifyPageFullWriteVariable(VirtAddVarTab[VarIdx], DataVar);
@@ -333,7 +333,7 @@ uint16_t EE_Init(void)
 uint16_t EE_ReadVariable(uint16_t VirtAddress, uint16_t* Data)
 {
   uint16_t ValidPage = PAGE0;
-  uint16_t AddressValue = 0x5555, ReadStatus = 1;
+  uint16_t AddressValue = 0x5555, ReadStatus = READ_FAILED;
   uint32_t Address = 0x08010000, PageStartAddress = 0x08010000;
 
   /* Get active Page for read operation */
@@ -349,8 +349,8 @@ uint16_t EE_ReadVariable(uint16_t VirtAddress, uint16_t* Data)
   PageStartAddress = (uint32_t)(EEPROM_START_ADDRESS + (uint32_t)(ValidPage * PAGE_SIZE));
 
   /* Get the valid Page end Address */
-  //Address = (uint32_t)((EEPROM_START_ADDRESS - 2) + (uint32_t)((1 + ValidPage) * PAGE_SIZE));
-  Address=CurWrAddress-2;
+  Address = (uint32_t)((EEPROM_START_ADDRESS - 2) + (uint32_t)((1 + ValidPage) * PAGE_SIZE));
+  //Address=CurWrAddress-2;
 
   /* Check each active page address starting from end */
   while (Address > (PageStartAddress + 2))
@@ -365,7 +365,7 @@ uint16_t EE_ReadVariable(uint16_t VirtAddress, uint16_t* Data)
       *Data = (*(__IO uint16_t*)(Address - 2));
 
       /* In case variable value is read, reset ReadStatus flag */
-      ReadStatus = 0;
+      ReadStatus = READ_OK;
 
       break;
     }

@@ -706,19 +706,19 @@ extern __IO u8 AlarmSwitch;
 extern u8 FirstRunFlag;
 void EE_SaveConfig(void)
 {
-	
-	EE_WriteVariable(VirtAddVarTab[LightTimeAddr],LightTime1H);
-	EE_WriteVariable(VirtAddVarTab[LightLevelAddr],LightLevel);
-	EE_WriteVariable(VirtAddVarTab[RGBStateAddr],RGB_Msg.state);
-	EE_WriteVariable(VirtAddVarTab[AlarmAddr],((u16)Alarm.hour<<8)|Alarm.min);
-	EE_WriteVariable(VirtAddVarTab[RunTimeAddr],RunTime1H);
-	EE_WriteVariable(VirtAddVarTab[RMsgAddr],RGB_Msg.R);
-	EE_WriteVariable(VirtAddVarTab[GMsgAddr],RGB_Msg.G);
-	EE_WriteVariable(VirtAddVarTab[BMsgAddr],RGB_Msg.B);
-	EE_WriteVariable(VirtAddVarTab[RGBModeAddr],RGB_Msg.mode);
-	EE_WriteVariable(VirtAddVarTab[AlarmSwitchAddr],AlarmSwitch);
-	EE_WriteVariable(VirtAddVarTab[FirstRunFlagAddr],FirstRunFlag);
-	EE_WriteVariable(VirtAddVarTab[LightCoeAddr],(u16)(LightCoe*100));
+
+    EE_WriteVariable(VirtAddVarTab[LightTimeAddr],LightTime1H);
+    EE_WriteVariable(VirtAddVarTab[LightLevelAddr],LightLevel);
+    EE_WriteVariable(VirtAddVarTab[RGBStateAddr],RGB_Msg.state);
+    EE_WriteVariable(VirtAddVarTab[AlarmAddr],((u16)Alarm.hour<<8)|Alarm.min);
+    EE_WriteVariable(VirtAddVarTab[RunTimeAddr],RunTime1H);
+    EE_WriteVariable(VirtAddVarTab[RMsgAddr],RGB_Msg.R);
+    EE_WriteVariable(VirtAddVarTab[GMsgAddr],RGB_Msg.G);
+    EE_WriteVariable(VirtAddVarTab[BMsgAddr],RGB_Msg.B);
+    EE_WriteVariable(VirtAddVarTab[RGBModeAddr],RGB_Msg.mode);
+    EE_WriteVariable(VirtAddVarTab[AlarmSwitchAddr],AlarmSwitch);
+    EE_WriteVariable(VirtAddVarTab[FirstRunFlagAddr],FirstRunFlag);
+    EE_WriteVariable(VirtAddVarTab[LightCoeAddr],(u16)(LightCoe*100));
 }
 
 void HC595_PWM_Init(void)
@@ -777,24 +777,68 @@ static void Nixie_Light_delay(void)
 //0-255亮度等级
 void Nixie_Light_Ctl(u8 value)
 {
-	u8 i=0;
-	u8 lastValue=TIM2->CCR4;
-	if(value>=lastValue) //亮度增加
-	{
-		for(i=lastValue;i<value;i++)
-		{
-			TIM2->CCR4=i;
-			Nixie_Light_delay();
-		}
-	}
-	else {
-		for(i=lastValue;i>value;i--)
-		{
-			TIM2->CCR4=i;
-			Nixie_Light_delay();
-		}
-		TIM2->CCR4=i;//确保i=0;
-	}
+    u8 i=0;
+    u8 lastValue=TIM2->CCR4;
+    if(value>=lastValue) //亮度增加
+    {
+        for(i=lastValue;i<value;i++)
+        {
+            TIM2->CCR4=i;
+            Nixie_Light_delay();
+        }
+    }
+    else {
+        for(i=lastValue;i>value;i--)
+        {
+            TIM2->CCR4=i;
+            Nixie_Light_delay();
+        }
+        TIM2->CCR4=i;//确保i=0;
+    }
+}
+
+void KEY_GPIO_Config(void)
+{
+    GPIO_InitTypeDef GPIO_InitStructure;
+
+    RCC_APB2PeriphClockCmd( RCC_KEY1|RCC_KEY2|RCC_KEY3|RCC_KEY4, ENABLE); 
+
+    //KEY1
+    GPIO_InitStructure.GPIO_Pin = GPIO_PIN_KEY1;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;   
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz; 
+    GPIO_Init(GPIO_PORT_KEY1, &GPIO_InitStructure);
+
+    //KEY2
+    GPIO_InitStructure.GPIO_Pin = GPIO_PIN_KEY2;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;   
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz; 
+    GPIO_Init(GPIO_PORT_KEY2, &GPIO_InitStructure);
+    
+    //KEY3
+    GPIO_InitStructure.GPIO_Pin = GPIO_PIN_KEY3;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;   
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz; 
+    GPIO_Init(GPIO_PORT_KEY3, &GPIO_InitStructure);
+    
+    //KEY4
+    GPIO_InitStructure.GPIO_Pin = GPIO_PIN_KEY4;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;   
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz; 
+    GPIO_Init(GPIO_PORT_KEY4, &GPIO_InitStructure);
+}
+
+
+uint8_t Read_Key(uint8_t key_num)
+{
+    switch(key_num)
+    {
+        case KEY1:return GPIO_ReadInputDataBit(GPIO_PORT_KEY1, GPIO_PIN_KEY1);
+        case KEY2:return GPIO_ReadInputDataBit(GPIO_PORT_KEY2, GPIO_PIN_KEY2);
+        case KEY3:return GPIO_ReadInputDataBit(GPIO_PORT_KEY3, GPIO_PIN_KEY3);
+        case KEY4:return GPIO_ReadInputDataBit(GPIO_PORT_KEY4, GPIO_PIN_KEY4);
+        default: return 1;
+    }
 }
 
 void MyTest(void)

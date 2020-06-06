@@ -8,47 +8,18 @@
   ******************************************************************************
   * @attention
   *
-  * 实验平台:野火 ISO-MINI STM32 开发板 
+  * 实验平台:野火 ISO-MINI STM32 开发板
   * 论坛    :http://www.chuxue123.com
   * 淘宝    :http://firestm32.taobao.com
   *
   ******************************************************************************
   */
-  
+
 #include "include.h"
-
-
-void NVIC_Config(void)
-{	
-	NVIC_InitTypeDef NVIC_InitStructure; 	
-	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
-	
-	/* Enable the USARTy Interrupt */
-	NVIC_InitStructure.NVIC_IRQChannel = USART1_IRQn;	 
-	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
-	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 2;
-	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
-	NVIC_Init(&NVIC_InitStructure);
-  
-  //DS3231 INT
-  NVIC_InitStructure.NVIC_IRQChannel = EXTI2_IRQn;	 
-	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
-	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;
-	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
-	NVIC_Init(&NVIC_InitStructure);
-  
-  //HX1838 INT
-  NVIC_InitStructure.NVIC_IRQChannel = EXTI9_5_IRQn; 
-	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0; 
-	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
-	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
-	NVIC_Init(&NVIC_InitStructure); 
-  
-}
 
 /**
   * @brief  主函数
-  * @param  无  
+  * @param  无
   * @retval 无
   */
 void SettingFunc(void);
@@ -59,6 +30,8 @@ void OnTimeAlarm(void);
 void Recovery(void);
 void EE_ReadConfig(void);
 void Breathing(void);
+void JumpToISP(void);
+void NVIC_Config(void);
 
 extern u32 __IO tick;
 extern u8 SecAlarm;
@@ -86,7 +59,7 @@ __IO u8 AlarmState=0;//又是闹铃启动标志位又是闹铃计时变量，单位为秒
 __IO u8 AlarmSwitch=0;//闹铃开关
 __IO u8 ForceLightOn=0;
 int main(void)
-{	
+{
     LED_GPIO_Config();
     USART1_Config();
     SysTick_Init();
@@ -94,6 +67,7 @@ int main(void)
     FLASH_Unlock();
     EE_Init();
 
+    KEY_GPIO_Config();
     hc595_init();
     DS18B20_Init();
     DS3231_Config();
@@ -107,28 +81,31 @@ int main(void)
 
     Nixie_Test();
 
-//  SetTime.year =0x17;
-//  SetTime.month =0x07;
-//  SetTime.date =0x28;
-//  SetTime.hour =0x16;
-//  SetTime.min =0x51;
-//  SetTime.sec =0x0;
-//  SetTime.week =0x05;
-//  DS3231_WriteTime(&SetTime);
-//  DS3231_WriteTime(&SetTime);
+//    SetTime.year =0x17;
+//    SetTime.month =0x07;
+//    SetTime.date =0x28;
+//    SetTime.hour =0x16;
+//    SetTime.min =0x51;
+//    SetTime.sec =0x0;
+//    SetTime.week =0x05;
+//    DS3231_WriteTime(&SetTime);
+//    DS3231_WriteTime(&SetTime);
 //  while(1)
-//	{
-//		u32 i=0,j=0;
-//		for(;j<3;j++)
-//			for(;i<0xffff;i++);
-//		printf("temp:%.2f ",SHT2x_GetTempPoll());//不能读太快。
-//		printf("humi:%.2f\r\n",SHT2x_GetHumiPoll());
-//	}
-
-	Nixie_Light_Ctl(LightLevel);
-	ForceLightOn=1;
-	for(;;)
-	{		
+//    {
+//        u32 i=0,j=0;
+//        for(;j<3;j++)
+//            for(;i<0xffff;i++);
+//        printf("temp:%.2f ",SHT2x_GetTempPoll());//不能读太快。
+//        printf("humi:%.2f\r\n",SHT2x_GetHumiPoll());
+//    }
+//    RunTime1H = 25046;
+//    LightTime1H = 16211;
+//    EE_SaveConfig();
+    
+    Nixie_Light_Ctl(LightLevel);
+    ForceLightOn=1;
+    for(;;)
+    {
         Beep_Alarm();//蜂鸣器控制
         SettingFunc();//设置功能
         Nixie_DealRemote(&ShowState);//遥控信号解析
@@ -140,15 +117,15 @@ int main(void)
             if(RuntimeSecCnt>=3600){RuntimeSecCnt=0;RunTime1H++; EE_SaveConfig();}//运行时长记录
             if(LightOnSecCnt>=3600){LightOnSecCnt=0;LightTime1H++;}
             if(GetTime.sec==0) Nixie_Cathode_Prevention();//阴极保护
-            SHT20.HUMI_POLL	=SHT2x_GetHumiPoll();//未添加温湿度传感器则一定要屏蔽
-            SHT20.TEMP_POLL	=SHT2x_GetTempPoll();//未添加温湿度传感器则一定要屏蔽
+            SHT20.HUMI_POLL    =SHT2x_GetHumiPoll();//未添加温湿度传感器则一定要屏蔽
+            SHT20.TEMP_POLL    =SHT2x_GetTempPoll();//未添加温湿度传感器则一定要屏蔽
             DS18B20_Temp=DS18B20_Get_Temp();//温度传感器
             Nixie_Show(&ShowState);//显示函数
             OnTimeLightCheck();//遥控唤醒或强制点亮10秒
             OnTimeAlarm();//整点报时
             CheckAlarm();//闹钟检查
             LED1_TOGGLE;//运行状态指示
-						//DEBUG
+            //DEBUG
             printf("D:%02x-%02x T:%02x:%02x:%02x Wk:%x ",GetTime.month,GetTime.date,GetTime.hour ,GetTime.min ,GetTime.sec,GetTime.week );
             printf("Tmp:%3.1f℃ Humi:%3.1f%% | ",(DS18B20_Temp+SHT20.TEMP_POLL)/2 ,SHT20.HUMI_POLL);
             printf("LLvl:%d ",LightLevel);
@@ -160,11 +137,17 @@ int main(void)
             printf("RGBste:%d | ",RGB_Msg.state);
             printf("LT:%dD-%02d:%02d:%02d ",(LightTime1H*60+LightOnSecCnt/60)/60/24,(LightTime1H*60+LightOnSecCnt/60)/60%24,(LightTime1H*60+LightOnSecCnt/60)%60,LightOnSecCnt%60);
             printf("RT:%dD-%02d:%02d:%02d ",(RunTime1H*60+RuntimeSecCnt/60)/60/24,(RunTime1H*60+RuntimeSecCnt/60)/60%24,(RunTime1H*60+RuntimeSecCnt/60)%60,RuntimeSecCnt%60);
-						printf("\r\n");
+                        printf("\r\n");
         }
         Breathing();//呼吸灯
         DealRemoteSignal();//处理遥控信号
-	}     
+        if((Read_Key(KEY1)==0) && (Read_Key(KEY2)==0))//进入ISP
+        {
+            Nixie_Test();
+            Beep_State(800000);
+            JumpToISP();
+        }
+    }
 }
 
 void Breathing(void)
@@ -173,10 +156,10 @@ void Breathing(void)
     if(Breath_Frq)
     {
 //      SysTick->CTRL &= ~ SysTick_CTRL_ENABLE_Msk;
-//			__disable_irq();
+//            __disable_irq();
       WS2812_Breath();
       Breath_Frq=0;
-//			__enable_irq();
+//            __enable_irq();
 //      SysTick->CTRL |=  SysTick_CTRL_ENABLE_Msk;
     }
 }
@@ -185,13 +168,13 @@ void Breathing(void)
 void EE_ReadConfig(void)
 {
   //读取设置值
-	EE_ReadVariable(VirtAddVarTab[FirstRunFlagAddr],&EE_tmp);FirstRunFlag=EE_tmp;
-	if(FirstRunFlag!=0xAA)
-	{
-		FirstRunFlag=0xAA;
-		Recovery();
-	}
-	
+    EE_ReadVariable(VirtAddVarTab[FirstRunFlagAddr],&EE_tmp);FirstRunFlag=EE_tmp;
+    if(FirstRunFlag!=0xAA)
+    {
+        FirstRunFlag=0xAA;
+        Recovery();
+    }
+
     EE_ReadVariable(VirtAddVarTab[RunTimeAddr],&EE_tmp);RunTime1H=EE_tmp;
     EE_ReadVariable(VirtAddVarTab[LightTimeAddr],&EE_tmp);LightTime1H=EE_tmp;
     EE_ReadVariable(VirtAddVarTab[LightLevelAddr],&EE_tmp);LightLevel=EE_tmp;
@@ -203,8 +186,8 @@ void EE_ReadConfig(void)
     EE_ReadVariable(VirtAddVarTab[BMsgAddr],&EE_tmp); RGB_Msg.B=EE_tmp;
     EE_ReadVariable(VirtAddVarTab[RGBModeAddr],&EE_tmp);RGB_Msg.mode=(ColorMode_e)EE_tmp;
     EE_ReadVariable(VirtAddVarTab[AlarmSwitchAddr],&EE_tmp);AlarmSwitch=EE_tmp;
-    EE_ReadVariable(VirtAddVarTab[LightCoeAddr],&EE_tmp);LightCoe=EE_tmp/100.0;	
-	
+    EE_ReadVariable(VirtAddVarTab[LightCoeAddr],&EE_tmp);LightCoe=EE_tmp/100.0;
+
     if(RGB_Msg.mode==SINGLECOLOR)
     {
         RcdMAX_RGB[TUBE0][RED]=RGB_Msg.R;RcdMAX_RGB[TUBE0][GREEN]=RGB_Msg.G;RcdMAX_RGB[TUBE0][BLUE]=RGB_Msg.B;
@@ -212,7 +195,7 @@ void EE_ReadConfig(void)
         RcdMAX_RGB[TUBE2][RED]=RGB_Msg.R;RcdMAX_RGB[TUBE2][GREEN]=RGB_Msg.G;RcdMAX_RGB[TUBE2][BLUE]=RGB_Msg.B;
         RcdMAX_RGB[TUBE3][RED]=RGB_Msg.R;RcdMAX_RGB[TUBE3][GREEN]=RGB_Msg.G;RcdMAX_RGB[TUBE3][BLUE]=RGB_Msg.B;
     }
-    
+
     printf("RunTime  :%d Hour \r\n",RunTime1H);
     printf("LightTime :%d Hour \r\n",LightTime1H);
     printf("LightLevel:%d \r\n",LightLevel);
@@ -225,30 +208,30 @@ void EE_ReadConfig(void)
 //恢复初始化设置
 void Recovery(void)
 {
-	printf("Factory Reseting...\r\n\r\n");
-	Alarm.hour=Alarm.min=0x88;
-	AlarmSwitch=0;
-	RGB_Msg.R=RGB_Msg.G=RGB_Msg.B=255;
-	RGB_Msg.mode=RAINBOW;
-	RGB_Msg.state=EFFECTS_ON;
-//	RunTime1H=LightTime1H=0;
-	LightLevel=180;
-	LightCoe=0.7;
-	
-	EE_WriteVariable(VirtAddVarTab[LightTimeAddr],LightTime1H);
-	EE_WriteVariable(VirtAddVarTab[LightLevelAddr],LightLevel);
-	EE_WriteVariable(VirtAddVarTab[RGBStateAddr],RGB_Msg.state);
-	EE_WriteVariable(VirtAddVarTab[AlarmAddr],((u16)Alarm.hour<<8)|Alarm.min);
-	EE_WriteVariable(VirtAddVarTab[RunTimeAddr],RunTime1H);
-	EE_WriteVariable(VirtAddVarTab[RMsgAddr],RGB_Msg.R);
-	EE_WriteVariable(VirtAddVarTab[GMsgAddr],RGB_Msg.G);
-	EE_WriteVariable(VirtAddVarTab[BMsgAddr],RGB_Msg.B);
-	EE_WriteVariable(VirtAddVarTab[RGBModeAddr],RGB_Msg.mode);
-	EE_WriteVariable(VirtAddVarTab[AlarmSwitchAddr],AlarmSwitch);
-	EE_WriteVariable(VirtAddVarTab[FirstRunFlagAddr],FirstRunFlag);
-	EE_WriteVariable(VirtAddVarTab[LightCoeAddr],(u16)(LightCoe*100));
-	Beep_State(800000*2);
-	
+    printf("Factory Reseting...\r\n\r\n");
+    Alarm.hour=Alarm.min=0x88;
+    AlarmSwitch=0;
+    RGB_Msg.R=RGB_Msg.G=RGB_Msg.B=255;
+    RGB_Msg.mode=RAINBOW;
+    RGB_Msg.state=EFFECTS_ON;
+//    RunTime1H=LightTime1H=0;
+    LightLevel=180;
+    LightCoe=0.7;
+
+    EE_WriteVariable(VirtAddVarTab[LightTimeAddr],LightTime1H);
+    EE_WriteVariable(VirtAddVarTab[LightLevelAddr],LightLevel);
+    EE_WriteVariable(VirtAddVarTab[RGBStateAddr],RGB_Msg.state);
+    EE_WriteVariable(VirtAddVarTab[AlarmAddr],((u16)Alarm.hour<<8)|Alarm.min);
+    EE_WriteVariable(VirtAddVarTab[RunTimeAddr],RunTime1H);
+    EE_WriteVariable(VirtAddVarTab[RMsgAddr],RGB_Msg.R);
+    EE_WriteVariable(VirtAddVarTab[GMsgAddr],RGB_Msg.G);
+    EE_WriteVariable(VirtAddVarTab[BMsgAddr],RGB_Msg.B);
+    EE_WriteVariable(VirtAddVarTab[RGBModeAddr],RGB_Msg.mode);
+    EE_WriteVariable(VirtAddVarTab[AlarmSwitchAddr],AlarmSwitch);
+    EE_WriteVariable(VirtAddVarTab[FirstRunFlagAddr],FirstRunFlag);
+    EE_WriteVariable(VirtAddVarTab[LightCoeAddr],(u16)(LightCoe*100));
+    Beep_State(800000*2);
+
     printf("RunTime:%d Hour \r\n",RunTime1H);
     printf("LightTime:%d Hour \r\n",LightTime1H);
     printf("LightLevel:%d \r\n",LightLevel);
@@ -264,60 +247,60 @@ void DealRemoteSignal(void)
     static u8 finish=0;
     if(Remote_Cnt==0)
         finish=0;
-	RemoteKey=Remote_Process();
-	if(RemoteKey==SHOWTEMP||RemoteKey==SHOWDATE||RemoteKey==SHOWWEEK||RemoteKey==SHOWSWITCH||\
-		 RemoteKey==SETTING ||RemoteKey==RGBSTATE||RemoteKey==REDCOLOR||RemoteKey==ORGCOLOR||\
-		 RemoteKey==YELCOLOR||RemoteKey==GRNCOLOR||RemoteKey==CYACOLOR||RemoteKey==BLUCOLOR||\
-		 RemoteKey==PURCOLOR||RemoteKey==WHTCOLOR||RemoteKey==COLORFUL||RemoteKey==LIGHT_UP||\
-		 RemoteKey==LIGHT_DN||RemoteKey==PREV    ||RemoteKey==NEXT    ||RemoteKey==P100    ||RemoteKey==P200)//有些宏定义相同数值的不再写上
-	{
-		if(Remote_Cnt<=5&&finish==0)//短按
-		{
+    RemoteKey=Remote_Process();
+    if(RemoteKey==SHOWTEMP||RemoteKey==SHOWDATE||RemoteKey==SHOWWEEK||RemoteKey==SHOWSWITCH||\
+         RemoteKey==SETTING ||RemoteKey==RGBSTATE||RemoteKey==REDCOLOR||RemoteKey==ORGCOLOR||\
+         RemoteKey==YELCOLOR||RemoteKey==GRNCOLOR||RemoteKey==CYACOLOR||RemoteKey==BLUCOLOR||\
+         RemoteKey==PURCOLOR||RemoteKey==WHTCOLOR||RemoteKey==COLORFUL||RemoteKey==LIGHT_UP||\
+         RemoteKey==LIGHT_DN||RemoteKey==PREV    ||RemoteKey==NEXT    ||RemoteKey==P100    ||RemoteKey==P200)//有些宏定义相同数值的不再写上
+    {
+        if(Remote_Cnt<=5&&finish==0)//短按
+        {
             finish=1;
             AlarmState=0xff;
             if(GetTime.hour>=0x06&&GetTime.hour<0x22)
                 Beep_State(1);
-			if(LightLevel==0)//熄灭状态
-			{
-				if(RemoteKey==LIGHT_UP||RemoteKey==LIGHT_DN||RemoteKey==SETTING)
-					ShowState=DEFAULT;
-				else
-					ShowState=RemoteKey;
-				Nixie_Show(&ShowState);
-				ForceLightOn=1;Nixie_Light_Ctl(180);
-			}
-			else //
-			{
-				if(RemoteKey==SETTING)
-					ShowState=DEFAULT;
-				else
-					ShowState=RemoteKey;
-				Nixie_Show(&ShowState);
-			}
-			
-		}
-		else if(Remote_Cnt==15)//长按
-		{
-			if(RemoteKey==SETTING)
-			{
-				Beep_State(1);
-				ShowState=RemoteKey;
-			}
-			else if(RemoteKey==SHOWSWITCH)
-			{
-				Recovery();
-			}
-		}
-		else
-		{
-		}
-		printf("RemoteKey:%d ",RemoteKey);//显示键值
-		printf("cnt:%d \r\n",Remote_Cnt);//显示按键次数	
-	}
+            if(LightLevel==0)//熄灭状态
+            {
+                if(RemoteKey==LIGHT_UP||RemoteKey==LIGHT_DN||RemoteKey==SETTING)
+                    ShowState=DEFAULT;
+                else
+                    ShowState=RemoteKey;
+                Nixie_Show(&ShowState);
+                ForceLightOn=1;Nixie_Light_Ctl(180);
+            }
+            else //
+            {
+                if(RemoteKey==SETTING)
+                    ShowState=DEFAULT;
+                else
+                    ShowState=RemoteKey;
+                Nixie_Show(&ShowState);
+            }
+
+        }
+        else if(Remote_Cnt==15)//长按
+        {
+            if(RemoteKey==SETTING)
+            {
+                Beep_State(1);
+                ShowState=RemoteKey;
+            }
+            else if(RemoteKey==SHOWSWITCH)
+            {
+                Recovery();
+            }
+        }
+        else
+        {
+        }
+        printf("RemoteKey:%d ",RemoteKey);//显示键值
+        printf("cnt:%d \r\n",Remote_Cnt);//显示按键次数
+    }
     else if(RemoteKey!=0)
     {
       printf("UnexpectRemoteKey:%d ",RemoteKey);//显示键值
-		  printf("UnexpectCnt:%d \r\n",Remote_Cnt);//显示按键次数	
+          printf("UnexpectCnt:%d \r\n",Remote_Cnt);//显示按键次数
     }
 }
 
@@ -325,75 +308,75 @@ void DealRemoteSignal(void)
 //灭铃控制在遥控那里
 void CheckAlarm(void)
 {
-	if(AlarmSwitch)
-	{
-		//检查闹铃
-		if(Alarm.hour==GetTime.hour&&Alarm.min==GetTime.min&&GetTime.sec==0)
-			AlarmState=1;
-		//闹铃计时
-		if(AlarmState>0&&AlarmState<32)
-		{
-			AlarmState++;if(LightLevel==0)Nixie_Light_Ctl(180);
-		}
-		if(AlarmState==32)
-		{
-			AlarmState=0xff;Beep(0);if(LightLevel==0)ForceLightOn=1;
-		}
-	}
-	if(AlarmState==0xff&&Alarm.min!=GetTime.min)AlarmState=0;
+    if(AlarmSwitch)
+    {
+        //检查闹铃
+        if(Alarm.hour==GetTime.hour&&Alarm.min==GetTime.min&&GetTime.sec==0)
+            AlarmState=1;
+        //闹铃计时
+        if(AlarmState>0&&AlarmState<32)
+        {
+            AlarmState++;if(LightLevel==0)Nixie_Light_Ctl(180);
+        }
+        if(AlarmState==32)
+        {
+            AlarmState=0xff;Beep(0);if(LightLevel==0)ForceLightOn=1;
+        }
+    }
+    if(AlarmState==0xff&&Alarm.min!=GetTime.min)AlarmState=0;
 }
 
 //灭灯时在整点时强制点亮10秒钟
 void OnTimeLightCheck(void)
 {
-	if(LightLevel==0)
-	{
-		if(ForceLightOn)
-			ForceLightOn++;
-		
-		if(GetTime.hour<0x06)//半夜修改为1小时间隔点亮
-		{
-			if(GetTime.min == 0 && GetTime.sec == 0)
-			{
-				ForceLightOn++;
-			}
-		}
-		else
-		{
-			if(GetTime.sec == 0x00||GetTime.sec == 0x10||GetTime.sec == 0x20||
+    if(LightLevel==0)
+    {
+        if(ForceLightOn)
+            ForceLightOn++;
+
+        if(GetTime.hour<0x06)//半夜修改为1小时间隔点亮
+        {
+            if(GetTime.min == 0 && GetTime.sec == 0)
+            {
+                ForceLightOn++;
+            }
+        }
+        else
+        {
+            if(GetTime.sec == 0x00||GetTime.sec == 0x10||GetTime.sec == 0x20||
                GetTime.sec == 0x30||GetTime.sec == 0x40||GetTime.sec == 0x50)
-			{
-				ForceLightOn++;
-			}
-		}
-		
-		if(ForceLightOn>0&&ForceLightOn<6)
-			Nixie_Light_Ctl(180);
-		
-		if(ForceLightOn>=6&&GetTime.sec>0x10&&GetTime.sec<0x50)
-		{
-			ForceLightOn=0;
-			Nixie_Light_Ctl(0);
-		}
-	}
-	else
-	{
-		ForceLightOn=0;
-	}
+            {
+                ForceLightOn++;
+            }
+        }
+
+        if(ForceLightOn>0&&ForceLightOn<6)
+            Nixie_Light_Ctl(180);
+
+        if(ForceLightOn>=6&&GetTime.sec>0x10&&GetTime.sec<0x50)
+        {
+            ForceLightOn=0;
+            Nixie_Light_Ctl(0);
+        }
+    }
+    else
+    {
+        ForceLightOn=0;
+    }
 }
 
 //9-21点整点报时
 void OnTimeAlarm(void)
 {
-	if(GetTime.sec==0&&GetTime.min==0&&GetTime.hour>0x08&&GetTime.hour<0x22&&AlarmState==0)
-	{
-		Beep_OnTimeAlarm();
-	}
+    if(GetTime.sec==0&&GetTime.min==0&&GetTime.hour>0x08&&GetTime.hour<0x22&&AlarmState==0)
+    {
+        Beep_OnTimeAlarm();
+    }
 }
 
 void SettingFunc(void)
 {
-	u8 lightflag=0;
+    u8 lightflag=0;
   if(Setting)
   {
     SetTime.year=GetTime.year;
@@ -404,27 +387,27 @@ void SettingFunc(void)
     SetTime.sec=0;
     SetTime.week=GetTime.week;
     SetChannel=0;
-		SetType=4;//先进入Alarm设置模式下
-		if(LightLevel==0)
-		{
-			Nixie_Light_Ctl(180);//强制点亮
-			lightflag=1;
-		}
+        SetType=4;//先进入Alarm设置模式下
+        if(LightLevel==0)
+        {
+            Nixie_Light_Ctl(180);//强制点亮
+            lightflag=1;
+        }
     while(Setting)//注意进来后因为未松按钮导致又退出去
     {
-      Nixie_DealRemote(&ShowState); 
+      Nixie_DealRemote(&ShowState);
       if(SecAlarm)
       {
         SecAlarm=0;
-				RuntimeSecCnt++;
+                RuntimeSecCnt++;
         if(LightLevel!=0)LightOnSecCnt++;//运行时间计时
-				if(RuntimeSecCnt==3600){RuntimeSecCnt=0;RunTime1H++;}
+                if(RuntimeSecCnt==3600){RuntimeSecCnt=0;RunTime1H++;}
         if(LightOnSecCnt==3600){LightOnSecCnt=0;LightTime1H++;}
-				if(GetTime.sec==0)
-				{
-					Nixie_Cathode_Prevention();
-				}        
-				LED1_TOGGLE;
+                if(GetTime.sec==0)
+                {
+                    Nixie_Cathode_Prevention();
+                }
+                LED1_TOGGLE;
       }
       if(Pulse)
       {
@@ -432,30 +415,88 @@ void SettingFunc(void)
         Pulse=0;
       }
 
-			RemoteKey=Remote_Process();
-			if(RemoteKey!=0&&Remote_Cnt==1)//利用Remote_Cnt不自动清空，防止长按设置后直接跳进来
-			{
-				Beep_State(5);
-				ShowState=RemoteKey;
-//				printf("RemoteKey:%d ",RemoteKey);//显示键值
-//				printf("cnt:%d \r\n",Remote_Cnt);//显示按键次数	
-			}
-			else ShowState=DEFAULT;
-			
+            RemoteKey=Remote_Process();
+            if(RemoteKey!=0&&Remote_Cnt==1)//利用Remote_Cnt不自动清空，防止长按设置后直接跳进来
+            {
+                Beep_State(5);
+                ShowState=RemoteKey;
+//                printf("RemoteKey:%d ",RemoteKey);//显示键值
+//                printf("cnt:%d \r\n",Remote_Cnt);//显示按键次数
+            }
+            else ShowState=DEFAULT;
+
     }
-		if(lightflag==1)
-			Nixie_Light_Ctl(0);
+        if(lightflag==1)
+            Nixie_Light_Ctl(0);
     //闹钟设置模式下不修改时间
     if(SetType==SETALARM)
     {
       Dot1_ON;Dot2_ON;
-			if(Alarm.hour>0x24||Alarm.min>=60)AlarmSwitch=0;else AlarmSwitch=1;
-			EE_SaveConfig();
+            if(Alarm.hour>0x24||Alarm.min>=60)AlarmSwitch=0;else AlarmSwitch=1;
+            EE_SaveConfig();
     }
     else
-		{
+        {
       DS3231_WriteTime(&SetTime);
-		}
+        }
   }
 }
+
+void JumpToISP(void)
+{
+    //程序跳转不复位外设，建议对一些可能导致问题的外设进行反初始化DeInit，如SysTick。
+    //看门狗一旦初始化不能被关闭，因此如果使用了看门狗，则在调用该函数前，必须先复位系统，并在初始化看门狗之前调用该函数。
+    #define ISPAddress 0x1FFFF000 
+    uint32_t ispJumpAddr;//ISP程序的跳转地址，既程序入口
+    uint32_t ispSpValue;//IAP程序的SP初值，即栈指针
+    void (*Jump_To_ISP)(void);//定义一个函数指针
+
+    SysTick->CTRL=0x00;       //关闭计数器
+    SysTick->VAL =0X00;       //清空计数器	
+    //__set_FAULTMASK(1);   //关闭所有中断
+    //__set_CONTROL(0);     //将PSP指针切换为MSP指针，适用于APP使用OS情况
+    //        NVIC_SystemReset();      //NVIC重置
+    if (((*(__IO uint32_t*)ISPAddress) & 0x2FFE0000 ) == 0x20000000)
+    { 
+        ispSpValue  = *(__IO uint32_t*)ISPAddress;
+        ispJumpAddr = *(__IO uint32_t*)(ISPAddress+4);
+
+
+        /* 初始化 Stack Pointer */
+        __set_MSP(ispSpValue);
+
+        /* Jump to isp */
+        Jump_To_ISP = (void (*)(void))ispJumpAddr;
+        Jump_To_ISP();
+    }
+}
+
+void NVIC_Config(void)
+{
+    NVIC_InitTypeDef NVIC_InitStructure;
+    NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
+
+    /* Enable the USARTy Interrupt */
+    NVIC_InitStructure.NVIC_IRQChannel = USART1_IRQn;
+    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 2;
+    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+    NVIC_Init(&NVIC_InitStructure);
+
+  //DS3231 INT
+  NVIC_InitStructure.NVIC_IRQChannel = EXTI2_IRQn;
+    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;
+    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+    NVIC_Init(&NVIC_InitStructure);
+
+  //HX1838 INT
+  NVIC_InitStructure.NVIC_IRQChannel = EXTI9_5_IRQn;
+    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
+    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+    NVIC_Init(&NVIC_InitStructure);
+}
+
+
 /*********************************************END OF FILE**********************/

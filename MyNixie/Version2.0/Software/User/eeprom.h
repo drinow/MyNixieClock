@@ -67,6 +67,10 @@
 /* Variables' number */
 #define NumbOfVar               ((uint8_t)57)
 
+/* Read status */
+#define READ_OK                 (0)
+#define READ_FAILED             (1)
+
 extern uint16_t VirtAddVarTab[NumbOfVar];
 
 /* Exported types ------------------------------------------------------------*/
